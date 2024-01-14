@@ -21,7 +21,7 @@ namespace BasicFacebookFeatures.session
             AccessToken = LoginResult.AccessToken;
         }
 
-        public FacebookWrapper.LoginResult login()
+        private FacebookWrapper.LoginResult login()
         {
             FacebookWrapper.LoginResult loginResult = FacebookService.Login("392372086520900",
                 "email",

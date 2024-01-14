@@ -36,7 +36,8 @@ namespace BasicFacebookFeatures
 
         private void login()
         {
-            m_LoginResult = SessionManager.
+            SessionManager = new SessionManager();
+            m_LoginResult = SessionManager.LoginResult;
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
