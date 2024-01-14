@@ -11,12 +11,14 @@ namespace BasicFacebookFeatures.session
     public class SessionManager
     {
         public LoginResult LoginResult { get; set; }
-        public User User { get{
-                if(; };
+        public User User { get; }
+        public String AccessToken { get; }
 
         public SessionManager()
         {
-            
+            LoginResult = login();
+            User = LoginResult.LoggedInUser;
+            AccessToken = LoginResult.AccessToken;
         }
 
         public FacebookWrapper.LoginResult login()
