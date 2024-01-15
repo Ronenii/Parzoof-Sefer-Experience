@@ -8,11 +8,13 @@ using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using BasicFacebookFeatures.session;
 
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
+        public SessionManager SessionManager { get; set; }
         public FormMain()
         {
             InitializeComponent();
@@ -20,7 +22,8 @@ namespace BasicFacebookFeatures
         }
 
         FacebookWrapper.LoginResult m_LoginResult;
-
+        
+    
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
@@ -33,14 +36,8 @@ namespace BasicFacebookFeatures
 
         private void login()
         {
-            m_LoginResult = FacebookService.Login(
-                /// (This is Desig Patter's App ID. replace it with your own)
-                textBoxAppID.Text,
-                /// requested permissions:
-                "email",
-                "public_profile"
-                /// add any relevant permissions
-                );
+            SessionManager = new SessionManager();
+            m_LoginResult = SessionManager.LoginResult;
 
             if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
             {
