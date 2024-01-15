@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using BasicFacebookFeatures.session;
 using FacebookWrapper;
 
 namespace BasicFacebookFeatures
