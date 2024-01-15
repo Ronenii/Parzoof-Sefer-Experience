@@ -45,13 +45,17 @@ namespace BasicFacebookFeatures
                 "user_location",
                 "user_videos");
 
-            if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
+            if(m_LoginResult.AccessToken != null)
             {
                 buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
                 buttonLogin.BackColor = Color.LightGreen;
                 pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
+            }
+            else
+            {
+                m_LoginResult = null;
             }
         }
 
@@ -63,6 +67,8 @@ namespace BasicFacebookFeatures
             m_LoginResult = null;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
+            pictureBoxProfile.Image = null;
         }
+
     }
 }

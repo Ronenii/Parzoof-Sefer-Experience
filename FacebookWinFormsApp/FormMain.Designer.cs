@@ -32,14 +32,15 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.lableComments = new System.Windows.Forms.Label();
+            this.listBoxComments = new System.Windows.Forms.ListBox();
+            this.lableTimeline = new System.Windows.Forms.Label();
+            this.listBoxTimeline = new System.Windows.Forms.ListBox();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.textBoxStatus = new System.Windows.Forms.TextBox();
-            this.buttonPost = new System.Windows.Forms.Button();
-            this.listBoxTimeline = new System.Windows.Forms.ListBox();
-            this.lableTimeline = new System.Windows.Forms.Label();
-            this.listBoxComments = new System.Windows.Forms.ListBox();
-            this.lableComments = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -82,6 +83,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.labelName);
             this.tabPageMain.Controls.Add(this.lableComments);
             this.tabPageMain.Controls.Add(this.listBoxComments);
             this.tabPageMain.Controls.Add(this.lableTimeline);
@@ -99,10 +101,65 @@
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
             // 
+            // lableComments
+            // 
+            this.lableComments.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lableComments.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lableComments.Location = new System.Drawing.Point(809, 94);
+            this.lableComments.Name = "lableComments";
+            this.lableComments.Size = new System.Drawing.Size(187, 44);
+            this.lableComments.TabIndex = 61;
+            this.lableComments.Text = "Comments";
+            // 
+            // listBoxComments
+            // 
+            this.listBoxComments.FormattingEnabled = true;
+            this.listBoxComments.ItemHeight = 22;
+            this.listBoxComments.Location = new System.Drawing.Point(819, 151);
+            this.listBoxComments.Name = "listBoxComments";
+            this.listBoxComments.Size = new System.Drawing.Size(323, 378);
+            this.listBoxComments.TabIndex = 60;
+            // 
+            // lableTimeline
+            // 
+            this.lableTimeline.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lableTimeline.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lableTimeline.Location = new System.Drawing.Point(13, 94);
+            this.lableTimeline.Name = "lableTimeline";
+            this.lableTimeline.Size = new System.Drawing.Size(187, 44);
+            this.lableTimeline.TabIndex = 59;
+            this.lableTimeline.Text = "Timeline";
+            // 
+            // listBoxTimeline
+            // 
+            this.listBoxTimeline.FormattingEnabled = true;
+            this.listBoxTimeline.ItemHeight = 22;
+            this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
+            this.listBoxTimeline.Name = "listBoxTimeline";
+            this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
+            this.listBoxTimeline.TabIndex = 58;
+            // 
+            // buttonPost
+            // 
+            this.buttonPost.Location = new System.Drawing.Point(718, 568);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(75, 33);
+            this.buttonPost.TabIndex = 57;
+            this.buttonPost.Text = "Post";
+            this.buttonPost.UseVisualStyleBackColor = true;
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Location = new System.Drawing.Point(18, 568);
+            this.textBoxStatus.Multiline = true;
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(682, 67);
+            this.textBoxStatus.TabIndex = 56;
+            // 
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxProfile.Location = new System.Drawing.Point(319, 11);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(1093, 11);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(79, 78);
             this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -119,60 +176,14 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // textBoxStatus
+            // labelName
             // 
-            this.textBoxStatus.Location = new System.Drawing.Point(18, 568);
-            this.textBoxStatus.Multiline = true;
-            this.textBoxStatus.Name = "textBoxStatus";
-            this.textBoxStatus.Size = new System.Drawing.Size(682, 67);
-            this.textBoxStatus.TabIndex = 56;
-            // 
-            // buttonPost
-            // 
-            this.buttonPost.Location = new System.Drawing.Point(718, 568);
-            this.buttonPost.Name = "buttonPost";
-            this.buttonPost.Size = new System.Drawing.Size(75, 33);
-            this.buttonPost.TabIndex = 57;
-            this.buttonPost.Text = "Post";
-            this.buttonPost.UseVisualStyleBackColor = true;
-            // 
-            // listBoxTimeline
-            // 
-            this.listBoxTimeline.FormattingEnabled = true;
-            this.listBoxTimeline.ItemHeight = 22;
-            this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
-            this.listBoxTimeline.Name = "listBoxTimeline";
-            this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
-            this.listBoxTimeline.TabIndex = 58;
-            // 
-            // lableTimeline
-            // 
-            this.lableTimeline.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lableTimeline.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lableTimeline.Location = new System.Drawing.Point(20, 94);
-            this.lableTimeline.Name = "lableTimeline";
-            this.lableTimeline.Size = new System.Drawing.Size(187, 44);
-            this.lableTimeline.TabIndex = 59;
-            this.lableTimeline.Text = "Timeline";
-            // 
-            // listBoxComments
-            // 
-            this.listBoxComments.FormattingEnabled = true;
-            this.listBoxComments.ItemHeight = 22;
-            this.listBoxComments.Location = new System.Drawing.Point(819, 151);
-            this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(323, 378);
-            this.listBoxComments.TabIndex = 60;
-            // 
-            // lableComments
-            // 
-            this.lableComments.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lableComments.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lableComments.Location = new System.Drawing.Point(809, 94);
-            this.lableComments.Name = "lableComments";
-            this.lableComments.Size = new System.Drawing.Size(187, 44);
-            this.lableComments.TabIndex = 61;
-            this.lableComments.Text = "Comments";
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(929, 17);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(16, 24);
+            this.labelName.TabIndex = 64;
+            this.labelName.Text = "-";
             // 
             // FormMain
             // 
@@ -207,6 +218,7 @@
         private System.Windows.Forms.ListBox listBoxTimeline;
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
+        private System.Windows.Forms.Label labelName;
     }
 }
 
