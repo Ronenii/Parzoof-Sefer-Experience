@@ -41,9 +41,11 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.AlbumGrid = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            this.tabPageAlbums.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -80,6 +82,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1243, 697);
             this.tabControl1.TabIndex = 54;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageMain
             // 
@@ -177,6 +180,7 @@
             // 
             // tabPageAlbums
             // 
+            this.tabPageAlbums.Controls.Add(this.AlbumGrid);
             this.tabPageAlbums.Location = new System.Drawing.Point(4, 31);
             this.tabPageAlbums.Name = "tabPageAlbums";
             this.tabPageAlbums.Padding = new System.Windows.Forms.Padding(3);
@@ -184,6 +188,22 @@
             this.tabPageAlbums.TabIndex = 1;
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
+            // 
+            // AlbumGrid
+            // 
+            this.AlbumGrid.AutoScroll = true;
+            this.AlbumGrid.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.AlbumGrid.ColumnCount = 2;
+            this.AlbumGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AlbumGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AlbumGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AlbumGrid.Location = new System.Drawing.Point(3, 3);
+            this.AlbumGrid.Name = "AlbumGrid";
+            this.AlbumGrid.RowCount = 2;
+            this.AlbumGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AlbumGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.AlbumGrid.Size = new System.Drawing.Size(1229, 656);
+            this.AlbumGrid.TabIndex = 1;
             // 
             // FormMain
             // 
@@ -196,10 +216,13 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormMain_ResizeEnd);
             this.tabControl1.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            this.tabPageAlbums.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -219,6 +242,7 @@
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TableLayoutPanel AlbumGrid;
     }
 }
 

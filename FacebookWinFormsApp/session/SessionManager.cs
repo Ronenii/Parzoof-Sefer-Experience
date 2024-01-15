@@ -37,5 +37,10 @@ namespace BasicFacebookFeatures.session
 
             return loginResult;
         }
+
+        public bool isLoggedIn()
+        {
+            return AccessToken != null;
+        }
     }
 }
