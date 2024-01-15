@@ -21,35 +21,30 @@ namespace BasicFacebookFeatures
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
         }
 
-        FacebookWrapper.LoginResult m_LoginResult;
-        
-    
+
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
+            SessionManager = new SessionManager();
 
-            if (m_LoginResult == null)
+            if (SessionManager.LoginResult != null)
             {
-                login();
+                adjustUiToLoggedInUser();
             }
         }
 
-        private void login()
+        private void adjustUiToLoggedInUser()
         {
-            SessionManager = new SessionManager();
-            m_LoginResult = SessionManager.LoginResult;
-
-            if(m_LoginResult.AccessToken != null)
+            if(SessionManager.AccessToken != null)
             {
-                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-                buttonLogin.BackColor = Color.LightGreen;
-                pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
+                pictureBoxProfile.ImageLocation = SessionManager.User.PictureNormalURL;
+                labelName.Text = SessionManager.User.Name;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
             }
             else
             {
-                m_LoginResult = null;
+                SessionManager.LoginResult = null;
             }
         }
 
@@ -58,10 +53,11 @@ namespace BasicFacebookFeatures
             FacebookService.LogoutWithUI();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
-            m_LoginResult = null;
+            SessionManager = null;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
+            labelName.Text = "-";
         }
 
     }

@@ -32,6 +32,7 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.labelName = new System.Windows.Forms.Label();
             this.lableComments = new System.Windows.Forms.Label();
             this.listBoxComments = new System.Windows.Forms.ListBox();
             this.lableTimeline = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.labelName = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -100,6 +100,15 @@
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(929, 17);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(16, 24);
+            this.labelName.TabIndex = 64;
+            this.labelName.Text = "-";
             // 
             // lableComments
             // 
@@ -175,15 +184,6 @@
             this.tabPageAlbums.TabIndex = 1;
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(929, 17);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(16, 24);
-            this.labelName.TabIndex = 64;
-            this.labelName.Text = "-";
             // 
             // FormMain
             // 
