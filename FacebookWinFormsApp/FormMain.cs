@@ -62,7 +62,7 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
             labelName.Text = "-";
-            tabPageAlbums.Enabled = false;
+            tabPageAlbums.Controls.Clear();
         }
 
         // Adjusts album grid according to the form's size, adds albums to grid if needed.
