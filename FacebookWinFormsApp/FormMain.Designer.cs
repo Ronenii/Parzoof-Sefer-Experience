@@ -31,11 +31,18 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.labelName = new System.Windows.Forms.Label();
+            this.lableComments = new System.Windows.Forms.Label();
+            this.listBoxComments = new System.Windows.Forms.ListBox();
+            this.lableTimeline = new System.Windows.Forms.Label();
+            this.listBoxTimeline = new System.Windows.Forms.ListBox();
+            this.buttonPost = new System.Windows.Forms.Button();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageAlbums = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,8 +71,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPageMain);
+            this.tabControl1.Controls.Add(this.tabPageAlbums);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.ItemSize = new System.Drawing.Size(89, 27);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -74,37 +81,109 @@
             this.tabControl1.Size = new System.Drawing.Size(1243, 697);
             this.tabControl1.TabIndex = 54;
             // 
-            // tabPage1
+            // tabPageMain
             // 
-            this.tabPage1.Controls.Add(this.pictureBoxProfile);
-            this.tabPage1.Controls.Add(this.buttonLogout);
-            this.tabPage1.Controls.Add(this.buttonLogin);
-            this.tabPage1.Location = new System.Drawing.Point(4, 31);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1235, 662);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPageMain.Controls.Add(this.labelName);
+            this.tabPageMain.Controls.Add(this.lableComments);
+            this.tabPageMain.Controls.Add(this.listBoxComments);
+            this.tabPageMain.Controls.Add(this.lableTimeline);
+            this.tabPageMain.Controls.Add(this.listBoxTimeline);
+            this.tabPageMain.Controls.Add(this.buttonPost);
+            this.tabPageMain.Controls.Add(this.textBoxStatus);
+            this.tabPageMain.Controls.Add(this.pictureBoxProfile);
+            this.tabPageMain.Controls.Add(this.buttonLogout);
+            this.tabPageMain.Controls.Add(this.buttonLogin);
+            this.tabPageMain.Location = new System.Drawing.Point(4, 31);
+            this.tabPageMain.Name = "tabPageMain";
+            this.tabPageMain.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMain.Size = new System.Drawing.Size(1235, 662);
+            this.tabPageMain.TabIndex = 0;
+            this.tabPageMain.Text = "Main Tab";
+            this.tabPageMain.UseVisualStyleBackColor = true;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(929, 17);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(16, 24);
+            this.labelName.TabIndex = 64;
+            this.labelName.Text = "-";
+            // 
+            // lableComments
+            // 
+            this.lableComments.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lableComments.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lableComments.Location = new System.Drawing.Point(809, 94);
+            this.lableComments.Name = "lableComments";
+            this.lableComments.Size = new System.Drawing.Size(187, 44);
+            this.lableComments.TabIndex = 61;
+            this.lableComments.Text = "Comments";
+            // 
+            // listBoxComments
+            // 
+            this.listBoxComments.FormattingEnabled = true;
+            this.listBoxComments.ItemHeight = 22;
+            this.listBoxComments.Location = new System.Drawing.Point(819, 151);
+            this.listBoxComments.Name = "listBoxComments";
+            this.listBoxComments.Size = new System.Drawing.Size(323, 378);
+            this.listBoxComments.TabIndex = 60;
+            // 
+            // lableTimeline
+            // 
+            this.lableTimeline.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lableTimeline.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lableTimeline.Location = new System.Drawing.Point(13, 94);
+            this.lableTimeline.Name = "lableTimeline";
+            this.lableTimeline.Size = new System.Drawing.Size(187, 44);
+            this.lableTimeline.TabIndex = 59;
+            this.lableTimeline.Text = "Timeline";
+            // 
+            // listBoxTimeline
+            // 
+            this.listBoxTimeline.FormattingEnabled = true;
+            this.listBoxTimeline.ItemHeight = 22;
+            this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
+            this.listBoxTimeline.Name = "listBoxTimeline";
+            this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
+            this.listBoxTimeline.TabIndex = 58;
+            // 
+            // buttonPost
+            // 
+            this.buttonPost.Location = new System.Drawing.Point(718, 568);
+            this.buttonPost.Name = "buttonPost";
+            this.buttonPost.Size = new System.Drawing.Size(75, 33);
+            this.buttonPost.TabIndex = 57;
+            this.buttonPost.Text = "Post";
+            this.buttonPost.UseVisualStyleBackColor = true;
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Location = new System.Drawing.Point(18, 568);
+            this.textBoxStatus.Multiline = true;
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.Size = new System.Drawing.Size(682, 67);
+            this.textBoxStatus.TabIndex = 56;
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(18, 96);
+            this.pictureBoxProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxProfile.Location = new System.Drawing.Point(1093, 11);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(79, 78);
             this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProfile.TabIndex = 55;
             this.pictureBoxProfile.TabStop = false;
             // 
-            // tabPage2
+            // tabPageAlbums
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 31);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1235, 662);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageAlbums.Location = new System.Drawing.Point(4, 31);
+            this.tabPageAlbums.Name = "tabPageAlbums";
+            this.tabPageAlbums.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAlbums.Size = new System.Drawing.Size(1235, 662);
+            this.tabPageAlbums.TabIndex = 1;
+            this.tabPageAlbums.Text = "Albums";
+            this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -118,7 +197,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabPageMain.ResumeLayout(false);
+            this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.ResumeLayout(false);
 
@@ -129,9 +209,16 @@
 		private System.Windows.Forms.Button buttonLogin;
 		private System.Windows.Forms.Button buttonLogout;
 		private System.Windows.Forms.TabControl tabControl1;
-		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
+		private System.Windows.Forms.TabPage tabPageMain;
+		private System.Windows.Forms.TabPage tabPageAlbums;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
+        private System.Windows.Forms.Button buttonPost;
+        private System.Windows.Forms.TextBox textBoxStatus;
+        private System.Windows.Forms.Label lableTimeline;
+        private System.Windows.Forms.ListBox listBoxTimeline;
+        private System.Windows.Forms.Label lableComments;
+        private System.Windows.Forms.ListBox listBoxComments;
+        private System.Windows.Forms.Label labelName;
     }
 }
 
