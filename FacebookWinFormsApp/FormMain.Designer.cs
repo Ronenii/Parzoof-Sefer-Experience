@@ -32,6 +32,7 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.linkTimeline = new System.Windows.Forms.LinkLabel();
             this.labelName = new System.Windows.Forms.Label();
             this.lableComments = new System.Windows.Forms.Label();
             this.listBoxComments = new System.Windows.Forms.ListBox();
@@ -41,7 +42,7 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.linkTimeline = new System.Windows.Forms.LinkLabel();
+            this.labelBirthdate = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -84,6 +85,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.labelBirthdate);
             this.tabPageMain.Controls.Add(this.linkTimeline);
             this.tabPageMain.Controls.Add(this.labelName);
             this.tabPageMain.Controls.Add(this.lableComments);
@@ -103,14 +105,24 @@
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
             // 
+            // linkTimeline
+            // 
+            this.linkTimeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkTimeline.Location = new System.Drawing.Point(19, 132);
+            this.linkTimeline.Name = "linkTimeline";
+            this.linkTimeline.Size = new System.Drawing.Size(100, 17);
+            this.linkTimeline.TabIndex = 65;
+            this.linkTimeline.TabStop = true;
+            this.linkTimeline.Text = "Fetch Timeline";
+            this.linkTimeline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.linkTimeline_MouseClick);
+            // 
             // labelName
             // 
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(929, 17);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(16, 24);
+            this.labelName.Size = new System.Drawing.Size(0, 18);
             this.labelName.TabIndex = 64;
-            this.labelName.Text = "-";
             // 
             // lableComments
             // 
@@ -125,10 +137,10 @@
             // listBoxComments
             // 
             this.listBoxComments.FormattingEnabled = true;
-            this.listBoxComments.ItemHeight = 22;
+            this.listBoxComments.ItemHeight = 18;
             this.listBoxComments.Location = new System.Drawing.Point(819, 151);
             this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(323, 378);
+            this.listBoxComments.Size = new System.Drawing.Size(323, 364);
             this.listBoxComments.TabIndex = 60;
             // 
             // lableTimeline
@@ -144,10 +156,10 @@
             // listBoxTimeline
             // 
             this.listBoxTimeline.FormattingEnabled = true;
-            this.listBoxTimeline.ItemHeight = 22;
+            this.listBoxTimeline.ItemHeight = 18;
             this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
             this.listBoxTimeline.Name = "listBoxTimeline";
-            this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
+            this.listBoxTimeline.Size = new System.Drawing.Size(775, 364);
             this.listBoxTimeline.TabIndex = 58;
             this.listBoxTimeline.SelectedIndexChanged += new System.EventHandler(this.listBoxTimeline_SelectedIndexChanged);
             // 
@@ -189,20 +201,17 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // linkTimeline
+            // labelBirthdate
             // 
-            this.linkTimeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkTimeline.Location = new System.Drawing.Point(19, 132);
-            this.linkTimeline.Name = "linkTimeline";
-            this.linkTimeline.Size = new System.Drawing.Size(100, 17);
-            this.linkTimeline.TabIndex = 65;
-            this.linkTimeline.TabStop = true;
-            this.linkTimeline.Text = "Fetch Timeline";
-            this.linkTimeline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.linkTimeline_MouseClick);
+            this.labelBirthdate.AutoSize = true;
+            this.labelBirthdate.Location = new System.Drawing.Point(932, 57);
+            this.labelBirthdate.Name = "labelBirthdate";
+            this.labelBirthdate.Size = new System.Drawing.Size(0, 18);
+            this.labelBirthdate.TabIndex = 66;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
             this.Controls.Add(this.tabControl1);
@@ -235,6 +244,7 @@
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.LinkLabel linkTimeline;
+        private System.Windows.Forms.Label labelBirthdate;
     }
 }
 

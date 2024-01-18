@@ -40,6 +40,7 @@ namespace BasicFacebookFeatures
             {
                 pictureBoxProfile.ImageLocation = SessionManager.User.PictureNormalURL;
                 labelName.Text = SessionManager.User.Name;
+                labelBirthdate.Text = SessionManager.User.Birthday;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 initAllComponents();
@@ -59,7 +60,8 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
-            labelName.Text = "-";
+            labelName.Text = "";
+            labelBirthdate.Text = "";
         }
 
         private void initAllComponents()
