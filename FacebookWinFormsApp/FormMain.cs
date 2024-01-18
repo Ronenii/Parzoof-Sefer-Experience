@@ -9,23 +9,53 @@ using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 using BasicFacebookFeatures.session;
+using BasicFacebookFeatures.serialization;
+using System.IO;
 
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
         public SessionManager SessionManager { get; set; }
+        public AppSettings AppSettings { get; set; }
         public FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
+            SessionManager = new SessionManager();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            AppSettings = AppSettings.LoadFromFile();
+            if(AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
+            {
+                SessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
+                checkBoxRemember.Checked = true;
+                adjustUiToLoggedInUser();
+            }
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            AppSettings.LastWindowSize = this.Size;
+            AppSettings.LastWindowLocation = this.Location;
+            AppSettings.RememberUser = this.checkBoxRemember.Checked;
+            if(AppSettings.RememberUser)
+            {
+                AppSettings.LastAccessToken = SessionManager.AccessToken;
+            }
+
+            AppSettings.SaveToFile();
         }
 
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
-            SessionManager = new SessionManager();
+            SessionManager.login();
 
             if (SessionManager.LoginResult != null)
             {

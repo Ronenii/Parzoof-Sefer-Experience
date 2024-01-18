@@ -41,6 +41,7 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.checkBoxRemember = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -83,6 +84,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.checkBoxRemember);
             this.tabPageMain.Controls.Add(this.labelName);
             this.tabPageMain.Controls.Add(this.lableComments);
             this.tabPageMain.Controls.Add(this.listBoxComments);
@@ -106,7 +108,7 @@
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(929, 17);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(16, 24);
+            this.labelName.Size = new System.Drawing.Size(13, 18);
             this.labelName.TabIndex = 64;
             this.labelName.Text = "-";
             // 
@@ -123,10 +125,10 @@
             // listBoxComments
             // 
             this.listBoxComments.FormattingEnabled = true;
-            this.listBoxComments.ItemHeight = 22;
+            this.listBoxComments.ItemHeight = 18;
             this.listBoxComments.Location = new System.Drawing.Point(819, 151);
             this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(323, 378);
+            this.listBoxComments.Size = new System.Drawing.Size(323, 364);
             this.listBoxComments.TabIndex = 60;
             // 
             // lableTimeline
@@ -142,10 +144,10 @@
             // listBoxTimeline
             // 
             this.listBoxTimeline.FormattingEnabled = true;
-            this.listBoxTimeline.ItemHeight = 22;
+            this.listBoxTimeline.ItemHeight = 18;
             this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
             this.listBoxTimeline.Name = "listBoxTimeline";
-            this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
+            this.listBoxTimeline.Size = new System.Drawing.Size(775, 364);
             this.listBoxTimeline.TabIndex = 58;
             // 
             // buttonPost
@@ -185,9 +187,18 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
+            // checkBoxRemember
+            // 
+            this.checkBoxRemember.Location = new System.Drawing.Point(306, 23);
+            this.checkBoxRemember.Name = "checkBoxRemember";
+            this.checkBoxRemember.Size = new System.Drawing.Size(147, 26);
+            this.checkBoxRemember.TabIndex = 65;
+            this.checkBoxRemember.Text = "Remember Me";
+            this.checkBoxRemember.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
             this.Controls.Add(this.tabControl1);
@@ -219,6 +230,7 @@
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.CheckBox checkBoxRemember;
     }
 }
 

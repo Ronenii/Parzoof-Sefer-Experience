@@ -11,19 +11,12 @@ namespace BasicFacebookFeatures.session
     public class SessionManager
     {
         public LoginResult LoginResult { get; set; }
-        public User User { get; }
-        public String AccessToken { get; }
+        public User User { get; set; }
+        public String AccessToken { get; set; }
 
-        public SessionManager()
+        public void login()
         {
-            LoginResult = login();
-            User = LoginResult.LoggedInUser;
-            AccessToken = LoginResult.AccessToken;
-        }
-
-        private FacebookWrapper.LoginResult login()
-        {
-            FacebookWrapper.LoginResult loginResult = FacebookService.Login("392372086520900",
+            LoginResult = FacebookService.Login("392372086520900",
                 "email",
                 "public_profile",
                 "user_birthday",
@@ -34,8 +27,15 @@ namespace BasicFacebookFeatures.session
                 "user_friends",
                 "user_location",
                 "user_videos");
+            User = LoginResult.LoggedInUser;
+            AccessToken = LoginResult.AccessToken;
+        }
 
-            return loginResult;
+        public void LoginFromAppSettings(string i_AccessToken)
+        {
+            LoginResult = FacebookService.Connect(i_AccessToken);
+            User = LoginResult.LoggedInUser;
+            AccessToken = LoginResult.AccessToken;
         }
     }
 }
