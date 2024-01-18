@@ -41,6 +41,7 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.linkTimeline = new System.Windows.Forms.LinkLabel();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -83,6 +84,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.linkTimeline);
             this.tabPageMain.Controls.Add(this.labelName);
             this.tabPageMain.Controls.Add(this.lableComments);
             this.tabPageMain.Controls.Add(this.listBoxComments);
@@ -133,7 +135,7 @@
             // 
             this.lableTimeline.Font = new System.Drawing.Font("Dubai", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lableTimeline.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lableTimeline.Location = new System.Drawing.Point(13, 94);
+            this.lableTimeline.Location = new System.Drawing.Point(13, 92);
             this.lableTimeline.Name = "lableTimeline";
             this.lableTimeline.Size = new System.Drawing.Size(187, 44);
             this.lableTimeline.TabIndex = 59;
@@ -147,6 +149,7 @@
             this.listBoxTimeline.Name = "listBoxTimeline";
             this.listBoxTimeline.Size = new System.Drawing.Size(775, 378);
             this.listBoxTimeline.TabIndex = 58;
+            this.listBoxTimeline.SelectedIndexChanged += new System.EventHandler(this.listBoxTimeline_SelectedIndexChanged);
             // 
             // buttonPost
             // 
@@ -156,6 +159,7 @@
             this.buttonPost.TabIndex = 57;
             this.buttonPost.Text = "Post";
             this.buttonPost.UseVisualStyleBackColor = true;
+            this.buttonPost.MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttonPost_MouseClick);
             // 
             // textBoxStatus
             // 
@@ -184,6 +188,17 @@
             this.tabPageAlbums.TabIndex = 1;
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
+            // 
+            // linkTimeline
+            // 
+            this.linkTimeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkTimeline.Location = new System.Drawing.Point(19, 132);
+            this.linkTimeline.Name = "linkTimeline";
+            this.linkTimeline.Size = new System.Drawing.Size(100, 17);
+            this.linkTimeline.TabIndex = 65;
+            this.linkTimeline.TabStop = true;
+            this.linkTimeline.Text = "Fetch Timeline";
+            this.linkTimeline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.linkTimeline_MouseClick);
             // 
             // FormMain
             // 
@@ -219,6 +234,7 @@
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.LinkLabel linkTimeline;
     }
 }
 
