@@ -26,13 +26,17 @@ namespace BasicFacebookFeatures.session
             FacebookWrapper.LoginResult loginResult = FacebookService.Login("392372086520900",
                 "email",
                 "public_profile",
+                "user_age_range",
                 "user_birthday",
+                "user_events",
                 "user_friends",
-                "user_posts",
-                "user_photos",
+                "user_gender",
+                "user_hometown",
                 "user_likes",
-                "user_friends",
+                "user_link",
                 "user_location",
+                "user_photos",
+                "user_posts",
                 "user_videos");
 
             return loginResult;
