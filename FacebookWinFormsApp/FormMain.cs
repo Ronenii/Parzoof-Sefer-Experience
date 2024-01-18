@@ -20,10 +20,10 @@ namespace BasicFacebookFeatures
         public FormMain()
         {
             InitializeComponent();
+            DoubleBuffered = true;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
             previousNumberOfAlbums = 0;
         }
-
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -62,7 +62,13 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
             labelName.Text = "-";
-            tabPageAlbums.Controls.Clear();
+            clearAlbums();
+        }
+
+        private void clearAlbums()
+        {
+            AlbumGrid.Controls.Clear();
+            previousNumberOfAlbums = 0;
         }
 
         // Adjusts album grid according to the form's size, adds albums to grid if needed.
@@ -70,7 +76,7 @@ namespace BasicFacebookFeatures
         {
             FacebookObjectCollection<Album> albums = SessionManager.User.Albums;
             int availableWidth = AlbumGrid.Width - AlbumGrid.Margin.Horizontal;
-            const int pictureBoxWidth = 100;
+            const int pictureBoxWidth = 200;
             int maxColumns = availableWidth / pictureBoxWidth;
 
             int rows = (int)Math.Ceiling((double)albums.Count / maxColumns);
@@ -79,46 +85,52 @@ namespace BasicFacebookFeatures
             AlbumGrid.RowCount = rows;
             AlbumGrid.ColumnCount = columns;
 
-            addAlbumsToGrid(albums, rows, columns);
+            AlbumGrid.SuspendLayout();
+            addAlbumsToGrid(albums, columns);
+            AlbumGrid.ResumeLayout();
         }
 
         // Re-create the album grid if nany albums were added or deleted.
-        private void addAlbumsToGrid(FacebookObjectCollection<Album> i_albums, int i_rows, int i_columns)
+        private void addAlbumsToGrid(FacebookObjectCollection<Album> i_Albums, int i_Columns)
         {
             
-            if (i_albums.Count != previousNumberOfAlbums)
+            if (i_Albums.Count != previousNumberOfAlbums)
             {
                 AlbumGrid.Controls.Clear();
 
-                for (int i = 0; i < i_albums.Count; i++)
+                for (int i = 0; i < i_Albums.Count; i++)
                 {
-                    int row = i / i_columns;
-                    int col = i % i_columns;
+                    int row = i / i_Columns;
+                    int col = i % i_Columns;
                     int albumIndex = (row + 1) * (col + 1) - 1;
                     
-
-                    AlbumGrid.Controls.Add(createNewAlbumDisplayPanel(i_albums[albumIndex]), col, row);
-                    previousNumberOfAlbums++;
+                    AlbumGrid.Controls.Add(createNewAlbumDisplayPanel(i_Albums[albumIndex]), col, row);
                 }
+
+                previousNumberOfAlbums = i_Albums.Count;
             }
         }
 
         // Given an album, builds a TableLayoutPanel containing it's name and picture.
-        private TableLayoutPanel createNewAlbumDisplayPanel(Album i_album)
+        private TableLayoutPanel createNewAlbumDisplayPanel(Album i_Album)
         {
-            const int pictureBoxWidth = 100;
+            const int pictureBoxWidth = 200;
+            const int maxTextHeight = 100;
             const int elementsInPanel = 2;
             PictureBox albumCoverPictureBox = new PictureBox
             {
-                Image = i_album.ImageAlbum
+                Image = i_Album.ImageAlbum
             };
-
             Size coverSize = new Size(pictureBoxWidth, pictureBoxWidth);
             albumCoverPictureBox.Size = coverSize;
 
             Label albumNameLabel = new Label
             {
-                Text = i_album.Name
+                Text = i_Album.Name,
+                AutoSize = true,
+                MaximumSize = new Size(pictureBoxWidth, maxTextHeight),
+                Anchor = AnchorStyles.None,
+                TextAlign = ContentAlignment.MiddleCenter
             };
 
             TableLayoutPanel albumDisplayPanel = new TableLayoutPanel
@@ -164,6 +176,11 @@ namespace BasicFacebookFeatures
         }
 
         private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AlbumGrid_Paint(object sender, PaintEventArgs e)
         {
 
         }
