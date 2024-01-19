@@ -13,12 +13,13 @@ namespace BasicFacebookFeatures.session
         public LoginResult LoginResult { get; set; }
         public User User { get; }
         public String AccessToken { get; }
-
+        public UserWrapper UserWrapper { get; }
         public SessionManager()
         {
             LoginResult = login();
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
+            UserWrapper = new UserWrapper(User);
         }
 
         private FacebookWrapper.LoginResult login()
