@@ -28,7 +28,10 @@ namespace BasicFacebookFeatures.logic.grid
             Grid = new TableLayoutPanel
             {
                 AutoSize = true,
-                Dock = DockStyle.Fill
+                Dock = DockStyle.Fill,
+                Visible = true,
+                Enabled = true,
+                AutoScroll = true
             };
         }
 
@@ -57,6 +60,7 @@ namespace BasicFacebookFeatures.logic.grid
             Grid.SuspendLayout();
             addObjectsToGrid(columns);
             Grid.ResumeLayout();
+            Grid.Refresh();
         }
 
         // Re-create the object grid if nany object were added or deleted.
@@ -74,6 +78,10 @@ namespace BasicFacebookFeatures.logic.grid
                     int objectIndex = (row + 1) * (col + 1) - 1;
 
                     Grid.Controls.Add(createNewAlbumDisplayPanel(m_FacebookObjectCollection[objectIndex]), col, row);
+                    if(m_FacebookObjectCollection[objectIndex]is Album)
+                    {
+
+                    }
                 }
 
                 m_PreviousObjectCount = m_FacebookObjectCollection.Count;
