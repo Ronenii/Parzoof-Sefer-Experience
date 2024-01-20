@@ -72,7 +72,8 @@ namespace BasicFacebookFeatures
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
-            labelName.Text = "-";
+            labelName.Text = "";
+            labelBirthdate.Text = "";
             m_AlbumsGrid.Clear();
         }
 
@@ -84,8 +85,7 @@ namespace BasicFacebookFeatures
             {
                 m_AlbumsGrid.adjustGridToForm();
             }
-            labelName.Text = "";
-            labelBirthdate.Text = "";
+            
         }
 
         private void initAllComponents()
