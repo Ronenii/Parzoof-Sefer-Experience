@@ -82,6 +82,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1243, 697);
             this.tabControl1.TabIndex = 54;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageMain
             // 
@@ -220,6 +221,8 @@
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FormMain_Load);
+            this.ResizeEnd += new System.EventHandler(this.FormMain_ResizeEnd);
             this.tabControl1.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
@@ -234,7 +237,6 @@
 		private System.Windows.Forms.Button buttonLogout;
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPageMain;
-		private System.Windows.Forms.TabPage tabPageAlbums;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Button buttonPost;
         private System.Windows.Forms.TextBox textBoxStatus;
@@ -243,6 +245,7 @@
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TabPage tabPageAlbums;
         private System.Windows.Forms.LinkLabel linkTimeline;
         private System.Windows.Forms.Label labelBirthdate;
     }
