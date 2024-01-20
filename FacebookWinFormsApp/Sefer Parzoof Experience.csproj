@@ -89,6 +89,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="logic\friendsFilter\filters\AgeFilter.cs" />
+    <Compile Include="logic\friendsFilter\FriendsFilter.cs" />
+    <Compile Include="logic\friendsFilter\IFilterType.cs" />
     <Compile Include="serialization\AppSettings.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>

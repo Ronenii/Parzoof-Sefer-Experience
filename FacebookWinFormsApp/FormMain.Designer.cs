@@ -30,7 +30,7 @@
         {
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
             this.labelBirthdateHeadline = new System.Windows.Forms.Label();
             this.labelNameHeadline = new System.Windows.Forms.Label();
@@ -46,7 +46,8 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabPageFriendsFilter = new System.Windows.Forms.TabPage();
+            this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.SuspendLayout();
@@ -74,18 +75,19 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPageMain);
-            this.tabControl1.Controls.Add(this.tabPageAlbums);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.ItemSize = new System.Drawing.Size(89, 27);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1243, 697);
-            this.tabControl1.TabIndex = 54;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl.Controls.Add(this.tabPageMain);
+            this.tabControl.Controls.Add(this.tabPageAlbums);
+            this.tabControl.Controls.Add(this.tabPageFriendsFilter);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.ItemSize = new System.Drawing.Size(89, 27);
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1243, 697);
+            this.tabControl.TabIndex = 54;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageMain
             // 
@@ -241,12 +243,22 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
+            // tabPageFriendsFilter
+            // 
+            this.tabPageFriendsFilter.Location = new System.Drawing.Point(4, 31);
+            this.tabPageFriendsFilter.Name = "tabPageFriendsFilter";
+            this.tabPageFriendsFilter.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFriendsFilter.Size = new System.Drawing.Size(1235, 662);
+            this.tabPageFriendsFilter.TabIndex = 2;
+            this.tabPageFriendsFilter.Text = "Friends Filter";
+            this.tabPageFriendsFilter.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
@@ -254,7 +266,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResizeEnd += new System.EventHandler(this.FormMain_ResizeEnd);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
@@ -266,7 +278,7 @@
 
 		private System.Windows.Forms.Button buttonLogin;
 		private System.Windows.Forms.Button buttonLogout;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPageMain;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Button buttonPost;
@@ -282,6 +294,7 @@
         private System.Windows.Forms.CheckBox checkBoxRemember;
         private System.Windows.Forms.Label labelBirthdateHeadline;
         private System.Windows.Forms.Label labelNameHeadline;
+        private System.Windows.Forms.TabPage tabPageFriendsFilter;
     }
 }
 

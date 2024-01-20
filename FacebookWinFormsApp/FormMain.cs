@@ -110,7 +110,7 @@ namespace BasicFacebookFeatures
         // If the user has finished resizing the window, resize the selected tab accordingly.
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPageAlbums)
+            if (tabControl.SelectedTab == tabPageAlbums)
             {
                 m_AlbumsGrid.adjustGridToForm();
             }
@@ -170,9 +170,9 @@ namespace BasicFacebookFeatures
         {
             if (isTabsDisbaled())
             {
-                tabControl1.SelectedTab = tabPageMain;
+                tabControl.SelectedTab = tabPageMain;
             }
-            else if (tabControl1.SelectedTab == tabPageAlbums)
+            else if (tabControl.SelectedTab == tabPageAlbums)
             {
                 m_AlbumsGrid.adjustGridToForm();
             }
