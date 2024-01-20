@@ -11,6 +11,10 @@ namespace BasicFacebookFeatures.session
     public class SessionManager
     {
         public LoginResult LoginResult { get; set; }
+        public User User { get; set; }
+        public String AccessToken { get; set; }
+
+        public void Login()
         public User User { get; }
         public String AccessToken { get; }
         public UserWrapper UserWrapper { get; }
@@ -25,6 +29,7 @@ namespace BasicFacebookFeatures.session
         private FacebookWrapper.LoginResult login()
         {
             FacebookWrapper.LoginResult loginResult = FacebookService.Login("392372086520900",
+            LoginResult = FacebookService.Login("392372086520900",
                 "email",
                 "public_profile",
                 "user_age_range",
@@ -39,8 +44,16 @@ namespace BasicFacebookFeatures.session
                 "user_photos",
                 "user_posts",
                 "user_videos");
+            User = LoginResult.LoggedInUser;
+            AccessToken = LoginResult.AccessToken;
 
-            return loginResult;
+        }
+
+        public void LoginFromAppSettings(string i_AccessToken)
+        {
+            LoginResult = FacebookService.Connect(i_AccessToken);
+            User = LoginResult.LoggedInUser;
+            AccessToken = LoginResult.AccessToken;
         }
 
         public bool isLoggedIn()

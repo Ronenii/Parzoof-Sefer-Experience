@@ -12,6 +12,8 @@ using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 using BasicFacebookFeatures.session;
 using BasicFacebookFeatures.logic.grid;
+using BasicFacebookFeatures.serialization;
+using System.IO;
 
 namespace BasicFacebookFeatures
 {
@@ -19,12 +21,25 @@ namespace BasicFacebookFeatures
     {
         private int previousNumberOfAlbums;
         public SessionManager SessionManager { get; set; }
+        public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         public FormMain()
         {
             InitializeComponent();
             DoubleBuffered = true;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
+            SessionManager = new SessionManager();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            AppSettings = AppSettings.LoadFromFile();
+            if(AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
+            {
+                SessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
+                checkBoxRemember.Checked = true;
+                adjustUiToLoggedInUser();
+            }
             previousNumberOfAlbums = 0;
         }
 
@@ -33,11 +48,26 @@ namespace BasicFacebookFeatures
             m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(SessionManager.UserWrapper.GetAlbums, this);
             tabPageAlbums.Controls.Add(m_AlbumsGrid.Grid);
         }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            AppSettings.LastWindowSize = this.Size;
+            AppSettings.LastWindowLocation = this.Location;
+            AppSettings.RememberUser = this.checkBoxRemember.Checked;
+            if(AppSettings.RememberUser)
+            {
+                AppSettings.LastAccessToken = SessionManager.AccessToken;
+            }
+
+            AppSettings.SaveToFile();
+        }
+
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
-            SessionManager = new SessionManager();
+            SessionManager.Login();
 
             if (SessionManager.LoginResult != null)
             {
@@ -65,10 +95,9 @@ namespace BasicFacebookFeatures
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FacebookService.LogoutWithUI();
+            FacebookService.Logout();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
-            SessionManager = null;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;

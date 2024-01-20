@@ -42,6 +42,7 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
+            this.checkBoxRemember = new System.Windows.Forms.CheckBox();
             this.labelBirthdate = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.checkBoxRemember);
             this.tabPageMain.Controls.Add(this.labelBirthdate);
             this.tabPageMain.Controls.Add(this.linkTimeline);
             this.tabPageMain.Controls.Add(this.labelName);
@@ -123,6 +125,7 @@
             this.labelName.Location = new System.Drawing.Point(929, 17);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(0, 18);
+            this.labelName.Size = new System.Drawing.Size(13, 18);
             this.labelName.TabIndex = 64;
             // 
             // lableComments
@@ -210,6 +213,15 @@
             this.labelBirthdate.Size = new System.Drawing.Size(0, 18);
             this.labelBirthdate.TabIndex = 66;
             // 
+            // checkBoxRemember
+            // 
+            this.checkBoxRemember.Location = new System.Drawing.Point(306, 23);
+            this.checkBoxRemember.Name = "checkBoxRemember";
+            this.checkBoxRemember.Size = new System.Drawing.Size(147, 26);
+            this.checkBoxRemember.TabIndex = 65;
+            this.checkBoxRemember.Text = "Remember Me";
+            this.checkBoxRemember.UseVisualStyleBackColor = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -248,6 +260,7 @@
         private System.Windows.Forms.TabPage tabPageAlbums;
         private System.Windows.Forms.LinkLabel linkTimeline;
         private System.Windows.Forms.Label labelBirthdate;
+        private System.Windows.Forms.CheckBox checkBoxRemember;
     }
 }
 
