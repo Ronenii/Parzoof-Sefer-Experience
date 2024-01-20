@@ -12,23 +12,15 @@ namespace BasicFacebookFeatures.session
     {
         public LoginResult LoginResult { get; set; }
         public User User { get; set; }
-        public String AccessToken { get; set; }
-
-        public void Login()
-        public User User { get; }
-        public String AccessToken { get; }
+        public string AccessToken { get; set; }
         public UserWrapper UserWrapper { get; }
         public SessionManager()
         {
-            LoginResult = login();
-            User = LoginResult.LoggedInUser;
-            AccessToken = LoginResult.AccessToken;
             UserWrapper = new UserWrapper(User);
         }
 
-        private FacebookWrapper.LoginResult login()
+        public void Login()
         {
-            FacebookWrapper.LoginResult loginResult = FacebookService.Login("392372086520900",
             LoginResult = FacebookService.Login("392372086520900",
                 "email",
                 "public_profile",
@@ -46,7 +38,6 @@ namespace BasicFacebookFeatures.session
                 "user_videos");
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
-
         }
 
         public void LoginFromAppSettings(string i_AccessToken)

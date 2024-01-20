@@ -32,6 +32,10 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.labelBirthdateHeadline = new System.Windows.Forms.Label();
+            this.labelNameHeadline = new System.Windows.Forms.Label();
+            this.checkBoxRemember = new System.Windows.Forms.CheckBox();
+            this.labelBirthdate = new System.Windows.Forms.Label();
             this.linkTimeline = new System.Windows.Forms.LinkLabel();
             this.labelName = new System.Windows.Forms.Label();
             this.lableComments = new System.Windows.Forms.Label();
@@ -42,8 +46,6 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.checkBoxRemember = new System.Windows.Forms.CheckBox();
-            this.labelBirthdate = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -87,6 +89,8 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.labelBirthdateHeadline);
+            this.tabPageMain.Controls.Add(this.labelNameHeadline);
             this.tabPageMain.Controls.Add(this.checkBoxRemember);
             this.tabPageMain.Controls.Add(this.labelBirthdate);
             this.tabPageMain.Controls.Add(this.linkTimeline);
@@ -108,6 +112,39 @@
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
             // 
+            // labelBirthdateHeadline
+            // 
+            this.labelBirthdateHeadline.Location = new System.Drawing.Point(814, 57);
+            this.labelBirthdateHeadline.Name = "labelBirthdateHeadline";
+            this.labelBirthdateHeadline.Size = new System.Drawing.Size(90, 32);
+            this.labelBirthdateHeadline.TabIndex = 68;
+            this.labelBirthdateHeadline.Text = "Birthday:";
+            // 
+            // labelNameHeadline
+            // 
+            this.labelNameHeadline.Location = new System.Drawing.Point(814, 17);
+            this.labelNameHeadline.Name = "labelNameHeadline";
+            this.labelNameHeadline.Size = new System.Drawing.Size(70, 32);
+            this.labelNameHeadline.TabIndex = 67;
+            this.labelNameHeadline.Text = "Name:";
+            // 
+            // checkBoxRemember
+            // 
+            this.checkBoxRemember.Location = new System.Drawing.Point(306, 23);
+            this.checkBoxRemember.Name = "checkBoxRemember";
+            this.checkBoxRemember.Size = new System.Drawing.Size(147, 26);
+            this.checkBoxRemember.TabIndex = 65;
+            this.checkBoxRemember.Text = "Remember Me";
+            this.checkBoxRemember.UseVisualStyleBackColor = true;
+            // 
+            // labelBirthdate
+            // 
+            this.labelBirthdate.AutoSize = true;
+            this.labelBirthdate.Location = new System.Drawing.Point(932, 57);
+            this.labelBirthdate.Name = "labelBirthdate";
+            this.labelBirthdate.Size = new System.Drawing.Size(0, 24);
+            this.labelBirthdate.TabIndex = 66;
+            // 
             // linkTimeline
             // 
             this.linkTimeline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -124,8 +161,7 @@
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(929, 17);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(0, 18);
-            this.labelName.Size = new System.Drawing.Size(13, 18);
+            this.labelName.Size = new System.Drawing.Size(0, 24);
             this.labelName.TabIndex = 64;
             // 
             // lableComments
@@ -141,10 +177,10 @@
             // listBoxComments
             // 
             this.listBoxComments.FormattingEnabled = true;
-            this.listBoxComments.ItemHeight = 18;
+            this.listBoxComments.ItemHeight = 22;
             this.listBoxComments.Location = new System.Drawing.Point(819, 151);
             this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(323, 364);
+            this.listBoxComments.Size = new System.Drawing.Size(323, 356);
             this.listBoxComments.TabIndex = 60;
             // 
             // lableTimeline
@@ -160,10 +196,10 @@
             // listBoxTimeline
             // 
             this.listBoxTimeline.FormattingEnabled = true;
-            this.listBoxTimeline.ItemHeight = 18;
+            this.listBoxTimeline.ItemHeight = 22;
             this.listBoxTimeline.Location = new System.Drawing.Point(18, 151);
             this.listBoxTimeline.Name = "listBoxTimeline";
-            this.listBoxTimeline.Size = new System.Drawing.Size(775, 364);
+            this.listBoxTimeline.Size = new System.Drawing.Size(775, 356);
             this.listBoxTimeline.TabIndex = 58;
             this.listBoxTimeline.SelectedIndexChanged += new System.EventHandler(this.listBoxTimeline_SelectedIndexChanged);
             // 
@@ -205,26 +241,9 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // labelBirthdate
-            // 
-            this.labelBirthdate.AutoSize = true;
-            this.labelBirthdate.Location = new System.Drawing.Point(932, 57);
-            this.labelBirthdate.Name = "labelBirthdate";
-            this.labelBirthdate.Size = new System.Drawing.Size(0, 18);
-            this.labelBirthdate.TabIndex = 66;
-            // 
-            // checkBoxRemember
-            // 
-            this.checkBoxRemember.Location = new System.Drawing.Point(306, 23);
-            this.checkBoxRemember.Name = "checkBoxRemember";
-            this.checkBoxRemember.Size = new System.Drawing.Size(147, 26);
-            this.checkBoxRemember.TabIndex = 65;
-            this.checkBoxRemember.Text = "Remember Me";
-            this.checkBoxRemember.UseVisualStyleBackColor = true;
-            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
             this.Controls.Add(this.tabControl1);
@@ -261,6 +280,8 @@
         private System.Windows.Forms.LinkLabel linkTimeline;
         private System.Windows.Forms.Label labelBirthdate;
         private System.Windows.Forms.CheckBox checkBoxRemember;
+        private System.Windows.Forms.Label labelBirthdateHeadline;
+        private System.Windows.Forms.Label labelNameHeadline;
     }
 }
 

@@ -133,8 +133,8 @@ namespace BasicFacebookFeatures
             {
                 listBoxTimeline.Items.Clear();
             }
-            
-            foreach(Post timelinePost in SessionManager.User.NewsFeed)
+
+            foreach (Post timelinePost in SessionManager.User.NewsFeed)
             {
                 if(timelinePost.Message != null)
                 {
@@ -144,11 +144,15 @@ namespace BasicFacebookFeatures
                 {
                     listBoxTimeline.Items.Add(timelinePost.Caption);
                 }
-
-                if (listBoxTimeline.Items.Count == 0)
+                else
                 {
-                    MessageBox.Show("The timeline is up to date.");
+                    listBoxTimeline.Items.Add(string.Format("[{0}]", timelinePost.Type.ToString().ToUpper()));
                 }
+            }
+
+            if (listBoxTimeline.Items.Count == 0)
+            {
+                MessageBox.Show("The timeline is up to date.");
             }
 
         }
