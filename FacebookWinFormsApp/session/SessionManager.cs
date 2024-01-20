@@ -14,7 +14,7 @@ namespace BasicFacebookFeatures.session
         public User User { get; set; }
         public String AccessToken { get; set; }
 
-        public void login()
+        public void Login()
         {
             LoginResult = FacebookService.Login("392372086520900",
                 "email",
@@ -29,6 +29,7 @@ namespace BasicFacebookFeatures.session
                 "user_videos");
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
+
         }
 
         public void LoginFromAppSettings(string i_AccessToken)

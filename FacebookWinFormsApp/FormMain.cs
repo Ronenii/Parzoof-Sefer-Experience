@@ -55,7 +55,7 @@ namespace BasicFacebookFeatures
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
-            SessionManager.login();
+            SessionManager.Login();
 
             if (SessionManager.LoginResult != null)
             {
@@ -80,10 +80,9 @@ namespace BasicFacebookFeatures
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FacebookService.LogoutWithUI();
+            FacebookService.Logout();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
-            SessionManager = null;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
             pictureBoxProfile.Image = null;
