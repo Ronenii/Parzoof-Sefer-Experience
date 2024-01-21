@@ -9,6 +9,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter
 {
     public interface IFilterType
     {
-        FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList);
+        void Invoke(FacebookObjectCollection<User> i_FriendsList);
     }
 }
