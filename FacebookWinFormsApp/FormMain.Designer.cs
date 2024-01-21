@@ -46,10 +46,12 @@
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.tabPageFriendsFilter = new System.Windows.Forms.TabPage();
+            this.tabPageFriends = new System.Windows.Forms.TabPage();
+            this.filterButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            this.tabPageFriends.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -79,7 +81,7 @@
             // 
             this.tabControl.Controls.Add(this.tabPageMain);
             this.tabControl.Controls.Add(this.tabPageAlbums);
-            this.tabControl.Controls.Add(this.tabPageFriendsFilter);
+            this.tabControl.Controls.Add(this.tabPageFriends);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.ItemSize = new System.Drawing.Size(89, 27);
             this.tabControl.Location = new System.Drawing.Point(0, 0);
@@ -243,15 +245,26 @@
             this.tabPageAlbums.Text = "Albums";
             this.tabPageAlbums.UseVisualStyleBackColor = true;
             // 
-            // tabPageFriendsFilter
+            // tabPageFriends
             // 
-            this.tabPageFriendsFilter.Location = new System.Drawing.Point(4, 31);
-            this.tabPageFriendsFilter.Name = "tabPageFriendsFilter";
-            this.tabPageFriendsFilter.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFriendsFilter.Size = new System.Drawing.Size(1235, 662);
-            this.tabPageFriendsFilter.TabIndex = 2;
-            this.tabPageFriendsFilter.Text = "Friends Filter";
-            this.tabPageFriendsFilter.UseVisualStyleBackColor = true;
+            this.tabPageFriends.Controls.Add(this.filterButton);
+            this.tabPageFriends.Location = new System.Drawing.Point(4, 31);
+            this.tabPageFriends.Name = "tabPageFriends";
+            this.tabPageFriends.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageFriends.Size = new System.Drawing.Size(1235, 662);
+            this.tabPageFriends.TabIndex = 2;
+            this.tabPageFriends.Text = "Friends";
+            this.tabPageFriends.UseVisualStyleBackColor = true;
+            // 
+            // filterButton
+            // 
+            this.filterButton.Location = new System.Drawing.Point(1152, 6);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(75, 30);
+            this.filterButton.TabIndex = 0;
+            this.filterButton.Text = "Filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // FormMain
             // 
@@ -270,6 +283,7 @@
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            this.tabPageFriends.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -294,7 +308,8 @@
         private System.Windows.Forms.CheckBox checkBoxRemember;
         private System.Windows.Forms.Label labelBirthdateHeadline;
         private System.Windows.Forms.Label labelNameHeadline;
-        private System.Windows.Forms.TabPage tabPageFriendsFilter;
+        private System.Windows.Forms.TabPage tabPageFriends;
+        private System.Windows.Forms.Button filterButton;
     }
 }
 

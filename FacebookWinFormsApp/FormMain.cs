@@ -214,5 +214,10 @@ namespace BasicFacebookFeatures
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
