@@ -13,11 +13,8 @@ namespace BasicFacebookFeatures.session
         public LoginResult LoginResult { get; set; }
         public User User { get; set; }
         public string AccessToken { get; set; }
-        public UserWrapper UserWrapper { get; }
-        public SessionManager()
-        {
-            UserWrapper = new UserWrapper(User);
-        }
+        public UserWrapper UserWrapper { get; set; }
+
 
         public void Login()
         {
@@ -36,6 +33,7 @@ namespace BasicFacebookFeatures.session
                 "user_photos",
                 "user_posts",
                 "user_videos");
+            UserWrapper = new UserWrapper(User);
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
         }
@@ -45,6 +43,7 @@ namespace BasicFacebookFeatures.session
             LoginResult = FacebookService.Connect(i_AccessToken);
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
+            UserWrapper = new UserWrapper(User);
         }
 
         public bool isLoggedIn()

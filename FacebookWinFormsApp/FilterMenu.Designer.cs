@@ -38,18 +38,18 @@ namespace BasicFacebookFeatures
             this.cBoxHometown = new System.Windows.Forms.ComboBox();
             this.cBoxFriendOf = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.numericUDFrom = new System.Windows.Forms.NumericUpDown();
-            this.numericUDTo = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.numericUDTo = new System.Windows.Forms.NumericUpDown();
+            this.numericUDFrom = new System.Windows.Forms.NumericUpDown();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.rBtnMale = new System.Windows.Forms.RadioButton();
             this.rBtnFemale = new System.Windows.Forms.RadioButton();
+            this.rBtnMale = new System.Windows.Forms.RadioButton();
             this.btnFilter = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUDFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUDTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUDFrom)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,19 +139,21 @@ namespace BasicFacebookFeatures
             // cBoxHometown
             // 
             this.cBoxHometown.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cBoxHometown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxHometown.FormattingEnabled = true;
-            this.cBoxHometown.Location = new System.Drawing.Point(168, 168);
+            this.cBoxHometown.Location = new System.Drawing.Point(124, 168);
             this.cBoxHometown.Name = "cBoxHometown";
-            this.cBoxHometown.Size = new System.Drawing.Size(160, 24);
+            this.cBoxHometown.Size = new System.Drawing.Size(249, 24);
             this.cBoxHometown.TabIndex = 4;
             // 
             // cBoxFriendOf
             // 
             this.cBoxFriendOf.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cBoxFriendOf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxFriendOf.FormattingEnabled = true;
-            this.cBoxFriendOf.Location = new System.Drawing.Point(168, 240);
+            this.cBoxFriendOf.Location = new System.Drawing.Point(124, 240);
             this.cBoxFriendOf.Name = "cBoxFriendOf";
-            this.cBoxFriendOf.Size = new System.Drawing.Size(160, 24);
+            this.cBoxFriendOf.Size = new System.Drawing.Size(249, 24);
             this.cBoxFriendOf.TabIndex = 5;
             // 
             // panel1
@@ -165,21 +167,17 @@ namespace BasicFacebookFeatures
             this.panel1.Size = new System.Drawing.Size(293, 66);
             this.panel1.TabIndex = 7;
             // 
-            // numericUDFrom
+            // label6
             // 
-            this.numericUDFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUDFrom.Location = new System.Drawing.Point(87, 28);
-            this.numericUDFrom.Maximum = new decimal(new int[] {
-            140,
-            0,
-            0,
-            0});
-            this.numericUDFrom.Name = "numericUDFrom";
-            this.numericUDFrom.Size = new System.Drawing.Size(38, 22);
-            this.numericUDFrom.TabIndex = 0;
-            this.numericUDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(131, 30);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 17);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "to";
             // 
             // numericUDTo
             // 
@@ -197,17 +195,21 @@ namespace BasicFacebookFeatures
             this.numericUDTo.TabIndex = 1;
             this.numericUDTo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label6
+            // numericUDFrom
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.numericUDFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(131, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 17);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "to";
+            this.numericUDFrom.Location = new System.Drawing.Point(87, 28);
+            this.numericUDFrom.Maximum = new decimal(new int[] {
+            140,
+            0,
+            0,
+            0});
+            this.numericUDFrom.Name = "numericUDFrom";
+            this.numericUDFrom.Size = new System.Drawing.Size(38, 22);
+            this.numericUDFrom.TabIndex = 0;
+            this.numericUDFrom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel2
             // 
@@ -220,21 +222,6 @@ namespace BasicFacebookFeatures
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(293, 66);
             this.panel2.TabIndex = 8;
-            // 
-            // rBtnMale
-            // 
-            this.rBtnMale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnMale.AutoSize = true;
-            this.rBtnMale.Location = new System.Drawing.Point(107, 6);
-            this.rBtnMale.Name = "rBtnMale";
-            this.rBtnMale.Size = new System.Drawing.Size(59, 21);
-            this.rBtnMale.TabIndex = 2;
-            this.rBtnMale.TabStop = true;
-            this.rBtnMale.Text = "male";
-            this.rBtnMale.UseVisualStyleBackColor = true;
-            this.rBtnMale.CheckedChanged += new System.EventHandler(this.rBtnMale_CheckedChanged);
             // 
             // rBtnFemale
             // 
@@ -250,6 +237,21 @@ namespace BasicFacebookFeatures
             this.rBtnFemale.Text = "female";
             this.rBtnFemale.UseVisualStyleBackColor = true;
             this.rBtnFemale.CheckedChanged += new System.EventHandler(this.rBtnFemale_CheckedChanged);
+            // 
+            // rBtnMale
+            // 
+            this.rBtnMale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rBtnMale.AutoSize = true;
+            this.rBtnMale.Location = new System.Drawing.Point(107, 6);
+            this.rBtnMale.Name = "rBtnMale";
+            this.rBtnMale.Size = new System.Drawing.Size(59, 21);
+            this.rBtnMale.TabIndex = 2;
+            this.rBtnMale.TabStop = true;
+            this.rBtnMale.Text = "male";
+            this.rBtnMale.UseVisualStyleBackColor = true;
+            this.rBtnMale.CheckedChanged += new System.EventHandler(this.rBtnMale_CheckedChanged);
             // 
             // btnFilter
             // 
@@ -286,8 +288,8 @@ namespace BasicFacebookFeatures
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUDFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUDTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUDFrom)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);

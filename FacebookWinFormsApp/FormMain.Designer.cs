@@ -48,6 +48,7 @@
             this.tabPageAlbums = new System.Windows.Forms.TabPage();
             this.tabPageFriends = new System.Windows.Forms.TabPage();
             this.filterButton = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -247,6 +248,7 @@
             // 
             // tabPageFriends
             // 
+            this.tabPageFriends.Controls.Add(this.btnClear);
             this.tabPageFriends.Controls.Add(this.filterButton);
             this.tabPageFriends.Location = new System.Drawing.Point(4, 31);
             this.tabPageFriends.Name = "tabPageFriends";
@@ -262,9 +264,19 @@
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(75, 30);
             this.filterButton.TabIndex = 0;
-            this.filterButton.Text = "Filter";
+            this.filterButton.Text = "filter";
             this.filterButton.UseVisualStyleBackColor = true;
             this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(1071, 6);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 30);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // FormMain
             // 
@@ -310,6 +322,7 @@
         private System.Windows.Forms.Label labelNameHeadline;
         private System.Windows.Forms.TabPage tabPageFriends;
         private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
