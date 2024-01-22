@@ -50,10 +50,16 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.filterButton = new System.Windows.Forms.Button();
             this.tabLikedPages = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanelAutoStatus = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnAutoFavoritePages = new System.Windows.Forms.Button();
+            this.btnAutoCompliment = new System.Windows.Forms.Button();
+            this.btnAutoShoutoutAlbum = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabFriends.SuspendLayout();
+            this.tableLayoutPanelAutoStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -96,6 +102,7 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.tableLayoutPanelAutoStatus);
             this.tabPageMain.Controls.Add(this.labelBirthdateHeadline);
             this.tabPageMain.Controls.Add(this.labelNameHeadline);
             this.tabPageMain.Controls.Add(this.checkBoxRemember);
@@ -187,7 +194,7 @@
             this.listBoxComments.ItemHeight = 22;
             this.listBoxComments.Location = new System.Drawing.Point(819, 151);
             this.listBoxComments.Name = "listBoxComments";
-            this.listBoxComments.Size = new System.Drawing.Size(323, 356);
+            this.listBoxComments.Size = new System.Drawing.Size(323, 290);
             this.listBoxComments.TabIndex = 60;
             // 
             // lableTimeline
@@ -290,6 +297,70 @@
             this.tabLikedPages.Text = "Pages";
             this.tabLikedPages.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanelAutoStatus
+            // 
+            this.tableLayoutPanelAutoStatus.ColumnCount = 1;
+            this.tableLayoutPanelAutoStatus.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanelAutoStatus.Controls.Add(this.btnAutoShoutoutAlbum, 0, 3);
+            this.tableLayoutPanelAutoStatus.Controls.Add(this.btnAutoCompliment, 0, 1);
+            this.tableLayoutPanelAutoStatus.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanelAutoStatus.Controls.Add(this.btnAutoFavoritePages, 0, 2);
+            this.tableLayoutPanelAutoStatus.Location = new System.Drawing.Point(819, 498);
+            this.tableLayoutPanelAutoStatus.Name = "tableLayoutPanelAutoStatus";
+            this.tableLayoutPanelAutoStatus.RowCount = 4;
+            this.tableLayoutPanelAutoStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanelAutoStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanelAutoStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanelAutoStatus.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanelAutoStatus.Size = new System.Drawing.Size(200, 156);
+            this.tableLayoutPanelAutoStatus.TabIndex = 69;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Auto Status";
+            // 
+            // btnAutoFavoritePages
+            // 
+            this.btnAutoFavoritePages.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAutoFavoritePages.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoFavoritePages.Location = new System.Drawing.Point(7, 73);
+            this.btnAutoFavoritePages.Name = "btnAutoFavoritePages";
+            this.btnAutoFavoritePages.Size = new System.Drawing.Size(186, 34);
+            this.btnAutoFavoritePages.TabIndex = 2;
+            this.btnAutoFavoritePages.Text = "Favorite Pages";
+            this.btnAutoFavoritePages.UseVisualStyleBackColor = true;
+            this.btnAutoFavoritePages.Click += new System.EventHandler(this.btnAutoFavoritePages_Click);
+            // 
+            // btnAutoCompliment
+            // 
+            this.btnAutoCompliment.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAutoCompliment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoCompliment.Location = new System.Drawing.Point(7, 33);
+            this.btnAutoCompliment.Name = "btnAutoCompliment";
+            this.btnAutoCompliment.Size = new System.Drawing.Size(186, 34);
+            this.btnAutoCompliment.TabIndex = 4;
+            this.btnAutoCompliment.Text = "Compliment friend";
+            this.btnAutoCompliment.UseVisualStyleBackColor = true;
+            this.btnAutoCompliment.Click += new System.EventHandler(this.btnAutoCompliment_Click);
+            // 
+            // btnAutoShoutoutAlbum
+            // 
+            this.btnAutoShoutoutAlbum.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAutoShoutoutAlbum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoShoutoutAlbum.Location = new System.Drawing.Point(8, 116);
+            this.btnAutoShoutoutAlbum.Name = "btnAutoShoutoutAlbum";
+            this.btnAutoShoutoutAlbum.Size = new System.Drawing.Size(184, 34);
+            this.btnAutoShoutoutAlbum.TabIndex = 5;
+            this.btnAutoShoutoutAlbum.Text = "Shoutout album";
+            this.btnAutoShoutoutAlbum.UseVisualStyleBackColor = true;
+            this.btnAutoShoutoutAlbum.Click += new System.EventHandler(this.btnAutoShoutoutAlbum_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -307,6 +378,8 @@
             this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabFriends.ResumeLayout(false);
+            this.tableLayoutPanelAutoStatus.ResumeLayout(false);
+            this.tableLayoutPanelAutoStatus.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -335,6 +408,11 @@
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TabPage tabLikedPages;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAutoStatus;
+        private System.Windows.Forms.Button btnAutoShoutoutAlbum;
+        private System.Windows.Forms.Button btnAutoCompliment;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAutoFavoritePages;
     }
 }
 
