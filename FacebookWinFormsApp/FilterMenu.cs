@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BasicFacebookFeatures.logic.friendsFilter;
+using BasicFacebookFeatures.logic.friendsFilter.filters;
 using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
@@ -15,10 +17,13 @@ namespace BasicFacebookFeatures
     {
         private readonly User r_User;
         public FacebookObjectCollection<User> FilteredFriendsCollection { get; set; }
-        
+
+        private FriendsFilter m_FriendsFilter;
+
         private Dictionary<string, string> m_HometownDictionary;
         public FilterMenu(User i_User)
         {
+            m_FriendsFilter = new FriendsFilter(i_User);
             InitializeComponent();
             r_User = i_User;
             populateCBoxFriendOf();
@@ -97,8 +102,73 @@ namespace BasicFacebookFeatures
             }
             else
             {
+                addFilters();
+                FilteredFriendsCollection = m_FriendsFilter.InvokeFilters();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+        }
+
+        private void addFilters()
+        {
+            List<IFilterType> addedFilters = new List<IFilterType>();
+
+            addAgeRange(addedFilters);
+            addGenders(addedFilters);
+            addHometown(addedFilters);
+            addFriendsOf(addedFilters);
+            m_FriendsFilter.AddFilters(addedFilters);
+        }
+
+        private void addAgeRange(List<IFilterType> i_AddedFilters)
+        {
+            if (numericUDTo.Value != 0)
+            {
+                AgeFilter ageFilter = new AgeFilter(int.Parse(numericUDFrom.Text), int.Parse(numericUDTo.Text));
+                i_AddedFilters.Add(ageFilter);
+            }
+        }
+
+        private void addGenders(List<IFilterType> i_AddedFilters)
+        {
+            if (rBtnMale.Checked)
+            {
+                GenderFilter genderFilter = new GenderFilter(e_Gender.Male);
+                i_AddedFilters.Add(genderFilter);
+            }
+            else if(rBtnFemale.Checked)
+            {
+                GenderFilter genderFilter = new GenderFilter(e_Gender.Female);
+                i_AddedFilters.Add(genderFilter);
+            }
+        }
+
+        private void addHometown(List<IFilterType> i_AddedFilters)
+        {
+            if (cBoxLocation.SelectedItem != null)
+            {
+                HometownFilter hometownFilter = new HometownFilter(cBoxLocation.SelectedItem.ToString());
+                i_AddedFilters.Add(hometownFilter);
+            }
+        }
+
+        private void addFriendsOf(List<IFilterType> i_AddedFilters)
+        {
+            if (cBoxFriendOf.SelectedItem != null)
+            {
+                KeyValuePair<string, string> kvp = (KeyValuePair<string, string>)cBoxFriendOf.SelectedItem;
+                User choosenFriend = null;
+
+                foreach(User user in r_User.Friends)
+                {
+                    if(user.Id == kvp.Key)
+                    {
+                        choosenFriend = user;
+                    }
+                }
+
+                FriendsOfFilter friendsOfFilter = new FriendsOfFilter(choosenFriend);
+                i_AddedFilters.Add(friendsOfFilter);
             }
         }
     }

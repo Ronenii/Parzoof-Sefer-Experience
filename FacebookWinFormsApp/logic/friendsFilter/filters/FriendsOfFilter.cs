@@ -18,11 +18,14 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
 
         public void Invoke(FacebookObjectCollection<User> i_FriendsList)
         {
-            foreach (User user in i_FriendsList)
+            if(m_Friend != null)
             {
-                if (!m_Friend.Friends.Contains(user))
+                foreach (User user in i_FriendsList)
                 {
-                    i_FriendsList.Remove(user);
+                    if (!m_Friend.Friends.Contains(user))
+                    {
+                        i_FriendsList.Remove(user);
+                    }
                 }
             }
         }

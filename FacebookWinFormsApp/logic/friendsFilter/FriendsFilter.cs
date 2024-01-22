@@ -11,12 +11,12 @@ namespace BasicFacebookFeatures.logic.friendsFilter
     {
         private readonly User m_MainUser;
         private FacebookObjectCollection<User> m_UsersFriendsList;
-        private Dictionary<string, IFilterType> m_ChoosenFilters;
+        private List<IFilterType> m_ChoosenFilters;
 
         public FriendsFilter(User i_MainUser)
         {
             m_MainUser = i_MainUser;
-            m_ChoosenFilters = new Dictionary<string, IFilterType>();
+            m_ChoosenFilters = new List<IFilterType>();
             m_UsersFriendsList = m_MainUser.Friends;
         }
 
@@ -25,15 +25,11 @@ namespace BasicFacebookFeatures.logic.friendsFilter
             m_UsersFriendsList = m_MainUser.Friends;
         }
 
-        public void AddFilter(string i_Key, IFilterType i_Filter)
+        public void AddFilters(List<IFilterType> i_Filters)
         {
-            m_ChoosenFilters.Add(i_Key, i_Filter);
+            m_ChoosenFilters = i_Filters;
         }
 
-        public void DeleteFilter(string i_Key)
-        {
-            m_ChoosenFilters.Remove(i_Key);
-        }
 
         public FacebookObjectCollection<User> InvokeFilters()
         {
@@ -43,7 +39,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter
             }
             else
             {
-                foreach (IFilterType filter in m_ChoosenFilters.Values)
+                foreach (IFilterType filter in m_ChoosenFilters)
                 {
                     filter.Invoke(m_UsersFriendsList);
                 }
