@@ -40,13 +40,13 @@ namespace BasicFacebookFeatures
 
         private void initTabs()
         {
-            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(SessionManager.UserWrapper.GetAlbums, this);
+            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(SessionManager.UserWrapper.GetAlbums);
             tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
 
-            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
+            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends);
             tabFriends.Controls.Add(m_FriendsGrid.Grid);
 
-            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(SessionManager.UserWrapper.GetLikedPages, this);
+            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(SessionManager.UserWrapper.GetLikedPages);
             tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
 
@@ -235,7 +235,7 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection, this);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
@@ -246,7 +246,7 @@ namespace BasicFacebookFeatures
             if (m_FriendsGrid.isDisplayingStaticData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
