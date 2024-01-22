@@ -23,6 +23,7 @@ namespace BasicFacebookFeatures
         public SessionManager SessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
+        private FacebookObjectCollection<User> m_FriendsGrid;
         public FormMain()
         {
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace BasicFacebookFeatures
         private void initTabs()
         {
             m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(SessionManager.UserWrapper.GetAlbums, this);
+            m_FriendsGrid = new FacebookObjectCollection<User>(SessionManager.UserWrapper.)
             tabPageAlbums.Controls.Add(m_AlbumsGrid.Grid);
         }
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -223,10 +225,6 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
 
-            }
-            else if (filterResult == DialogResult.None)
-            {
-                
             }
         }
     }
