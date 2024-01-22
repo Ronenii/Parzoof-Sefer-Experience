@@ -140,7 +140,7 @@ namespace BasicFacebookFeatures
             this.cBoxLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cBoxLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxLocation.FormattingEnabled = true;
-            this.cBoxLocation.Location = new System.Drawing.Point(124, 168);
+            this.cBoxLocation.Location = new System.Drawing.Point(124, 167);
             this.cBoxLocation.Name = "cBoxLocation";
             this.cBoxLocation.Size = new System.Drawing.Size(249, 24);
             this.cBoxLocation.TabIndex = 4;

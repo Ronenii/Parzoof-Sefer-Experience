@@ -33,7 +33,7 @@ namespace BasicFacebookFeatures
         protected override void OnShown(EventArgs e)
         {
             AppSettings = AppSettings.LoadFromFile();
-            if(AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
+            if (AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
             {
                 CurrentSessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
                 checkBoxRemember.Checked = true;
@@ -60,7 +60,7 @@ namespace BasicFacebookFeatures
         {
             base.OnFormClosing(e);
             AppSettings.RememberUser = this.checkBoxRemember.Checked;
-            if(AppSettings.RememberUser)
+            if (AppSettings.RememberUser)
             {
                 AppSettings.LastAccessToken = CurrentSessionManager.AccessToken;
             }
@@ -103,7 +103,7 @@ namespace BasicFacebookFeatures
         {
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookService.Logout();
-            clearMainTab(); 
+            clearMainTab();
             clearTabs();
             CurrentSessionManager.logout();
             Wrapper = null;
@@ -175,18 +175,18 @@ namespace BasicFacebookFeatures
 
         private void fetchTimeline()
         {
-            if(listBoxTimeline.Items.Count != 0)
+            if (listBoxTimeline.Items.Count != 0)
             {
                 listBoxTimeline.Items.Clear();
             }
 
             foreach (Post timelinePost in CurrentSessionManager.User.NewsFeed)
             {
-                if(timelinePost.Message != null)
+                if (timelinePost.Message != null)
                 {
                     listBoxTimeline.Items.Add(timelinePost.Message);
                 }
-                else if(timelinePost.Caption != null)
+                else if (timelinePost.Caption != null)
                 {
                     listBoxTimeline.Items.Add(timelinePost.Caption);
                 }
@@ -243,7 +243,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                if(string.IsNullOrEmpty(textBoxStatus.Text))
+                if (string.IsNullOrEmpty(textBoxStatus.Text))
                 {
                     MessageBox.Show("Please enter a status");
                 }
@@ -253,7 +253,7 @@ namespace BasicFacebookFeatures
                     textBoxStatus.Text = "";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
