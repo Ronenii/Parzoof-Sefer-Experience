@@ -217,7 +217,17 @@ namespace BasicFacebookFeatures
 
         private void filterButton_Click(object sender, EventArgs e)
         {
+            FilterMenu filterMenu = new FilterMenu();
+            DialogResult filterResult = filterMenu.ShowDialog();
 
+            if (filterResult == DialogResult.OK)
+            {
+
+            }
+            else if (filterResult == DialogResult.None)
+            {
+                
+            }
         }
     }
 }
