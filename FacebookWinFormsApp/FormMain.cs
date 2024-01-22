@@ -367,7 +367,7 @@ namespace BasicFacebookFeatures
             }
             else
             {
-                res = pages.Take(numberOfPagesToDiscuss).ToList()
+                res = pages.Take(numberOfPagesToDiscuss).ToList();
             }
 
             return res;
