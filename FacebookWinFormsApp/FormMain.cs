@@ -51,6 +51,7 @@ namespace BasicFacebookFeatures
             tabPageAlbums.Controls.Add(m_AlbumsGrid.Grid);
             tabPageFriends.Controls.Add(m_FriendsGrid.Grid);
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
@@ -231,7 +232,7 @@ namespace BasicFacebookFeatures
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            if (m_FriendsGrid.IsDisplayingStaticData())
+            if (m_FriendsGrid.isDisplayingStaticData())
             {
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
                 m_FriendsGrid.adjustGridToForm();

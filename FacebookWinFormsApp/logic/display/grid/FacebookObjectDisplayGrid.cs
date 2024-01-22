@@ -53,7 +53,7 @@ namespace BasicFacebookFeatures.logic.grid
             };
         }
 
-        public bool IsDisplayingStaticData()
+        public bool isDisplayingStaticData()
         {
             return r_isDisplayingStaticData;
         }
@@ -104,10 +104,6 @@ namespace BasicFacebookFeatures.logic.grid
                     int objectIndex = (row + 1) * (col + 1) - 1;
 
                     Grid.Controls.Add(createNewAlbumDisplayPanel(m_FacebookObjectCollection[objectIndex]), col, row);
-                    if(m_FacebookObjectCollection[objectIndex]is Album)
-                    {
-
-                    }
                 }
 
                 m_PreviousObjectCount = m_FacebookObjectCollection.Count;

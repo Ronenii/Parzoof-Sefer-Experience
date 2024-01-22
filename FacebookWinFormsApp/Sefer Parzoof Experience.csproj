@@ -153,6 +153,9 @@
   <ItemGroup>
     <Folder Include="temp\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\No image found.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
