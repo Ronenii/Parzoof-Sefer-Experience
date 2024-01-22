@@ -119,7 +119,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="session\SessionManager.cs" />
-    <Compile Include="session\UserWrapper.cs" />
+    <Compile Include="logic\user\UserWrapper.cs" />
     <EmbeddedResource Include="FilterMenu.resx">
       <DependentUpon>FilterMenu.cs</DependentUpon>
     </EmbeddedResource>

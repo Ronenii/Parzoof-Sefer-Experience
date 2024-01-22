@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using BasicFacebookFeatures.session;
 
 namespace BasicFacebookFeatures.logic.display.obj
 {
@@ -66,28 +67,17 @@ namespace BasicFacebookFeatures.logic.display.obj
             if(i_BaseFacebookObject is User)
             {
                 User user = i_BaseFacebookObject as User;
-                string userFullName;
                 string location = user.Location == null ? "" : user.Location.Name;
-                if (user.MiddleName != null)
-                {
-                    userFullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
-                }
-                else
-                {
-                    userFullName = $"{user.FirstName} {user.LastName}";
-                }
                 try
                 {
-                    
-
-                    return new FacebookObjectDisplayData(user.ImageSquare, $@"{userFullName}
+                    return new FacebookObjectDisplayData(user.ImageSquare, $@"{UserWrapper.GetFullName(user)}
 {user.Birthday}
 {user.Gender}
 {location}");
                 }
-                catch (WebException e)
+                catch (System.Net.WebException)
                 {
-                    return new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{userFullName}
+                    return new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{UserWrapper.GetFullName(user)}
 {user.Birthday}
 {user.Gender}
 {location}");
@@ -97,7 +87,7 @@ namespace BasicFacebookFeatures.logic.display.obj
             if (i_BaseFacebookObject is Page)
             {
                 Page page = i_BaseFacebookObject as Page;
-                return new FacebookObjectDisplayData(page.ImageNormal, page.Name);
+                return new FacebookObjectDisplayData(page.ImageNormal, $@"{page.Name}");
             }
 
             throw new ArgumentException("Unsupported object type for display: " + i_BaseFacebookObject.GetType().FullName);
