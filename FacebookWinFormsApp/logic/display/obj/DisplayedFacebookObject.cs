@@ -1,13 +1,8 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures.logic.display.obj
 {

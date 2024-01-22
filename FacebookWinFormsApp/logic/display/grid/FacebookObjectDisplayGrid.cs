@@ -1,11 +1,7 @@
 ﻿using BasicFacebookFeatures.logic.display.obj;
 using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BasicFacebookFeatures.logic.grid
@@ -19,12 +15,12 @@ namespace BasicFacebookFeatures.logic.grid
         public TableLayoutPanel Grid { get; }
         public delegate FacebookObjectCollection<T> GetObjectCollection();
 
-        private readonly bool r_isDisplayingStaticData;
+        private readonly bool r_IsDisplayingStaticData;
 
         // This class requires the appropriate getter for the Object
         public FacebookObjectDisplayGrid(GetObjectCollection i_UserDataGetterMethod, Form i_Parent)
         {
-            r_isDisplayingStaticData = false;
+            r_IsDisplayingStaticData = false;
             this.getObjectCollection = i_UserDataGetterMethod;
             r_Parent = i_Parent;
             m_PreviousObjectCount = 0;
@@ -40,7 +36,7 @@ namespace BasicFacebookFeatures.logic.grid
         public FacebookObjectDisplayGrid(FacebookObjectCollection<T> i_FacebookObjectCollection, Form i_Parent)
         {
             m_FacebookObjectCollection = i_FacebookObjectCollection;
-            r_isDisplayingStaticData = true;
+            r_IsDisplayingStaticData = true;
             r_Parent = i_Parent;
             m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
@@ -55,7 +51,7 @@ namespace BasicFacebookFeatures.logic.grid
 
         public bool isDisplayingStaticData()
         {
-            return r_isDisplayingStaticData;
+            return r_IsDisplayingStaticData;
         }
 
         private GetObjectCollection getObjectCollection;
@@ -69,7 +65,7 @@ namespace BasicFacebookFeatures.logic.grid
         // Adjusts album grid according to the form's size, adds FacebookObjects to grid if needed.
         public void adjustGridToForm()
         {
-            if (!r_isDisplayingStaticData)
+            if (!r_IsDisplayingStaticData)
             {
                 m_FacebookObjectCollection = getObjectCollection();
             }

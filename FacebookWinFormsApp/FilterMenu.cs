@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BasicFacebookFeatures.logic.friendsFilter;
 using BasicFacebookFeatures.logic.friendsFilter.filters;
@@ -17,14 +11,11 @@ namespace BasicFacebookFeatures
     {
         private readonly User r_User;
         public FacebookObjectCollection<User> FilteredFriendsCollection { get; set; }
-
-        private FriendsFilter m_FriendsFilter;
-
-        private Dictionary<string, string> m_HometownDictionary;
+        private readonly FriendsFilter r_FriendsFilter;
         public FilterMenu(User i_User)
         {
             InitializeComponent();
-            m_FriendsFilter = new FriendsFilter(i_User);
+            r_FriendsFilter = new FriendsFilter(i_User);
             r_User = i_User;
             populateCBoxFriendOf();
             populateCBoxHometown();
@@ -69,21 +60,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void rBtnMale_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void rBtnFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             numericUDFrom.Value = 0;
@@ -104,8 +80,8 @@ namespace BasicFacebookFeatures
             else
             {
                 addFilters();
-                m_FriendsFilter.PullUserFriendsList();
-                FilteredFriendsCollection = m_FriendsFilter.InvokeFilters();
+                r_FriendsFilter.PullUserFriendsList();
+                FilteredFriendsCollection = r_FriendsFilter.InvokeFilters();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -119,7 +95,7 @@ namespace BasicFacebookFeatures
             addGenders(addedFilters);
             addHometown(addedFilters);
             addFriendsOf(addedFilters);
-            m_FriendsFilter.AddFilters(addedFilters);
+            r_FriendsFilter.AddFilters(addedFilters);
         }
 
         private void addAgeRange(List<IFilterType> i_AddedFilters)

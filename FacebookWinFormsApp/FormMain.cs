@@ -1,30 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 using BasicFacebookFeatures.session;
 using BasicFacebookFeatures.logic.grid;
 using BasicFacebookFeatures.serialization;
-using System.IO;
+
 
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        private int previousNumberOfAlbums;
         public SessionManager SessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
+        private int m_PreviousNumberOfAlbums;
         public FormMain()
         {
             InitializeComponent();
@@ -42,7 +34,8 @@ namespace BasicFacebookFeatures
                 checkBoxRemember.Checked = true;
                 adjustUiToLoggedInUser();
             }
-            previousNumberOfAlbums = 0;
+
+            m_PreviousNumberOfAlbums = 0;
         }
 
         private void initTabs()
@@ -60,9 +53,6 @@ namespace BasicFacebookFeatures
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-
-            AppSettings.LastWindowSize = this.Size;
-            AppSettings.LastWindowLocation = this.Location;
             AppSettings.RememberUser = this.checkBoxRemember.Checked;
             if(AppSettings.RememberUser)
             {
@@ -72,12 +62,10 @@ namespace BasicFacebookFeatures
             AppSettings.SaveToFile();
         }
 
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
             SessionManager.Login();
-
             if (SessionManager.LoginResult != null)
             {
                 adjustUiToLoggedInUser();
@@ -114,7 +102,6 @@ namespace BasicFacebookFeatures
             m_AlbumsGrid.Clear();
             m_FriendsGrid.Clear();
             m_PagesGrid.Clear();
-
             tabLikedPages.Controls.Clear();
             tabAlbums.Controls.Clear();
             tabFriends.Controls.Remove(m_FriendsGrid.Grid);
@@ -147,7 +134,6 @@ namespace BasicFacebookFeatures
             {
                 m_PagesGrid.adjustGridToForm();
             }
-
         }
 
         private void linkTimeline_MouseClick(object sender, MouseEventArgs e)
@@ -177,7 +163,6 @@ namespace BasicFacebookFeatures
                     listBoxTimeline.Items.Add(string.Format("[{0}]", timelinePost.Type.ToString().ToUpper()));
                 }
             }
-
             if (listBoxTimeline.Items.Count == 0)
             {
                 MessageBox.Show("The timeline is up to date.");
@@ -219,11 +204,6 @@ namespace BasicFacebookFeatures
         private bool isTabsDisbaled()
         {
             return SessionManager == null || !SessionManager.isLoggedIn();
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
