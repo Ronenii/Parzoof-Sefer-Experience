@@ -86,7 +86,7 @@ namespace BasicFacebookFeatures.logic.display.obj
                 ret = new FacebookObjectDisplayData(page.ImageNormal, page.Name);
             }
 
-            if (ret == null)
+            if (ret != null)
             {
                 return ret;
             }

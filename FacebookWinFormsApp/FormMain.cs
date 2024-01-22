@@ -40,6 +40,10 @@ namespace BasicFacebookFeatures
                 Wrapper = new UserWrapper(CurrentSessionManager.User);
                 adjustUiToLoggedInUser();
             }
+            else
+            {
+                disableMainTab();
+            }
 
             m_PreviousNumberOfAlbums = 0;
         }
@@ -241,21 +245,14 @@ namespace BasicFacebookFeatures
 
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(textBoxStatus.Text))
             {
-                if (string.IsNullOrEmpty(textBoxStatus.Text))
-                {
-                    MessageBox.Show("Please enter a status");
-                }
-                else
-                {
-                    postStatus(textBoxStatus.Text);
-                    textBoxStatus.Text = "";
-                }
+                MessageBox.Show("Please enter a status");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                postStatus(textBoxStatus.Text);
+                textBoxStatus.Text = "";
             }
         }
 
@@ -312,7 +309,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show($"Tried to post {i_Status}. Encountered exeption: {ex.Message}");
             }
         }
 
