@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
@@ -17,6 +20,7 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
+        private UserWrapper Wrapper { get; set; }
         private int m_PreviousNumberOfAlbums;
         public FormMain()
         {
@@ -287,13 +291,13 @@ namespace BasicFacebookFeatures
             User user = CurrentSessionManager.User;
             Random rand = new Random();
             List<string> compliments = new List<string>
-            {
-                "smells like chihuahua!!!!",
-                "looks like a very pleasant being!",
-                "has the right amount of nostrils!",
-                "is very interesting!",
-                "is smart like GuyRo"
-            };
+                                           {
+                                               "smells like chihuahua!!!!",
+                                               "looks like a very pleasant being!",
+                                               "has the right amount of nostrils!",
+                                               "is very interesting!",
+                                               "is smart like GuyRo"
+                                           };
 
             int friendIndex = rand.Next(user.Friends.Count);
             int complimentIndex = rand.Next(compliments.Count);
