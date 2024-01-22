@@ -9,8 +9,6 @@ namespace BasicFacebookFeatures.session
         public User User { get; set; }
         public string AccessToken { get; set; }
         
-
-
         public void Login()
         {
             LoginResult = FacebookService.Login("392372086520900",

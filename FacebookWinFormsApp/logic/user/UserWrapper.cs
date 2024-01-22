@@ -6,7 +6,6 @@ namespace BasicFacebookFeatures.session
     public class UserWrapper
     {
         private readonly User r_User;
-
         public UserWrapper(User i_User)
         {
             r_User = i_User;
@@ -29,11 +28,18 @@ namespace BasicFacebookFeatures.session
 
         public static string GetFullName(User i_user)
         {
-            if (i_user.MiddleName != null)
+            string res = null;
+
+            if(i_user.MiddleName != null)
             {
-                return $"{i_user.FirstName} {i_user.MiddleName} {i_user.LastName}";
+                res = $"{i_user.FirstName} {i_user.MiddleName} {i_user.LastName}";
             }
-            return $"{i_user.FirstName} {i_user.LastName}";
+            else
+            {
+                res = $"{i_user.FirstName} {i_user.LastName}";
+            }
+
+            return res;
         }
     }
 }

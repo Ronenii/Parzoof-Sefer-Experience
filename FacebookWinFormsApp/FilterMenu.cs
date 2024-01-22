@@ -37,6 +37,7 @@ namespace BasicFacebookFeatures
             {
                 cBoxFriendOf.Items.Add(kvp);
             }
+
             cBoxFriendOf.DataSource = friendsList;
             cBoxFriendOf.DisplayMember = "value";
             cBoxFriendOf.ValueMember = "key";
@@ -46,6 +47,7 @@ namespace BasicFacebookFeatures
         private void populateCBoxHometown()
         {
             HashSet<string> locationSet = new HashSet<string>();
+
             foreach (User friend in r_User.Friends)
             {
                 if (friend.Location != null)

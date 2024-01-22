@@ -14,7 +14,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        private int previousNumberOfAlbums;
         public SessionManager CurrentSessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
@@ -73,7 +72,6 @@ namespace BasicFacebookFeatures
         {
             Clipboard.SetText("design.patterns");
             CurrentSessionManager.Login();
-
             if (CurrentSessionManager.LoginResult != null)
             {
                 Wrapper = new UserWrapper(CurrentSessionManager.User);
@@ -153,7 +151,6 @@ namespace BasicFacebookFeatures
             listBoxTimeline.Items.Clear();
         }
 
-
         // If the user has finished resizing the window, resize the selected tab accordingly.
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
@@ -208,6 +205,7 @@ namespace BasicFacebookFeatures
         private void listBoxTimeline_SelectedIndexChanged(object sender, EventArgs e)
         {
             Post selected = CurrentSessionManager.User.Posts[listBoxTimeline.SelectedIndex];
+
             listBoxComments.DisplayMember = "Message";
             listBoxComments.DataSource = selected.Comments;
         }
@@ -301,28 +299,35 @@ namespace BasicFacebookFeatures
 
             int friendIndex = rand.Next(user.Friends.Count);
             int complimentIndex = rand.Next(compliments.Count);
+
             postStatus($"{UserWrapper.GetFullName(user.Friends[friendIndex])} {compliments[complimentIndex]}");
         }
 
         private void postStatus(string i_Status)
         {
-            CurrentSessionManager.User.PostStatus(i_Status);
-            MessageBox.Show("Status posted!");
+            try
+            {
+                CurrentSessionManager.User.PostStatus(i_Status);
+                MessageBox.Show("Status posted!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnAutoFavoritePages_Click(object sender, EventArgs e)
         {
             User user = CurrentSessionManager.User;
-            
+            List<Page> pagesToDiscuss = getRandomPages();
+            StringBuilder status = new StringBuilder("Hey everyone! You should check out These pages: ");
+
             if (user.LikedPages.Count == 0)
             {
                 MessageBox.Show("You don't have any pages to talk about...", "You have no hobbies",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            List<Page> pagesToDiscuss = getRandomPages();
-
-            StringBuilder status = new StringBuilder("Hey everyone! You should check out These pages: ");
             for (int i = 0; i < pagesToDiscuss.Count; i++)
             {
                 status.Append(pagesToDiscuss[i].Name);
@@ -346,8 +351,8 @@ namespace BasicFacebookFeatures
             int numberOfPagesToDiscuss = 3;
             FacebookObjectCollection<Page> pages = CurrentSessionManager.User.LikedPages;
             Random random = new Random();
+            List<Page> res = null;
 
-            
             for (int i = pages.Count - 1; i > 0; i--)
             {
                 int j = random.Next(0, i + 1);
@@ -358,10 +363,14 @@ namespace BasicFacebookFeatures
 
             if (pages.Count < numberOfPagesToDiscuss)
             {
-                return pages.Take(pages.Count).ToList();
+                res = pages.Take(pages.Count).ToList();
+            }
+            else
+            {
+                res = pages.Take(numberOfPagesToDiscuss).ToList()
             }
 
-            return pages.Take(numberOfPagesToDiscuss).ToList();
+            return res;
         }
 
         private void btnAutoShoutoutAlbum_Click(object sender, EventArgs e)
@@ -370,6 +379,7 @@ namespace BasicFacebookFeatures
             Random rand = new Random();
             int albumIndex = rand.Next(user.Albums.Count);
             Album album = user.Albums[albumIndex];
+
             postStatus($"Hey everyone! You should checkout my album {user.Albums[albumIndex].Name}! Here's the link {album.Link}.");
         }
     }

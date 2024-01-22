@@ -11,7 +11,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
     public class GenderFilter : IFilterType  
     {
         private readonly e_Gender r_Gender;
-
         public GenderFilter(e_Gender i_Gender)
         {
             r_Gender = i_Gender;

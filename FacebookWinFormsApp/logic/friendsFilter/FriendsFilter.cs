@@ -8,7 +8,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter
         private readonly User r_MainUser;
         private FacebookObjectCollection<User> m_UsersFriendsList;
         private List<IFilterType> m_ChoosenFilters;
-
         public FriendsFilter(User i_MainUser)
         {
             r_MainUser = i_MainUser;
@@ -18,6 +17,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter
         public void PullUserFriendsList()
         {
             m_UsersFriendsList = new FacebookObjectCollection<User>();
+
             // Duplicate the friends list.
             foreach(User user in r_MainUser.Friends)
             {
@@ -41,6 +41,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter
             }
             
             m_ChoosenFilters.Clear();
+
             return m_UsersFriendsList;
         }
 
