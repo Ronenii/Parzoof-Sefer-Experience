@@ -1,31 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security.AccessControl;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 using BasicFacebookFeatures.session;
 using BasicFacebookFeatures.logic.grid;
 using BasicFacebookFeatures.serialization;
-using System.IO;
+
 
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        private int previousNumberOfAlbums;
         public SessionManager CurrentSessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
         private UserWrapper Wrapper { get; set; }
+        private int m_PreviousNumberOfAlbums;
         public FormMain()
         {
             InitializeComponent();
@@ -38,36 +33,38 @@ namespace BasicFacebookFeatures
         protected override void OnShown(EventArgs e)
         {
             AppSettings = AppSettings.LoadFromFile();
-            if(AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
+            if (AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
             {
                 CurrentSessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
                 checkBoxRemember.Checked = true;
                 Wrapper = new UserWrapper(CurrentSessionManager.User);
                 adjustUiToLoggedInUser();
             }
-            previousNumberOfAlbums = 0;
+            else
+            {
+                disableMainTab();
+            }
+
+            m_PreviousNumberOfAlbums = 0;
         }
 
         private void initTabs()
         {
-            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(Wrapper.GetAlbums, this);
+            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(Wrapper.GetAlbums);
             tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
 
-            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends, this);
+            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends);
             tabFriends.Controls.Add(m_FriendsGrid.Grid);
 
-            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(Wrapper.GetLikedPages, this);
+            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(Wrapper.GetLikedPages);
             tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
-
-            AppSettings.LastWindowSize = this.Size;
-            AppSettings.LastWindowLocation = this.Location;
             AppSettings.RememberUser = this.checkBoxRemember.Checked;
-            if(AppSettings.RememberUser)
+            if (AppSettings.RememberUser)
             {
                 AppSettings.LastAccessToken = CurrentSessionManager.AccessToken;
             }
@@ -75,12 +72,10 @@ namespace BasicFacebookFeatures
             AppSettings.SaveToFile();
         }
 
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
             CurrentSessionManager.Login();
-
             if (CurrentSessionManager.LoginResult != null)
             {
                 Wrapper = new UserWrapper(CurrentSessionManager.User);
@@ -112,7 +107,7 @@ namespace BasicFacebookFeatures
         {
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookService.Logout();
-            clearMainTab(); 
+            clearMainTab();
             clearTabs();
             CurrentSessionManager.logout();
             Wrapper = null;
@@ -142,7 +137,6 @@ namespace BasicFacebookFeatures
             m_AlbumsGrid.Clear();
             m_FriendsGrid.Clear();
             m_PagesGrid.Clear();
-
             tabLikedPages.Controls.Clear();
             tabAlbums.Controls.Clear();
             tabFriends.Controls.Remove(m_FriendsGrid.Grid);
@@ -161,7 +155,6 @@ namespace BasicFacebookFeatures
             listBoxTimeline.Items.Clear();
         }
 
-
         // If the user has finished resizing the window, resize the selected tab accordingly.
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
@@ -177,7 +170,6 @@ namespace BasicFacebookFeatures
             {
                 m_PagesGrid.adjustGridToForm();
             }
-
         }
 
         private void linkTimeline_MouseClick(object sender, MouseEventArgs e)
@@ -187,18 +179,18 @@ namespace BasicFacebookFeatures
 
         private void fetchTimeline()
         {
-            if(listBoxTimeline.Items.Count != 0)
+            if (listBoxTimeline.Items.Count != 0)
             {
                 listBoxTimeline.Items.Clear();
             }
 
             foreach (Post timelinePost in CurrentSessionManager.User.NewsFeed)
             {
-                if(timelinePost.Message != null)
+                if (timelinePost.Message != null)
                 {
                     listBoxTimeline.Items.Add(timelinePost.Message);
                 }
-                else if(timelinePost.Caption != null)
+                else if (timelinePost.Caption != null)
                 {
                     listBoxTimeline.Items.Add(timelinePost.Caption);
                 }
@@ -207,7 +199,6 @@ namespace BasicFacebookFeatures
                     listBoxTimeline.Items.Add(string.Format("[{0}]", timelinePost.Type.ToString().ToUpper()));
                 }
             }
-
             if (listBoxTimeline.Items.Count == 0)
             {
                 MessageBox.Show("The timeline is up to date.");
@@ -218,6 +209,7 @@ namespace BasicFacebookFeatures
         private void listBoxTimeline_SelectedIndexChanged(object sender, EventArgs e)
         {
             Post selected = CurrentSessionManager.User.Posts[listBoxTimeline.SelectedIndex];
+
             listBoxComments.DisplayMember = "Message";
             listBoxComments.DataSource = selected.Comments;
         }
@@ -251,28 +243,16 @@ namespace BasicFacebookFeatures
             return CurrentSessionManager == null || !CurrentSessionManager.isLoggedIn();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(textBoxStatus.Text))
             {
-                if(string.IsNullOrEmpty(textBoxStatus.Text))
-                {
-                    MessageBox.Show("Please enter a status");
-                }
-                else
-                {
-                    postStatus(textBoxStatus.Text);
-                    textBoxStatus.Text = "";
-                }
+                MessageBox.Show("Please enter a status");
             }
-            catch(Exception ex)
+            else
             {
-                MessageBox.Show(ex.ToString());
+                postStatus(textBoxStatus.Text);
+                textBoxStatus.Text = "";
             }
         }
 
@@ -284,7 +264,7 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection, this);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
@@ -295,7 +275,7 @@ namespace BasicFacebookFeatures
             if (m_FriendsGrid.isDisplayingStaticData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends, this);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
@@ -306,38 +286,45 @@ namespace BasicFacebookFeatures
             User user = CurrentSessionManager.User;
             Random rand = new Random();
             List<string> compliments = new List<string>
-            {
-                "smells like chihuahua!!!!",
-                "looks like a very pleasant being!",
-                "has the right amount of nostrils!",
-                "is very interesting!",
-                "is smart like GuyRo"
-            };
+                                           {
+                                               "smells like chihuahua!!!!",
+                                               "looks like a very pleasant being!",
+                                               "has the right amount of nostrils!",
+                                               "is very interesting!",
+                                               "is smart like GuyRo"
+                                           };
 
             int friendIndex = rand.Next(user.Friends.Count);
             int complimentIndex = rand.Next(compliments.Count);
+
             postStatus($"{UserWrapper.GetFullName(user.Friends[friendIndex])} {compliments[complimentIndex]}");
         }
 
         private void postStatus(string i_Status)
         {
-            CurrentSessionManager.User.PostStatus(i_Status);
-            MessageBox.Show("Status posted!");
+            try
+            {
+                CurrentSessionManager.User.PostStatus(i_Status);
+                MessageBox.Show("Status posted!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Tried to post {i_Status}. Encountered exeption: {ex.Message}");
+            }
         }
 
         private void btnAutoFavoritePages_Click(object sender, EventArgs e)
         {
             User user = CurrentSessionManager.User;
-            
+            List<Page> pagesToDiscuss = getRandomPages();
+            StringBuilder status = new StringBuilder("Hey everyone! You should check out These pages: ");
+
             if (user.LikedPages.Count == 0)
             {
                 MessageBox.Show("You don't have any pages to talk about...", "You have no hobbies",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            List<Page> pagesToDiscuss = getRandomPages();
-
-            StringBuilder status = new StringBuilder("Hey everyone! You should check out These pages: ");
             for (int i = 0; i < pagesToDiscuss.Count; i++)
             {
                 status.Append(pagesToDiscuss[i].Name);
@@ -361,8 +348,8 @@ namespace BasicFacebookFeatures
             int numberOfPagesToDiscuss = 3;
             FacebookObjectCollection<Page> pages = CurrentSessionManager.User.LikedPages;
             Random random = new Random();
+            List<Page> res = null;
 
-            
             for (int i = pages.Count - 1; i > 0; i--)
             {
                 int j = random.Next(0, i + 1);
@@ -373,10 +360,14 @@ namespace BasicFacebookFeatures
 
             if (pages.Count < numberOfPagesToDiscuss)
             {
-                return pages.Take(pages.Count).ToList();
+                res = pages.Take(pages.Count).ToList();
+            }
+            else
+            {
+                res = pages.Take(numberOfPagesToDiscuss).ToList();
             }
 
-            return pages.Take(numberOfPagesToDiscuss).ToList();
+            return res;
         }
 
         private void btnAutoShoutoutAlbum_Click(object sender, EventArgs e)
@@ -385,6 +376,7 @@ namespace BasicFacebookFeatures
             Random rand = new Random();
             int albumIndex = rand.Next(user.Albums.Count);
             Album album = user.Albums[albumIndex];
+
             postStatus($"Hey everyone! You should checkout my album {user.Albums[albumIndex].Name}! Here's the link {album.Link}.");
         }
     }

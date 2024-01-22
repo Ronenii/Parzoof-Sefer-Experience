@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FacebookWrapper;
+﻿using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures.session
@@ -14,8 +9,6 @@ namespace BasicFacebookFeatures.session
         public User User { get; set; }
         public string AccessToken { get; set; }
         
-
-
         public void Login()
         {
             LoginResult = FacebookService.Login("392372086520900",
