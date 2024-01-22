@@ -14,7 +14,7 @@ namespace BasicFacebookFeatures
     public partial class FilterMenu : Form
     {
         private readonly User r_User;
-        public FacebookObjectCollection<User> FilteredFriendsCollection { get; }
+        public FacebookObjectCollection<User> FilteredFriendsCollection { get; set; }
         
         private Dictionary<string, string> m_HometownDictionary;
         public FilterMenu(User i_User)
@@ -48,18 +48,18 @@ namespace BasicFacebookFeatures
 
         private void populateCBoxHometown()
         {
-            HashSet<string> homeTownSet = new HashSet<string>();
+            HashSet<string> locationSet = new HashSet<string>();
             foreach (User friend in r_User.Friends)
             {
-                if (friend.Hometown != null)
+                if (friend.Location != null)
                 {
-                    homeTownSet.Add(friend.Hometown.Name);
+                    locationSet.Add(friend.Location.Name);
                 }
             }
 
-            foreach (string hometown in homeTownSet)
+            foreach (string location in locationSet)
             {
-                cBoxFriendOf.Items.Add(hometown);
+                cBoxLocation.Items.Add(location);
             }
         }
 
@@ -84,7 +84,7 @@ namespace BasicFacebookFeatures
             numericUDTo.Value = 0;
             rBtnFemale.Checked = false;
             rBtnMale.Checked = false;
-            cBoxHometown.SelectedItem = null;
+            cBoxLocation.SelectedItem = null;
             cBoxFriendOf.SelectedItem = null;
         }
 

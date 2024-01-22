@@ -66,17 +66,28 @@ namespace BasicFacebookFeatures.logic.display.obj
             if(i_BaseFacebookObject is User)
             {
                 User user = i_BaseFacebookObject as User;
+                string userFullName;
+                if (user.MiddleName != null)
+                {
+                    userFullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
+                }
+                else
+                {
+                    userFullName = $"{user.FirstName} {user.LastName}";
+                }
                 try
                 {
-                    return new FacebookObjectDisplayData(user.ImageSquare, $@"{user.Name}, {user.Birthday}
+                    return new FacebookObjectDisplayData(user.ImageSquare, $@"{userFullName}
+{user.Birthday}
 {user.Gender}
-{user.Location}");
+{user.Location.Name}");
                 }
                 catch (WebException e)
                 {
-                    return new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{user.Name}, {user.Birthday}
+                    return new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{userFullName}
+{user.Birthday}
 {user.Gender}
-{user.Location}");
+{user.Location.Name}");
                 }
             }
 

@@ -35,7 +35,7 @@ namespace BasicFacebookFeatures
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.cBoxHometown = new System.Windows.Forms.ComboBox();
+            this.cBoxLocation = new System.Windows.Forms.ComboBox();
             this.cBoxFriendOf = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -73,7 +73,7 @@ namespace BasicFacebookFeatures
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cBoxHometown, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cBoxLocation, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.cBoxFriendOf, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
@@ -121,7 +121,7 @@ namespace BasicFacebookFeatures
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 72);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Hometown";
+            this.label4.Text = "Location";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -136,15 +136,15 @@ namespace BasicFacebookFeatures
             this.label5.Text = "Friend of";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // cBoxHometown
+            // cBoxLocation
             // 
-            this.cBoxHometown.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cBoxHometown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBoxHometown.FormattingEnabled = true;
-            this.cBoxHometown.Location = new System.Drawing.Point(124, 168);
-            this.cBoxHometown.Name = "cBoxHometown";
-            this.cBoxHometown.Size = new System.Drawing.Size(249, 24);
-            this.cBoxHometown.TabIndex = 4;
+            this.cBoxLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cBoxLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxLocation.FormattingEnabled = true;
+            this.cBoxLocation.Location = new System.Drawing.Point(124, 168);
+            this.cBoxLocation.Name = "cBoxLocation";
+            this.cBoxLocation.Size = new System.Drawing.Size(249, 24);
+            this.cBoxLocation.TabIndex = 4;
             // 
             // cBoxFriendOf
             // 
@@ -304,7 +304,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cBoxHometown;
+        private System.Windows.Forms.ComboBox cBoxLocation;
         private System.Windows.Forms.ComboBox cBoxFriendOf;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label6;
