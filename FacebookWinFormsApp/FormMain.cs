@@ -23,6 +23,8 @@ namespace BasicFacebookFeatures
         public SessionManager SessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
+        private FacebookObjectDisplayGrid<User> m_FriendsGrid;
+        private FacebookObjectDisplayGrid<Page> m_PagesGrid;
         public FormMain()
         {
             InitializeComponent();
@@ -46,8 +48,15 @@ namespace BasicFacebookFeatures
         private void initTabs()
         {
             m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(SessionManager.UserWrapper.GetAlbums, this);
-            tabPageAlbums.Controls.Add(m_AlbumsGrid.Grid);
+            tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
+
+            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
+            tabFriends.Controls.Add(m_FriendsGrid.Grid);
+
+            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(SessionManager.UserWrapper.GetLikedPages, this);
+            tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
@@ -85,7 +94,6 @@ namespace BasicFacebookFeatures
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 initTabs();
-                initAllComponents();
             }
             else
             {
@@ -96,6 +104,24 @@ namespace BasicFacebookFeatures
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             FacebookService.Logout();
+            clearMainTab(); 
+            clearTabs();
+            SessionManager.logout();
+        }
+
+        private void clearTabs()
+        {
+            m_AlbumsGrid.Clear();
+            m_FriendsGrid.Clear();
+            m_PagesGrid.Clear();
+
+            tabLikedPages.Controls.Clear();
+            tabAlbums.Controls.Clear();
+            tabFriends.Controls.Remove(m_FriendsGrid.Grid);
+        }
+
+        private void clearMainTab()
+        {
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
             buttonLogin.Enabled = true;
@@ -103,22 +129,24 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.Image = null;
             labelName.Text = "";
             labelBirthdate.Text = "";
-            m_AlbumsGrid.Clear();
         }
 
 
         // If the user has finished resizing the window, resize the selected tab accordingly.
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPageAlbums)
+            if (tabControl.SelectedTab == tabAlbums)
             {
                 m_AlbumsGrid.adjustGridToForm();
             }
-            
-        }
-
-        private void initAllComponents()
-        {
+            else if (tabControl.SelectedTab == tabFriends)
+            {
+                m_FriendsGrid.adjustGridToForm();
+            }
+            else if (tabControl.SelectedTab == tabLikedPages)
+            {
+                m_PagesGrid.adjustGridToForm();
+            }
 
         }
 
@@ -170,11 +198,19 @@ namespace BasicFacebookFeatures
         {
             if (isTabsDisbaled())
             {
-                tabControl1.SelectedTab = tabPageMain;
+                tabControl.SelectedTab = tabPageMain;
             }
-            else if (tabControl1.SelectedTab == tabPageAlbums)
+            else if (tabControl.SelectedTab == tabAlbums)
             {
                 m_AlbumsGrid.adjustGridToForm();
+            }
+            else if (tabControl.SelectedTab == tabFriends)
+            {
+                m_FriendsGrid.adjustGridToForm();
+            }
+            else if (tabControl.SelectedTab == tabLikedPages)
+            {
+                m_PagesGrid.adjustGridToForm();
             }
         }
 
@@ -190,10 +226,6 @@ namespace BasicFacebookFeatures
 
         }
 
-        private void AlbumGrid_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
         {
             try
@@ -212,6 +244,31 @@ namespace BasicFacebookFeatures
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            FilterMenu filterMenu = new FilterMenu(SessionManager.User);
+            DialogResult filterResult = filterMenu.ShowDialog();
+
+            if (filterResult == DialogResult.OK)
+            {
+                tabFriends.Controls.Remove(m_FriendsGrid.Grid);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection, this);
+                tabFriends.Controls.Add(m_FriendsGrid.Grid);
+                m_FriendsGrid.adjustGridToForm();
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (m_FriendsGrid.isDisplayingStaticData())
+            {
+                tabFriends.Controls.Remove(m_FriendsGrid.Grid);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
+                tabFriends.Controls.Add(m_FriendsGrid.Grid);
+                m_FriendsGrid.adjustGridToForm();
             }
         }
     }

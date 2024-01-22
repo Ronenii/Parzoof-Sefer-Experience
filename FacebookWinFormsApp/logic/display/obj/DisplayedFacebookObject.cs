@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +22,7 @@ namespace BasicFacebookFeatures.logic.display.obj
                 r_Image = i_Image;
                 r_DisplayedText = i_DisplayedText;
             }
-
+            
             public Image GetImage()
             {
                 return r_Image;
@@ -29,8 +32,10 @@ namespace BasicFacebookFeatures.logic.display.obj
             {
                 return r_DisplayedText;
             }
-            
         }
+
+        private const string k_NoImageFoundFileName = "No image found.png";
+        public readonly string r_NoImageFoundPicturePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "res", k_NoImageFoundFileName);
 
         private readonly T r_BaseFacebookObject;
         public readonly Image r_Image;
@@ -58,18 +63,46 @@ namespace BasicFacebookFeatures.logic.display.obj
                 Album album = i_BaseFacebookObject as Album;
                 return new FacebookObjectDisplayData(album.ImageAlbum,album.Name);
             }
-            else if(i_BaseFacebookObject is User)
+            if(i_BaseFacebookObject is User)
             {
                 User user = i_BaseFacebookObject as User;
-                return new FacebookObjectDisplayData(user.ImageSquare,$@"{user.Name}, {user.Birthday}
+                string userFullName;
+                string location = user.Location == null ? "" : user.Location.Name;
+                if (user.MiddleName != null)
+                {
+                    userFullName = $"{user.FirstName} {user.MiddleName} {user.LastName}";
+                }
+                else
+                {
+                    userFullName = $"{user.FirstName} {user.LastName}";
+                }
+                try
+                {
+                    
+
+                    return new FacebookObjectDisplayData(user.ImageSquare, $@"{userFullName}
+{user.Birthday}
 {user.Gender}
-{user.Location}");
+{location}");
+                }
+                catch (WebException e)
+                {
+                    return new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{userFullName}
+{user.Birthday}
+{user.Gender}
+{location}");
+                }
             }
-            else
+
+            if (i_BaseFacebookObject is Page)
             {
-                throw new ArgumentException("Unsupported object type for display: " + i_BaseFacebookObject.GetType().FullName);
+                Page page = i_BaseFacebookObject as Page;
+                return new FacebookObjectDisplayData(page.ImageNormal, page.Name);
             }
+
+            throw new ArgumentException("Unsupported object type for display: " + i_BaseFacebookObject.GetType().FullName);
         }
+
     }   
 
 }

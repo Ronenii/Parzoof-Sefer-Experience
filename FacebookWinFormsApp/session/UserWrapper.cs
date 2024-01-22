@@ -21,5 +21,15 @@ namespace BasicFacebookFeatures.session
         {
             return r_User.Albums;
         }
+
+        public FacebookObjectCollection<User> GetFriends()
+        {
+            return r_User.Friends;
+        }
+
+        public FacebookObjectCollection<Page> GetLikedPages()
+        {
+            return r_User.LikedPages;
+        }
     }
 }

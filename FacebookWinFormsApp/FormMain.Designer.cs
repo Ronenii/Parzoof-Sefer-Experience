@@ -30,7 +30,7 @@
         {
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
             this.labelBirthdateHeadline = new System.Windows.Forms.Label();
             this.labelNameHeadline = new System.Windows.Forms.Label();
@@ -45,10 +45,15 @@
             this.buttonPost = new System.Windows.Forms.Button();
             this.textBoxStatus = new System.Windows.Forms.TextBox();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
-            this.tabPageAlbums = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabAlbums = new System.Windows.Forms.TabPage();
+            this.tabFriends = new System.Windows.Forms.TabPage();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.tabLikedPages = new System.Windows.Forms.TabPage();
+            this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            this.tabFriends.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -74,18 +79,20 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPageMain);
-            this.tabControl1.Controls.Add(this.tabPageAlbums);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.ItemSize = new System.Drawing.Size(89, 27);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1243, 697);
-            this.tabControl1.TabIndex = 54;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl.Controls.Add(this.tabPageMain);
+            this.tabControl.Controls.Add(this.tabAlbums);
+            this.tabControl.Controls.Add(this.tabFriends);
+            this.tabControl.Controls.Add(this.tabLikedPages);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.ItemSize = new System.Drawing.Size(89, 27);
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1243, 697);
+            this.tabControl.TabIndex = 54;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPageMain
             // 
@@ -231,22 +238,64 @@
             this.pictureBoxProfile.TabIndex = 55;
             this.pictureBoxProfile.TabStop = false;
             // 
-            // tabPageAlbums
+            // tabAlbums
             // 
-            this.tabPageAlbums.Location = new System.Drawing.Point(4, 31);
-            this.tabPageAlbums.Name = "tabPageAlbums";
-            this.tabPageAlbums.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAlbums.Size = new System.Drawing.Size(1235, 662);
-            this.tabPageAlbums.TabIndex = 1;
-            this.tabPageAlbums.Text = "Albums";
-            this.tabPageAlbums.UseVisualStyleBackColor = true;
+            this.tabAlbums.Location = new System.Drawing.Point(4, 31);
+            this.tabAlbums.Name = "tabAlbums";
+            this.tabAlbums.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAlbums.Size = new System.Drawing.Size(1235, 662);
+            this.tabAlbums.TabIndex = 1;
+            this.tabAlbums.Text = "Albums";
+            this.tabAlbums.UseVisualStyleBackColor = true;
+            // 
+            // tabFriends
+            // 
+            this.tabFriends.Controls.Add(this.btnClear);
+            this.tabFriends.Controls.Add(this.filterButton);
+            this.tabFriends.Location = new System.Drawing.Point(4, 31);
+            this.tabFriends.Name = "tabFriends";
+            this.tabFriends.Padding = new System.Windows.Forms.Padding(3);
+            this.tabFriends.Size = new System.Drawing.Size(1235, 662);
+            this.tabFriends.TabIndex = 2;
+            this.tabFriends.Text = "Friends";
+            this.tabFriends.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(1071, 6);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 30);
+            this.btnClear.TabIndex = 1;
+            this.btnClear.Text = "clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // filterButton
+            // 
+            this.filterButton.Location = new System.Drawing.Point(1152, 6);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(75, 30);
+            this.filterButton.TabIndex = 0;
+            this.filterButton.Text = "filter";
+            this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            // 
+            // tabLikedPages
+            // 
+            this.tabLikedPages.Location = new System.Drawing.Point(4, 31);
+            this.tabLikedPages.Name = "tabLikedPages";
+            this.tabLikedPages.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLikedPages.Size = new System.Drawing.Size(1235, 662);
+            this.tabLikedPages.TabIndex = 3;
+            this.tabLikedPages.Text = "Pages";
+            this.tabLikedPages.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 697);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
@@ -254,10 +303,11 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResizeEnd += new System.EventHandler(this.FormMain_ResizeEnd);
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            this.tabFriends.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -266,7 +316,7 @@
 
 		private System.Windows.Forms.Button buttonLogin;
 		private System.Windows.Forms.Button buttonLogout;
-		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabControl tabControl;
 		private System.Windows.Forms.TabPage tabPageMain;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.Button buttonPost;
@@ -276,12 +326,16 @@
         private System.Windows.Forms.Label lableComments;
         private System.Windows.Forms.ListBox listBoxComments;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TabPage tabPageAlbums;
+        private System.Windows.Forms.TabPage tabAlbums;
         private System.Windows.Forms.LinkLabel linkTimeline;
         private System.Windows.Forms.Label labelBirthdate;
         private System.Windows.Forms.CheckBox checkBoxRemember;
         private System.Windows.Forms.Label labelBirthdateHeadline;
         private System.Windows.Forms.Label labelNameHeadline;
+        private System.Windows.Forms.TabPage tabFriends;
+        private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TabPage tabLikedPages;
     }
 }
 
