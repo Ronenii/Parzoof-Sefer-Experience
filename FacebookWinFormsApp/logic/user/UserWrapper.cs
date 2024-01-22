@@ -26,5 +26,14 @@ namespace BasicFacebookFeatures.session
         {
             return r_User.LikedPages;
         }
+
+        public static string GetFullName(User i_user)
+        {
+            if (i_user.MiddleName != null)
+            {
+                return $"{i_user.FirstName} {i_user.MiddleName} {i_user.LastName}";
+            }
+            return $"{i_user.FirstName} {i_user.LastName}";
+        }
     }
 }
