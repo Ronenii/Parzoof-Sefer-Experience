@@ -5,7 +5,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
     public class HometownFilter : IFilterType
     {
         private readonly string r_CityName;
-
         public HometownFilter(string i_CityName)
         {
             r_CityName = i_CityName;

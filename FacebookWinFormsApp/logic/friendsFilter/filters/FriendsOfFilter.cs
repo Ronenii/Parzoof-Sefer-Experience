@@ -5,7 +5,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
     public class FriendsOfFilter : IFilterType
     {
         private readonly User r_Friend;
-
         public FriendsOfFilter(User i_Friend)
         {
             r_Friend = i_Friend;

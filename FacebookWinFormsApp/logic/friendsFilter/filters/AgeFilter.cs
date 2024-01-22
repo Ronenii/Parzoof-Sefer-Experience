@@ -7,7 +7,6 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
     {
         private readonly int r_From;
         private readonly int r_To;
-
         public AgeFilter(int i_From, int i_To)
         {
             r_From = i_From;

@@ -11,7 +11,6 @@ namespace BasicFacebookFeatures.serialization
     {
         public bool RememberUser { get; set; }
         public string LastAccessToken { get; set; }
-
         private AppSettings()
         {
             RememberUser = false;
