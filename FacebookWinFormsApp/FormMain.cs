@@ -254,7 +254,9 @@ namespace BasicFacebookFeatures
 
             if (filterResult == DialogResult.OK)
             {
+                tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection, this);
+                tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
         }
@@ -263,7 +265,9 @@ namespace BasicFacebookFeatures
         {
             if (m_FriendsGrid.isDisplayingStaticData())
             {
+                tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(SessionManager.UserWrapper.GetFriends, this);
+                tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 m_FriendsGrid.adjustGridToForm();
             }
         }
