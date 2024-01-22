@@ -91,6 +91,12 @@ namespace BasicFacebookFeatures.logic.display.obj
                 }
             }
 
+            if (i_BaseFacebookObject is Page)
+            {
+                Page page = i_BaseFacebookObject as Page;
+                return new FacebookObjectDisplayData(page.ImageNormal, page.Name);
+            }
+
             throw new ArgumentException("Unsupported object type for display: " + i_BaseFacebookObject.GetType().FullName);
         }
 

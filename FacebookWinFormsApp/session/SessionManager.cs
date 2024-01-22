@@ -44,12 +44,19 @@ namespace BasicFacebookFeatures.session
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
             UserWrapper = new UserWrapper(User);
-            Console.WriteLine(User.Friends);
         }
 
         public bool isLoggedIn()
         {
             return AccessToken != null;
+        }
+
+        public void logout()
+        {
+            User = null;
+            AccessToken = null;
+            UserWrapper = null;
+            LoginResult = null;
         }
     }
 }
