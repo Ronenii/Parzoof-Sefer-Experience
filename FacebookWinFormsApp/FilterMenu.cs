@@ -23,8 +23,8 @@ namespace BasicFacebookFeatures
         private Dictionary<string, string> m_HometownDictionary;
         public FilterMenu(User i_User)
         {
-            m_FriendsFilter = new FriendsFilter(i_User);
             InitializeComponent();
+            m_FriendsFilter = new FriendsFilter(i_User);
             r_User = i_User;
             populateCBoxFriendOf();
             populateCBoxHometown();
@@ -49,6 +49,7 @@ namespace BasicFacebookFeatures
             cBoxFriendOf.DataSource = friendsList;
             cBoxFriendOf.DisplayMember = "value";
             cBoxFriendOf.ValueMember = "key";
+            cBoxFriendOf.SelectedItem = null;
         }
 
         private void populateCBoxHometown()

@@ -33,7 +33,9 @@ namespace BasicFacebookFeatures.logic.friendsFilter
 
         public FacebookObjectCollection<User> InvokeFilters()
         {
-            if(m_ChoosenFilters.Count == 0)
+            FacebookObjectCollection<User> friendsToRemove;
+
+            if (m_ChoosenFilters.Count == 0)
             {
                 pullUserFriendsList();
             }
@@ -41,11 +43,20 @@ namespace BasicFacebookFeatures.logic.friendsFilter
             {
                 foreach (IFilterType filter in m_ChoosenFilters)
                 {
-                    filter.Invoke(m_UsersFriendsList);
+                   friendsToRemove = filter.Invoke(m_UsersFriendsList);
+                   removeFriends(friendsToRemove);
                 }
             }
 
             return m_UsersFriendsList;
+        }
+
+        private void removeFriends(FacebookObjectCollection<User> i_FriendsToRemove)
+        {
+            foreach(User user in i_FriendsToRemove)
+            {
+                m_UsersFriendsList.Remove(user);
+            }
         }
     }
 }

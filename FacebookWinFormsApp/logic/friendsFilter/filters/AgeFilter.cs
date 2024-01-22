@@ -18,23 +18,26 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             m_To = i_To;
         }
 
-        public void Invoke(FacebookObjectCollection<User> i_FriendsList)
+        public FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList)
         {
             int userAge;
+            FacebookObjectCollection<User> friendsToRemove = new FacebookObjectCollection<User>();
 
-            foreach(User user in i_FriendsList)
+            foreach (User user in i_FriendsList)
             {
                 userAge = ageCalculator(user.Birthday);
                 if(userAge < m_From || userAge > m_To)
                 {
-                    i_FriendsList.Remove(user);
+                    friendsToRemove.Add(user);
                 }
             }
+
+            return friendsToRemove;
         }
 
         private int ageCalculator(string i_Birthday)
         {
-            DateTime birthDate = DateTime.ParseExact(i_Birthday, "yyyy-MM-dd", null);
+            DateTime birthDate = DateTime.ParseExact(i_Birthday, "MM/dd/yyyy", null);
             DateTime currentDate = DateTime.Today;
             int age = currentDate.Year - birthDate.Year;
 

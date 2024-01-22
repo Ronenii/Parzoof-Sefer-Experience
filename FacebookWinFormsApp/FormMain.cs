@@ -209,7 +209,6 @@ namespace BasicFacebookFeatures
                 m_FriendsGrid.adjustGridToForm();
             }
             else if (tabControl.SelectedTab == tabLikedPages)
-
             {
                 m_PagesGrid.adjustGridToForm();
             }

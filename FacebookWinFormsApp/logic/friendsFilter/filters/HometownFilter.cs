@@ -16,15 +16,19 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             m_CityName = i_CityName;
         }
 
-        public void Invoke(FacebookObjectCollection<User> i_FriendsList)
+        public FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList)
         {
+            FacebookObjectCollection<User> friendsToRemove = new FacebookObjectCollection<User>();
+
             foreach (User user in i_FriendsList)
             {
                 if (user.Location.Name != m_CityName)
                 {
-                    i_FriendsList.Remove(user);
+                    friendsToRemove.Add(user);
                 }
             }
+
+            return friendsToRemove;
         }
     }
 }

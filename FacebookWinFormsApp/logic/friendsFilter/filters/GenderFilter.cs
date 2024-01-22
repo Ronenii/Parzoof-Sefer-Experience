@@ -22,15 +22,19 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             m_Gender = i_Gender;
         }
 
-        public void Invoke(FacebookObjectCollection<User> i_FriendsList)
+        public FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList)
         {
+            FacebookObjectCollection<User> friendsToRemove = new FacebookObjectCollection<User>();
+
             foreach (User user in i_FriendsList)
             {
                 if(user.Gender.ToString() != m_Gender.ToString().ToLower())
                 {
-                    i_FriendsList.Remove(user);
+                    friendsToRemove.Add(user);
                 }
             }
+
+            return friendsToRemove;
         }
     }
 }

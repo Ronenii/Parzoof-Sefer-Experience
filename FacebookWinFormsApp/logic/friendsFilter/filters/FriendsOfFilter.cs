@@ -16,18 +16,40 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             m_Friend = i_Friend;
         }
 
-        public void Invoke(FacebookObjectCollection<User> i_FriendsList)
+        public FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList)
         {
-            if(m_Friend != null)
+            FacebookObjectCollection<User> friendsToRemove = new FacebookObjectCollection<User>();
+
+            if (m_Friend != null)
             {
                 foreach (User user in i_FriendsList)
                 {
-                    if (!m_Friend.Friends.Contains(user))
+                    if (!isFriend(user)) 
                     {
-                        i_FriendsList.Remove(user);
+                        friendsToRemove.Add(user);
                     }
                 }
             }
+
+            return friendsToRemove;
+        }
+
+        // This method is necessary because the given user object and the users in
+        // "m_Friend.Friends" are not the same objects, they have the same data.
+        private bool isFriend(User i_User)
+        {
+            bool res = false;
+
+            foreach(User user in m_Friend.Friends)
+            {
+                if(user.Id == i_User.Id)
+                {
+                    res = true;
+                    break;
+                }
+            }
+
+            return res;
         }
     }
 }
