@@ -104,6 +104,7 @@ namespace BasicFacebookFeatures
             else
             {
                 addFilters();
+                m_FriendsFilter.PullUserFriendsList();
                 FilteredFriendsCollection = m_FriendsFilter.InvokeFilters();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
