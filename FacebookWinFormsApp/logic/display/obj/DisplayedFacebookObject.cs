@@ -67,9 +67,9 @@ namespace BasicFacebookFeatures.logic.display.obj
             if(i_BaseFacebookObject is User)
             {
                 User user = i_BaseFacebookObject as User;
+                string location = user.Location == null ? "" : user.Location.Name;
                 try
-                {
-                    string location = user.Location == null ? "" : user.Location.Name;
+                { 
                     return new FacebookObjectDisplayData(user.ImageSquare, $@"{UserWrapper.GetFullName(user)}
 {user.Birthday}
 {user.Gender}
