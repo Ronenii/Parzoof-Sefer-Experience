@@ -50,7 +50,6 @@ namespace BasicFacebookFeatures.logic.display.obj
             r_Image = facebookObjectDisplayData.GetImage();
             r_DisplayedText = facebookObjectDisplayData.GetDisplayedText();
             r_Id = (i_BaseFacebookObject as FacebookObject).Id;
-
         }
 
         private FacebookObjectDisplayData getDisplayDataFromBaseObject(T i_BaseFacebookObject)
@@ -68,14 +67,14 @@ namespace BasicFacebookFeatures.logic.display.obj
                 string location = user.Location == null ? "" : user.Location.Name;
                 try
                 {
-                    ret = new FacebookObjectDisplayData(user.ImageSquare, $@"{userFullName}
+                    ret = new FacebookObjectDisplayData(user.ImageSquare, $@"{UserWrapper.GetFullName(user)}
 {user.Birthday}
 {user.Gender}
 {location}");
                 }
                 catch (System.Net.WebException)
                 {
-                    ret = new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{userFullName}
+                    ret = new FacebookObjectDisplayData(Image.FromFile(r_NoImageFoundPicturePath), $@"{UserWrapper.GetFullName(user)}
 {user.Birthday}
 {user.Gender}
 {location}");
