@@ -37,12 +37,12 @@ namespace BasicFacebookFeatures.session
             AccessToken = LoginResult.AccessToken;
         }
 
-        public bool isLoggedIn()
+        public bool IsLoggedIn()
         {
             return AccessToken != null;
         }
 
-        public void logout()
+        public void Logout()
         {
             User = null;
             AccessToken = null;

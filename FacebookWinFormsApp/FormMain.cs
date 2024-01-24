@@ -109,7 +109,7 @@ namespace BasicFacebookFeatures
             FacebookService.Logout();
             clearMainTab();
             clearTabs();
-            CurrentSessionManager.logout();
+            CurrentSessionManager.Logout();
             Wrapper = null;
             disableMainTab();
         }
@@ -240,7 +240,7 @@ namespace BasicFacebookFeatures
         // Should happen only in the situations described in the returned value.
         private bool isTabsDisbaled()
         {
-            return CurrentSessionManager == null || !CurrentSessionManager.isLoggedIn();
+            return CurrentSessionManager == null || !CurrentSessionManager.IsLoggedIn();
         }
 
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
