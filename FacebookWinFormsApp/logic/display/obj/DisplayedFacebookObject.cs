@@ -10,7 +10,7 @@ using BasicFacebookFeatures.session;
 
 namespace BasicFacebookFeatures.logic.display.obj
 {
-    class DisplayedFacebookObject<T>
+    public class DisplayedFacebookObject<T>
     {
         private class FacebookObjectDisplayData
         {
