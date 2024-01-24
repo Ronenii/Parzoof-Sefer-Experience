@@ -2,10 +2,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using BasicFacebookFeatures.session;
 
 namespace BasicFacebookFeatures.logic.display.obj
