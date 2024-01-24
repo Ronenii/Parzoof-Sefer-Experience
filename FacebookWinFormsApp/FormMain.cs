@@ -20,7 +20,6 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
         private UserWrapper Wrapper { get; set; }
-        private int m_PreviousNumberOfAlbums;
         public FormMain()
         {
             InitializeComponent();
@@ -44,8 +43,6 @@ namespace BasicFacebookFeatures
             {
                 disableMainTab();
             }
-
-            m_PreviousNumberOfAlbums = 0;
         }
 
         private void initTabs()

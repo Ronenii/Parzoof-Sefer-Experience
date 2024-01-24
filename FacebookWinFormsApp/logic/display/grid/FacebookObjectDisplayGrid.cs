@@ -109,7 +109,7 @@ namespace BasicFacebookFeatures.logic.grid
             const int elementsInPanel = 2;
             PictureBox objectImagePictureBox = new PictureBox
             {
-                Image = displayedFacebookObject.r_Image
+                Image = displayedFacebookObject.GetImage()
             };
             Size coverSize = new Size(pictureBoxWidth, pictureBoxWidth);
 
@@ -117,7 +117,7 @@ namespace BasicFacebookFeatures.logic.grid
 
             Label objectNameLabel = new Label
             {
-                Text = displayedFacebookObject.r_DisplayedText,
+                Text = displayedFacebookObject.GetDisplayedText(),
                 AutoSize = true,
                 MaximumSize = new Size(pictureBoxWidth, maxTextHeight),
                 Anchor = AnchorStyles.None,

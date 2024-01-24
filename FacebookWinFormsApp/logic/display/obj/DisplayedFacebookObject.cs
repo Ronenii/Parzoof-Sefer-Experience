@@ -34,10 +34,23 @@ namespace BasicFacebookFeatures.logic.display.obj
         }
 
         private const string k_NoImageFoundFileName = "No image found.png";
-        public readonly string r_NoImageFoundPicturePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "res", k_NoImageFoundFileName);
-        public readonly Image r_Image;
-        public readonly string r_DisplayedText;
-        public readonly string r_Id;
+        private readonly string r_NoImageFoundPicturePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "res", k_NoImageFoundFileName);
+        private readonly Image r_Image;
+        private readonly string r_DisplayedText;
+        private readonly string r_Id;
+
+        public string GetId()
+        {
+            return r_Id;
+        }
+        public Image GetImage()
+        {
+            return r_Image;
+        }
+        public string GetDisplayedText()
+        {
+            return r_DisplayedText;
+        }
 
         public DisplayedFacebookObject(T i_BaseFacebookObject)
         {
