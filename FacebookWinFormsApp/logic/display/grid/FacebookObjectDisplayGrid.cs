@@ -12,7 +12,7 @@ namespace BasicFacebookFeatures.logic.grid
         private GetObjectCollectionDelegate getObjectCollectionDelegate;
 
         private readonly bool r_IsDisplayingStaticData;
-        private FacebookObjectCollection<T> m_FacebookObjectCollection;
+        private FacebookObjectCollection<T> m_FacebookObjectCollectionToDisplay;
         private int m_PreviousObjectCount;
         public TableLayoutPanel Grid { get; }
 
@@ -35,7 +35,7 @@ namespace BasicFacebookFeatures.logic.grid
 
         public FacebookObjectDisplayGrid(FacebookObjectCollection<T> i_FacebookObjectCollection)
         {
-            m_FacebookObjectCollection = i_FacebookObjectCollection;
+            m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
             r_IsDisplayingStaticData = true;
             m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
@@ -48,7 +48,7 @@ namespace BasicFacebookFeatures.logic.grid
             };
         }
 
-        public bool isDisplayingStaticData()
+        public bool IsDisplayingStaticData()
         {
             return r_IsDisplayingStaticData;
         }
@@ -60,18 +60,18 @@ namespace BasicFacebookFeatures.logic.grid
         }
 
         // Adjusts album grid according to the form's size, adds FacebookObjects to grid if needed.
-        public void adjustGridToForm()
+        public void AdjustGridToForm()
         {
             if (!r_IsDisplayingStaticData)
             {
-                m_FacebookObjectCollection = getObjectCollectionDelegate();
+                m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
             }
 
             int availableWidth = Grid.Width - Grid.Margin.Horizontal;
             const int pictureBoxWidth = 200;
             int maxColumns = availableWidth / pictureBoxWidth;
-            int rows = (int)Math.Ceiling((double)m_FacebookObjectCollection.Count / maxColumns);
-            int columns = Math.Min(maxColumns, m_FacebookObjectCollection.Count);
+            int rows = (int)Math.Ceiling((double)m_FacebookObjectCollectionToDisplay.Count / maxColumns);
+            int columns = Math.Min(maxColumns, m_FacebookObjectCollectionToDisplay.Count);
 
             Grid.RowCount = rows;
             Grid.ColumnCount = columns;
@@ -84,19 +84,19 @@ namespace BasicFacebookFeatures.logic.grid
         // Re-create the object grid if nany object were added or deleted.
         private void addObjectsToGrid(int i_Columns)
         {
-            if (m_FacebookObjectCollection.Count != m_PreviousObjectCount)
+            if (m_FacebookObjectCollectionToDisplay.Count != m_PreviousObjectCount)
             {
                 Grid.Controls.Clear();
-                for (int i = 0; i < m_FacebookObjectCollection.Count; i++)
+                for (int i = 0; i < m_FacebookObjectCollectionToDisplay.Count; i++)
                 {
                     int row = i / i_Columns;
                     int col = i % i_Columns;
                     int objectIndex = (row + 1) * (col + 1) - 1;
 
-                    Grid.Controls.Add(createNewAlbumDisplayPanel(m_FacebookObjectCollection[objectIndex]), col, row);
+                    Grid.Controls.Add(createNewAlbumDisplayPanel(m_FacebookObjectCollectionToDisplay[objectIndex]), col, row);
                 }
 
-                m_PreviousObjectCount = m_FacebookObjectCollection.Count;
+                m_PreviousObjectCount = m_FacebookObjectCollectionToDisplay.Count;
             }
         }
 

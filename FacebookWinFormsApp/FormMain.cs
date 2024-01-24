@@ -160,15 +160,15 @@ namespace BasicFacebookFeatures
         {
             if (tabControl.SelectedTab == tabAlbums)
             {
-                m_AlbumsGrid.adjustGridToForm();
+                m_AlbumsGrid.AdjustGridToForm();
             }
             else if (tabControl.SelectedTab == tabFriends)
             {
-                m_FriendsGrid.adjustGridToForm();
+                m_FriendsGrid.AdjustGridToForm();
             }
             else if (tabControl.SelectedTab == tabLikedPages)
             {
-                m_PagesGrid.adjustGridToForm();
+                m_PagesGrid.AdjustGridToForm();
             }
         }
 
@@ -224,15 +224,15 @@ namespace BasicFacebookFeatures
             }
             else if (tabControl.SelectedTab == tabAlbums)
             {
-                m_AlbumsGrid.adjustGridToForm();
+                m_AlbumsGrid.AdjustGridToForm();
             }
             else if (tabControl.SelectedTab == tabFriends)
             {
-                m_FriendsGrid.adjustGridToForm();
+                m_FriendsGrid.AdjustGridToForm();
             }
             else if (tabControl.SelectedTab == tabLikedPages)
             {
-                m_PagesGrid.adjustGridToForm();
+                m_PagesGrid.AdjustGridToForm();
             }
         }
 
@@ -266,18 +266,18 @@ namespace BasicFacebookFeatures
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.adjustGridToForm();
+                m_FriendsGrid.AdjustGridToForm();
             }
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            if (m_FriendsGrid.isDisplayingStaticData())
+            if (m_FriendsGrid.IsDisplayingStaticData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.adjustGridToForm();
+                m_FriendsGrid.AdjustGridToForm();
             }
         }
 
