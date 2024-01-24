@@ -81,7 +81,7 @@ namespace BasicFacebookFeatures
             }
             else
             {
-                addFilters();
+                fetchFilters();
                 r_FriendsFilter.PullUserFriendsList();
                 FilteredFriendsCollection = r_FriendsFilter.InvokeFilters();
                 this.DialogResult = DialogResult.OK;
@@ -89,7 +89,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void addFilters()
+        private void fetchFilters()
         {
             List<IFilterType> addedFilters = new List<IFilterType>();
 
