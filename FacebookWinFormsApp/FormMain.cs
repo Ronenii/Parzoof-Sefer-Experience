@@ -14,7 +14,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
     {
-        public SessionManager CurrentSessionManager { get; set; }
         public AppSettings AppSettings { get; set; }
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
@@ -26,7 +25,6 @@ namespace BasicFacebookFeatures
             DoubleBuffered = true;
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
-            CurrentSessionManager = new SessionManager();
         }
 
         protected override void OnShown(EventArgs e)
@@ -34,9 +32,9 @@ namespace BasicFacebookFeatures
             AppSettings = AppSettings.LoadFromFile();
             if (AppSettings.RememberUser && !string.IsNullOrEmpty(AppSettings.LastAccessToken))
             {
-                CurrentSessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
+                SessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
                 checkBoxRemember.Checked = true;
-                Wrapper = new UserWrapper(CurrentSessionManager.User);
+                Wrapper = new UserWrapper(SessionManager.User);
                 adjustUiToLoggedInUser();
             }
             else
@@ -63,7 +61,7 @@ namespace BasicFacebookFeatures
             AppSettings.RememberUser = this.checkBoxRemember.Checked;
             if (AppSettings.RememberUser)
             {
-                AppSettings.LastAccessToken = CurrentSessionManager.AccessToken;
+                AppSettings.LastAccessToken = SessionManager.AccessToken;
             }
 
             AppSettings.SaveToFile();
@@ -72,21 +70,21 @@ namespace BasicFacebookFeatures
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
-            CurrentSessionManager.Login();
-            if (CurrentSessionManager.LoginResult != null)
+            SessionManager.Login();
+            if (SessionManager.LoginResult != null)
             {
-                Wrapper = new UserWrapper(CurrentSessionManager.User);
+                Wrapper = new UserWrapper(SessionManager.User);
                 adjustUiToLoggedInUser();
             }
         }
 
         private void adjustUiToLoggedInUser()
         {
-            if (CurrentSessionManager.AccessToken != null)
+            if (SessionManager.AccessToken != null)
             {
-                pictureBoxProfile.ImageLocation = CurrentSessionManager.User.PictureNormalURL;
-                labelName.Text = CurrentSessionManager.User.Name;
-                labelBirthdate.Text = CurrentSessionManager.User.Birthday;
+                pictureBoxProfile.ImageLocation = SessionManager.User.PictureNormalURL;
+                labelName.Text = SessionManager.User.Name;
+                labelBirthdate.Text = SessionManager.User.Birthday;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 tableLayoutPanelAutoStatus.Enabled = true;
@@ -96,7 +94,7 @@ namespace BasicFacebookFeatures
             else
             {
                 disableMainTab();
-                CurrentSessionManager.LoginResult = null;
+                SessionManager.LoginResult = null;
             }
         }
 
@@ -106,7 +104,7 @@ namespace BasicFacebookFeatures
             FacebookService.Logout();
             clearMainTab();
             clearTabs();
-            CurrentSessionManager.Logout();
+            SessionManager.Logout();
             Wrapper = null;
             disableMainTab();
         }
@@ -181,7 +179,7 @@ namespace BasicFacebookFeatures
                 listBoxTimeline.Items.Clear();
             }
 
-            foreach (Post timelinePost in CurrentSessionManager.User.NewsFeed)
+            foreach (Post timelinePost in SessionManager.User.NewsFeed)
             {
                 if (timelinePost.Message != null)
                 {
@@ -205,7 +203,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxTimeline_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Post selected = CurrentSessionManager.User.Posts[listBoxTimeline.SelectedIndex];
+            Post selected = SessionManager.User.Posts[listBoxTimeline.SelectedIndex];
 
             listBoxComments.DisplayMember = "Message";
             listBoxComments.DataSource = selected.Comments;
@@ -237,7 +235,7 @@ namespace BasicFacebookFeatures
         // Should happen only in the situations described in the returned value.
         private bool isTabsDisbaled()
         {
-            return CurrentSessionManager == null || !CurrentSessionManager.IsLoggedIn();
+            return !SessionManager.IsLoggedIn();
         }
 
         private void buttonPost_MouseClick(object sender, MouseEventArgs e)
@@ -255,7 +253,7 @@ namespace BasicFacebookFeatures
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            FilterMenu filterMenu = new FilterMenu(CurrentSessionManager.User);
+            FilterMenu filterMenu = new FilterMenu(SessionManager.User);
             DialogResult filterResult = filterMenu.ShowDialog();
 
             if (filterResult == DialogResult.OK)
@@ -280,7 +278,7 @@ namespace BasicFacebookFeatures
 
         private void btnAutoCompliment_Click(object sender, EventArgs e)
         {
-            User user = CurrentSessionManager.User;
+            User user = SessionManager.User;
             Random rand = new Random();
             List<string> compliments = new List<string>
                                            {
@@ -301,7 +299,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                CurrentSessionManager.User.PostStatus(i_Status);
+                SessionManager.User.PostStatus(i_Status);
                 MessageBox.Show("Status posted!");
             }
             catch (Exception ex)
@@ -312,7 +310,7 @@ namespace BasicFacebookFeatures
 
         private void btnAutoFavoritePages_Click(object sender, EventArgs e)
         {
-            User user = CurrentSessionManager.User;
+            User user = SessionManager.User;
             List<Page> pagesToDiscuss = getRandomPages();
             StringBuilder status = new StringBuilder("Hey everyone! You should check out These pages: ");
 
@@ -343,7 +341,7 @@ namespace BasicFacebookFeatures
         private List<Page> getRandomPages()
         {
             int numberOfPagesToDiscuss = 3;
-            FacebookObjectCollection<Page> pages = CurrentSessionManager.User.LikedPages;
+            FacebookObjectCollection<Page> pages = SessionManager.User.LikedPages;
             Random random = new Random();
             List<Page> res = null;
 
@@ -369,7 +367,7 @@ namespace BasicFacebookFeatures
 
         private void btnAutoShoutoutAlbum_Click(object sender, EventArgs e)
         {
-            User user = CurrentSessionManager.User;
+            User user = SessionManager.User;
             Random rand = new Random();
             int albumIndex = rand.Next(user.Albums.Count);
             Album album = user.Albums[albumIndex];

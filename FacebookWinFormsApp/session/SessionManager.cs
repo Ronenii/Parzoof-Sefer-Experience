@@ -3,13 +3,13 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures.session
 {
-    public class SessionManager
+    public static class SessionManager
     {
-        public LoginResult LoginResult { get; set; }
-        public User User { get; set; }
-        public string AccessToken { get; set; }
+        public static LoginResult LoginResult { get; set; }
+        public static User User { get; set; }
+        public static string AccessToken { get; set; }
         
-        public void Login()
+        public static void Login()
         {
             LoginResult = FacebookService.Login("392372086520900",
                 "email",
@@ -30,19 +30,19 @@ namespace BasicFacebookFeatures.session
             AccessToken = LoginResult.AccessToken;
         }
 
-        public void LoginFromAppSettings(string i_AccessToken)
+        public static void LoginFromAppSettings(string i_AccessToken)
         {
             LoginResult = FacebookService.Connect(i_AccessToken);
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
         }
 
-        public bool IsLoggedIn()
+        public static bool IsLoggedIn()
         {
             return AccessToken != null;
         }
 
-        public void Logout()
+        public static void Logout()
         {
             User = null;
             AccessToken = null;
