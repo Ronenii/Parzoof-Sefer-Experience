@@ -3,27 +3,21 @@
 namespace BasicFacebookFeatures.session
 {
     // gives User class getter functions for properties.
-    public class UserWrapper
+    public static class UserWrapper
     {
-        private readonly User r_User;
-        public UserWrapper(User i_User)
+        public static FacebookObjectCollection<Album> GetAlbums()
         {
-            r_User = i_User;
+            return SessionManager.User.Albums;
         }
 
-        public FacebookObjectCollection<Album> GetAlbums()
+        public static FacebookObjectCollection<User> GetFriends()
         {
-            return r_User.Albums;
+            return SessionManager.User.Friends;
         }
 
-        public FacebookObjectCollection<User> GetFriends()
+        public static FacebookObjectCollection<Page> GetLikedPages()
         {
-            return r_User.Friends;
-        }
-
-        public FacebookObjectCollection<Page> GetLikedPages()
-        {
-            return r_User.LikedPages;
+            return SessionManager.User.LikedPages;
         }
 
         public static string GetFullName(User i_user)

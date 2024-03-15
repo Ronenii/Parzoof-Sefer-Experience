@@ -13,8 +13,10 @@ namespace BasicFacebookFeatures.logic.grid
 
         private readonly bool r_IsDisplayingStaticData;
         private FacebookObjectCollection<T> m_FacebookObjectCollectionToDisplay;
-        private int m_PreviousObjectCount;
+        private FacebookObjectCollection<T> m_PreviousFacebookObjectCollectionToDisplay;
         public TableLayoutPanel Grid { get; }
+
+        private readonly object r_AddObjectContext = new object();
 
 
         // This class requires the appropriate getter for the Object
@@ -22,7 +24,7 @@ namespace BasicFacebookFeatures.logic.grid
         {
             r_IsDisplayingStaticData = false;
             this.getObjectCollectionDelegate = i_UserDataGetterMethod;
-            m_PreviousObjectCount = 0;
+            //m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
             {
                 AutoSize = true,
@@ -37,7 +39,7 @@ namespace BasicFacebookFeatures.logic.grid
         {
             m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
             r_IsDisplayingStaticData = true;
-            m_PreviousObjectCount = 0;
+            //m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
             {
                 AutoSize = true,
@@ -55,17 +57,19 @@ namespace BasicFacebookFeatures.logic.grid
 
         public void Clear()
         {
-            m_PreviousObjectCount = 0;
-            Grid.Controls.Clear();
+            //m_PreviousObjectCount = 0;
+            Grid.Invoke(new Action(()=>Grid.Controls.Clear()));
+        }
+
+        public void InvokePopulateGridWithPanels()
+        {
+            Grid.Invoke(new Action(() => PopulateGridWithPanels()));
         }
 
         // Adjusts album grid according to the form's size, adds FacebookObjects to grid if needed.
-        public void AdjustGridToForm()
+        private void PopulateGridWithPanels()
         {
-            if (!r_IsDisplayingStaticData)
-            {
-                m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
-            }
+            m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
 
             int availableWidth = Grid.Width - Grid.Margin.Horizontal;
             const int pictureBoxWidth = 200;
@@ -73,21 +77,20 @@ namespace BasicFacebookFeatures.logic.grid
             int rows = (int)Math.Ceiling((double)m_FacebookObjectCollectionToDisplay.Count / maxColumns);
             int columns = Math.Min(maxColumns, m_FacebookObjectCollectionToDisplay.Count);
 
+
             Grid.RowCount = rows;
             Grid.ColumnCount = columns;
-            Grid.SuspendLayout();
             addObjectsToGrid(columns);
-            Grid.ResumeLayout();
             Grid.Refresh();
         }
 
         // Re-create the object grid if nany object were added or deleted.
         private void addObjectsToGrid(int i_Columns)
         {
-            if (m_FacebookObjectCollectionToDisplay.Count != m_PreviousObjectCount)
+            Grid.Controls.Clear();
+            for (int i = 0; i < m_FacebookObjectCollectionToDisplay.Count; i++)
             {
-                Grid.Controls.Clear();
-                for (int i = 0; i < m_FacebookObjectCollectionToDisplay.Count; i++)
+                lock (r_AddObjectContext)
                 {
                     int row = i / i_Columns;
                     int col = i % i_Columns;
@@ -95,8 +98,6 @@ namespace BasicFacebookFeatures.logic.grid
 
                     Grid.Controls.Add(createNewAlbumDisplayPanel(m_FacebookObjectCollectionToDisplay[objectIndex]), col, row);
                 }
-
-                m_PreviousObjectCount = m_FacebookObjectCollectionToDisplay.Count;
             }
         }
 
@@ -135,6 +136,35 @@ namespace BasicFacebookFeatures.logic.grid
             objectDisplayPanel.Controls.Add(objectNameLabel, 0, 1);
 
             return objectDisplayPanel;
+        }
+
+        private bool facebookObjectCollectionsEqual()
+        {
+            bool ret = true;
+            if (m_FacebookObjectCollectionToDisplay.Count != m_PreviousFacebookObjectCollectionToDisplay.Count)
+            {
+                ret = false;
+            }
+            else
+            {
+                foreach (T obj in m_FacebookObjectCollectionToDisplay)
+                {
+                    if (obj is Album)
+                    {
+
+                    }
+                    else if (obj is User)
+                    {
+
+                    }
+                    else if (obj is Page)
+                    {
+
+                    }
+                }
+            }
+
+            return ret;
         }
     }
 }

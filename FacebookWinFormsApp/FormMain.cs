@@ -8,7 +8,7 @@ using FacebookWrapper;
 using BasicFacebookFeatures.session;
 using BasicFacebookFeatures.logic.grid;
 using BasicFacebookFeatures.serialization;
-
+using System.Threading;
 
 namespace BasicFacebookFeatures
 {
@@ -18,7 +18,10 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid<Album> m_AlbumsGrid;
         private FacebookObjectDisplayGrid<User> m_FriendsGrid;
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
-        private UserWrapper Wrapper { get; set; }
+
+        private Thread m_UpdateingThread;
+        private readonly object r_UpdateTabContext = new object();
+
         public FormMain()
         {
             InitializeComponent();
@@ -34,7 +37,6 @@ namespace BasicFacebookFeatures
             {
                 SessionManager.LoginFromAppSettings(AppSettings.LastAccessToken);
                 checkBoxRemember.Checked = true;
-                Wrapper = new UserWrapper(SessionManager.User);
                 adjustUiToLoggedInUser();
             }
             else
@@ -45,13 +47,13 @@ namespace BasicFacebookFeatures
 
         private void initTabs()
         {
-            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(Wrapper.GetAlbums);
+            m_AlbumsGrid = new FacebookObjectDisplayGrid<Album>(UserWrapper.GetAlbums);
             tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
 
-            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends);
+            m_FriendsGrid = new FacebookObjectDisplayGrid<User>(UserWrapper.GetFriends);
             tabFriends.Controls.Add(m_FriendsGrid.Grid);
 
-            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(Wrapper.GetLikedPages);
+            m_PagesGrid = new FacebookObjectDisplayGrid<Page>(UserWrapper.GetLikedPages);
             tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
 
@@ -65,6 +67,7 @@ namespace BasicFacebookFeatures
             }
 
             AppSettings.SaveToFile();
+            m_UpdateingThread.Abort();
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -73,7 +76,6 @@ namespace BasicFacebookFeatures
             SessionManager.Login();
             if (SessionManager.LoginResult != null)
             {
-                Wrapper = new UserWrapper(SessionManager.User);
                 adjustUiToLoggedInUser();
             }
         }
@@ -90,6 +92,7 @@ namespace BasicFacebookFeatures
                 tableLayoutPanelAutoStatus.Enabled = true;
                 enableMainTab();
                 initTabs();
+                new Thread(updateSelectedTabEveryInterval).Start();
             }
             else
             {
@@ -105,8 +108,8 @@ namespace BasicFacebookFeatures
             clearMainTab();
             clearTabs();
             SessionManager.Logout();
-            Wrapper = null;
             disableMainTab();
+            m_UpdateingThread.Abort();
         }
 
         private void disableMainTab()
@@ -153,23 +156,12 @@ namespace BasicFacebookFeatures
         // If the user has finished resizing the window, resize the selected tab accordingly.
         private void FormMain_ResizeEnd(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab == tabAlbums)
-            {
-                m_AlbumsGrid.AdjustGridToForm();
-            }
-            else if (tabControl.SelectedTab == tabFriends)
-            {
-                m_FriendsGrid.AdjustGridToForm();
-            }
-            else if (tabControl.SelectedTab == tabLikedPages)
-            {
-                m_PagesGrid.AdjustGridToForm();
-            }
+            updateSelectedTab();
         }
 
         private void linkTimeline_MouseClick(object sender, MouseEventArgs e)
         {
-            fetchTimeline();
+            listBoxTimeline.Invoke(new Action(() =>fetchTimeline()));
         }
 
         private void fetchTimeline()
@@ -217,17 +209,39 @@ namespace BasicFacebookFeatures
             {
                 tabControl.SelectedTab = tabPageMain;
             }
+            updateSelectedTab();
+        }
+
+        private void updateSelectedTab()
+        {
+            if(tabControl.SelectedTab == tabPageMain)
+            {
+                listBoxTimeline.Invoke(new Action(()=>fetchTimeline()));
+            }
             else if (tabControl.SelectedTab == tabAlbums)
             {
-                m_AlbumsGrid.AdjustGridToForm();
+                m_AlbumsGrid.Clear();
+                new Thread(m_AlbumsGrid.InvokePopulateGridWithPanels).Start();
+                
             }
             else if (tabControl.SelectedTab == tabFriends)
             {
-                m_FriendsGrid.AdjustGridToForm();
+                new Thread(m_FriendsGrid.InvokePopulateGridWithPanels).Start();
             }
             else if (tabControl.SelectedTab == tabLikedPages)
             {
-                m_PagesGrid.AdjustGridToForm();
+                m_PagesGrid.Clear();
+                new Thread(m_PagesGrid.InvokePopulateGridWithPanels).Start();
+            }
+        }
+
+        private void updateSelectedTabEveryInterval()
+        {
+            int updateIntervalInMilliseconds = 5000;
+            while (SessionManager.IsLoggedIn())
+            {
+                tabControl.Invoke(new Action(()=>updateSelectedTab()));
+                Thread.Sleep(updateIntervalInMilliseconds);
             }
         }
 
@@ -261,7 +275,7 @@ namespace BasicFacebookFeatures
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.AdjustGridToForm();
+                m_FriendsGrid.InvokePopulateGridWithPanels();
             }
         }
 
@@ -270,9 +284,9 @@ namespace BasicFacebookFeatures
             if (m_FriendsGrid.IsDisplayingStaticData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(Wrapper.GetFriends);
+                m_FriendsGrid = new FacebookObjectDisplayGrid<User>(UserWrapper.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.AdjustGridToForm();
+                m_FriendsGrid.InvokePopulateGridWithPanels();
             }
         }
 
@@ -304,7 +318,7 @@ namespace BasicFacebookFeatures
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Tried to post: \"{i_Status}\". Encountered exeption: \"{ex.Message}\"");
+                MessageBox.Show($"Tried to post: \"{i_Status}\". Encountered exeption: \"{ex.Message}");
             }
         }
 
