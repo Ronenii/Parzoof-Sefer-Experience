@@ -299,12 +299,12 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                SessionManager.User.PostStatus(i_Status);
+               SessionManager.User.PostStatus(i_Status);
                 MessageBox.Show("Status posted!");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Tried to post {i_Status}. Encountered exeption: {ex.Message}");
+                MessageBox.Show($"Tried to post: \"{i_Status}\". Encountered exeption: \"{ex.Message}\"");
             }
         }
 
