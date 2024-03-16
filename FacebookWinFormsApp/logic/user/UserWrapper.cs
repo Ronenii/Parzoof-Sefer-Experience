@@ -7,6 +7,7 @@ namespace BasicFacebookFeatures.session
     {
         public static FacebookObjectCollection<Album> GetAlbums()
         {
+            Face
             return SessionManager.User.Albums;
         }
 

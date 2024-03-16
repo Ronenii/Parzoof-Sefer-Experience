@@ -1,4 +1,5 @@
 ﻿using BasicFacebookFeatures.logic.display.obj;
+using BasicFacebookFeatures.logic.display.obj.factory;
 using FacebookWrapper.ObjectModel;
 using System;
 using System.Drawing;
@@ -6,13 +7,13 @@ using System.Windows.Forms;
 
 namespace BasicFacebookFeatures.logic.grid
 {
-    public class FacebookObjectDisplayGrid<T>
+    public class FacebookObjectDisplayGrid
     {
-        public delegate FacebookObjectCollection<T> GetObjectCollectionDelegate();
+        public delegate FacebookObjectCollection<FacebookObject> GetObjectCollectionDelegate();
         private GetObjectCollectionDelegate getObjectCollectionDelegate;
 
         private readonly bool r_IsDisplayingStaticData;
-        private FacebookObjectCollection<T> m_FacebookObjectCollectionToDisplay;
+        private FacebookObjectCollection<FacebookObject> m_FacebookObjectCollectionToDisplay;
         public TableLayoutPanel Grid { get; }
 
         private readonly object r_AddObjectContext = new object();
@@ -34,7 +35,7 @@ namespace BasicFacebookFeatures.logic.grid
             };
         }
 
-        public FacebookObjectDisplayGrid(FacebookObjectCollection<T> i_FacebookObjectCollection)
+        public FacebookObjectDisplayGrid(FacebookObjectCollection<FacebookObject> i_FacebookObjectCollection)
         {
             m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
             r_IsDisplayingStaticData = true;
@@ -99,9 +100,9 @@ namespace BasicFacebookFeatures.logic.grid
         }
 
         // Given an object, builds a TableLayoutPanel containing the required displayText and picture.
-        private TableLayoutPanel createNewAlbumDisplayPanel(T i_FacebookObject)
+        private TableLayoutPanel createNewAlbumDisplayPanel(FacebookObject i_FacebookObject)
         {
-            DisplayObject displayedFacebookObject = new DisplayObject(i_FacebookObject);
+            DisplayObject displayedFacebookObject = DisplayObjectFactory.CreateDisplayObject(i_FacebookObject);
             const int pictureBoxWidth = 200;
             const int maxTextHeight = 100;
             const int elementsInPanel = 2;
