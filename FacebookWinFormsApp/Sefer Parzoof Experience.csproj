@@ -101,6 +101,7 @@
     <Compile Include="FormFilterMenu.Designer.cs">
       <DependentUpon>FormFilterMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="logic\display\factory\GridFactory.cs" />
     <Compile Include="logic\friendsFilter\filters\AgeFilter.cs" />
     <Compile Include="logic\friendsFilter\filters\FriendsOfFilter.cs" />
     <Compile Include="logic\friendsFilter\filters\GenderFilter.cs" />
