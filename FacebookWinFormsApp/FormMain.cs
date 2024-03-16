@@ -85,9 +85,7 @@ namespace BasicFacebookFeatures
         {
             if (SessionManager.AccessToken != null)
             {
-                pictureBoxProfile.ImageLocation = SessionManager.User.PictureNormalURL;
-                labelName.Text = SessionManager.User.Name;
-                labelBirthdate.Text = SessionManager.User.Birthday;
+                userBindingSource.DataSource = SessionManager.User;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 tableLayoutPanelAutoStatus.Enabled = true;
@@ -147,9 +145,6 @@ namespace BasicFacebookFeatures
             buttonLogin.BackColor = buttonLogout.BackColor;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
-            pictureBoxProfile.Image = null;
-            labelName.Text = "";
-            labelBirthdate.Text = "";
             listBoxComments.Items.Clear();
             listBoxTimeline.Items.Clear();
         }
