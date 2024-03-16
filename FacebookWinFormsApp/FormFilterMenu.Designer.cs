@@ -1,7 +1,7 @@
 ﻿
 namespace BasicFacebookFeatures
 {
-    partial class FilterMenu
+    partial class FormFilterMenu
     {
         /// <summary>
         /// Required designer variable.

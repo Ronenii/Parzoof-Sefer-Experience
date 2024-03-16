@@ -307,7 +307,7 @@ namespace BasicFacebookFeatures
 
         private void filterButton_Click(object sender, EventArgs e)
         {
-            FilterMenu filterMenu = new FilterMenu(SessionManager.User);
+            FormFilterMenu filterMenu = new FormFilterMenu(SessionManager.User);
             DialogResult filterResult = filterMenu.ShowDialog();
 
             if (filterResult == DialogResult.OK)

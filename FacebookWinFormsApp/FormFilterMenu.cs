@@ -7,12 +7,12 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    public partial class FilterMenu : Form
+    public partial class FormFilterMenu : Form
     {
         private readonly User r_User;
         public FacebookObjectCollection<User> FilteredFriendsCollection { get; set; }
         private readonly FriendsFilter r_FriendsFilter;
-        public FilterMenu(User i_User)
+        public FormFilterMenu(User i_User)
         {
             InitializeComponent();
             r_FriendsFilter = new FriendsFilter(i_User);
