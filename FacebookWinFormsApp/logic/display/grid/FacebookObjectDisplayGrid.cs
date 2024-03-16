@@ -101,7 +101,7 @@ namespace BasicFacebookFeatures.logic.grid
         // Given an object, builds a TableLayoutPanel containing the required displayText and picture.
         private TableLayoutPanel createNewAlbumDisplayPanel(T i_FacebookObject)
         {
-            DisplayedFacebookObject<T> displayedFacebookObject = new DisplayedFacebookObject<T>(i_FacebookObject);
+            DisplayObject displayedFacebookObject = new DisplayObject(i_FacebookObject);
             const int pictureBoxWidth = 200;
             const int maxTextHeight = 100;
             const int elementsInPanel = 2;

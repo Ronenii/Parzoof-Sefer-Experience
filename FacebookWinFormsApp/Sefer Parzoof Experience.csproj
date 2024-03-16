@@ -101,7 +101,11 @@
     <Compile Include="FormFilterMenu.Designer.cs">
       <DependentUpon>FormFilterMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="logic\display\factory\GridFactory.cs" />
+    <Compile Include="logic\display\obj\AlbumDisplayObject.cs" />
+    <Compile Include="logic\display\obj\DisplayData.cs" />
+    <Compile Include="logic\display\obj\factory\DisplayObjectFactory.cs" />
+    <Compile Include="logic\display\obj\PageDisplayObject.cs" />
+    <Compile Include="logic\display\obj\UserDisplayObject.cs" />
     <Compile Include="logic\friendsFilter\filters\AgeFilter.cs" />
     <Compile Include="logic\friendsFilter\filters\FriendsOfFilter.cs" />
     <Compile Include="logic\friendsFilter\filters\GenderFilter.cs" />
@@ -116,7 +120,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="logic\display\grid\FacebookObjectDisplayGrid.cs" />
-    <Compile Include="logic\display\obj\DisplayedFacebookObject.cs" />
+    <Compile Include="logic\display\obj\DisplayObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="session\SessionManager.cs" />

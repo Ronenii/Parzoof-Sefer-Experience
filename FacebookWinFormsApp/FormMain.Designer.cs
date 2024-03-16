@@ -29,13 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             System.Windows.Forms.Label birthdayLabel;
             System.Windows.Forms.Label religionLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.panelUserDetails = new System.Windows.Forms.Panel();
+            this.birthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.firstNameTextBox = new System.Windows.Forms.TextBox();
+            this.imageSquarePictureBox = new System.Windows.Forms.PictureBox();
+            this.lastNameTextBox = new System.Windows.Forms.TextBox();
+            this.religionTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanelAutoStatus = new System.Windows.Forms.TableLayoutPanel();
             this.btnAutoShoutoutAlbum = new System.Windows.Forms.Button();
             this.btnAutoCompliment = new System.Windows.Forms.Button();
@@ -54,38 +61,49 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.filterButton = new System.Windows.Forms.Button();
             this.tabLikedPages = new System.Windows.Forms.TabPage();
-            this.panelUserDetails = new System.Windows.Forms.Panel();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.userBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.birthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.firstNameTextBox = new System.Windows.Forms.TextBox();
-            this.imageSquarePictureBox = new System.Windows.Forms.PictureBox();
-            this.lastNameTextBox = new System.Windows.Forms.TextBox();
-            this.religionTextBox = new System.Windows.Forms.TextBox();
             birthdayLabel = new System.Windows.Forms.Label();
             religionLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
-            this.tableLayoutPanelAutoStatus.SuspendLayout();
-            this.tabFriends.SuspendLayout();
             this.panelUserDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSquarePictureBox)).BeginInit();
+            this.tableLayoutPanelAutoStatus.SuspendLayout();
+            this.tabFriends.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingNavigator)).BeginInit();
             this.userBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageSquarePictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // birthdayLabel
+            // 
+            birthdayLabel.AutoSize = true;
+            birthdayLabel.Location = new System.Drawing.Point(8, 44);
+            birthdayLabel.Name = "birthdayLabel";
+            birthdayLabel.Size = new System.Drawing.Size(82, 24);
+            birthdayLabel.TabIndex = 0;
+            birthdayLabel.Text = "Birthday:";
+            // 
+            // religionLabel
+            // 
+            religionLabel.AutoSize = true;
+            religionLabel.Location = new System.Drawing.Point(8, 81);
+            religionLabel.Name = "religionLabel";
+            religionLabel.Size = new System.Drawing.Size(84, 24);
+            religionLabel.TabIndex = 8;
+            religionLabel.Text = "Religion:";
             // 
             // buttonLogin
             // 
@@ -146,6 +164,65 @@
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
+            // 
+            // panelUserDetails
+            // 
+            this.panelUserDetails.Controls.Add(birthdayLabel);
+            this.panelUserDetails.Controls.Add(this.birthdayDateTimePicker);
+            this.panelUserDetails.Controls.Add(this.firstNameTextBox);
+            this.panelUserDetails.Controls.Add(this.imageSquarePictureBox);
+            this.panelUserDetails.Controls.Add(this.lastNameTextBox);
+            this.panelUserDetails.Controls.Add(religionLabel);
+            this.panelUserDetails.Controls.Add(this.religionTextBox);
+            this.panelUserDetails.Location = new System.Drawing.Point(819, 17);
+            this.panelUserDetails.Name = "panelUserDetails";
+            this.panelUserDetails.Size = new System.Drawing.Size(395, 119);
+            this.panelUserDetails.TabIndex = 70;
+            // 
+            // birthdayDateTimePicker
+            // 
+            this.birthdayDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userBindingSource, "Birthday", true));
+            this.birthdayDateTimePicker.Location = new System.Drawing.Point(96, 44);
+            this.birthdayDateTimePicker.Name = "birthdayDateTimePicker";
+            this.birthdayDateTimePicker.Size = new System.Drawing.Size(200, 28);
+            this.birthdayDateTimePicker.TabIndex = 1;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
+            // 
+            // firstNameTextBox
+            // 
+            this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "FirstName", true));
+            this.firstNameTextBox.Location = new System.Drawing.Point(12, 6);
+            this.firstNameTextBox.Name = "firstNameTextBox";
+            this.firstNameTextBox.Size = new System.Drawing.Size(142, 28);
+            this.firstNameTextBox.TabIndex = 3;
+            // 
+            // imageSquarePictureBox
+            // 
+            this.imageSquarePictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageSquare", true));
+            this.imageSquarePictureBox.Location = new System.Drawing.Point(302, 6);
+            this.imageSquarePictureBox.Name = "imageSquarePictureBox";
+            this.imageSquarePictureBox.Size = new System.Drawing.Size(89, 84);
+            this.imageSquarePictureBox.TabIndex = 5;
+            this.imageSquarePictureBox.TabStop = false;
+            // 
+            // lastNameTextBox
+            // 
+            this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "LastName", true));
+            this.lastNameTextBox.Location = new System.Drawing.Point(160, 6);
+            this.lastNameTextBox.Name = "lastNameTextBox";
+            this.lastNameTextBox.Size = new System.Drawing.Size(136, 28);
+            this.lastNameTextBox.TabIndex = 7;
+            // 
+            // religionTextBox
+            // 
+            this.religionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Religion", true));
+            this.religionTextBox.Location = new System.Drawing.Point(96, 78);
+            this.religionTextBox.Name = "religionTextBox";
+            this.religionTextBox.Size = new System.Drawing.Size(200, 28);
+            this.religionTextBox.TabIndex = 9;
             // 
             // tableLayoutPanelAutoStatus
             // 
@@ -340,24 +417,6 @@
             this.tabLikedPages.Text = "Pages";
             this.tabLikedPages.UseVisualStyleBackColor = true;
             // 
-            // panelUserDetails
-            // 
-            this.panelUserDetails.Controls.Add(birthdayLabel);
-            this.panelUserDetails.Controls.Add(this.birthdayDateTimePicker);
-            this.panelUserDetails.Controls.Add(this.firstNameTextBox);
-            this.panelUserDetails.Controls.Add(this.imageSquarePictureBox);
-            this.panelUserDetails.Controls.Add(this.lastNameTextBox);
-            this.panelUserDetails.Controls.Add(religionLabel);
-            this.panelUserDetails.Controls.Add(this.religionTextBox);
-            this.panelUserDetails.Location = new System.Drawing.Point(819, 17);
-            this.panelUserDetails.Name = "panelUserDetails";
-            this.panelUserDetails.Size = new System.Drawing.Size(395, 119);
-            this.panelUserDetails.TabIndex = 70;
-            // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
-            // 
             // userBindingNavigator
             // 
             this.userBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
@@ -385,9 +444,34 @@
             this.userBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.userBindingNavigator.Name = "userBindingNavigator";
             this.userBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.userBindingNavigator.Size = new System.Drawing.Size(1243, 29);
+            this.userBindingNavigator.Size = new System.Drawing.Size(1243, 31);
             this.userBindingNavigator.TabIndex = 55;
             this.userBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -395,7 +479,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 26);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -404,13 +488,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 26);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 29);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -422,17 +506,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 26);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 29);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -440,7 +517,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 26);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -449,31 +526,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 26);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 29);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 26);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 26);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // userBindingNavigatorSaveItem
             // 
@@ -481,67 +540,8 @@
             this.userBindingNavigatorSaveItem.Enabled = false;
             this.userBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("userBindingNavigatorSaveItem.Image")));
             this.userBindingNavigatorSaveItem.Name = "userBindingNavigatorSaveItem";
-            this.userBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 26);
+            this.userBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
             this.userBindingNavigatorSaveItem.Text = "Save Data";
-            // 
-            // birthdayLabel
-            // 
-            birthdayLabel.AutoSize = true;
-            birthdayLabel.Location = new System.Drawing.Point(8, 44);
-            birthdayLabel.Name = "birthdayLabel";
-            birthdayLabel.Size = new System.Drawing.Size(82, 24);
-            birthdayLabel.TabIndex = 0;
-            birthdayLabel.Text = "Birthday:";
-            // 
-            // birthdayDateTimePicker
-            // 
-            this.birthdayDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.userBindingSource, "Birthday", true));
-            this.birthdayDateTimePicker.Location = new System.Drawing.Point(96, 44);
-            this.birthdayDateTimePicker.Name = "birthdayDateTimePicker";
-            this.birthdayDateTimePicker.Size = new System.Drawing.Size(200, 28);
-            this.birthdayDateTimePicker.TabIndex = 1;
-            // 
-            // firstNameTextBox
-            // 
-            this.firstNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "FirstName", true));
-            this.firstNameTextBox.Location = new System.Drawing.Point(12, 6);
-            this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(142, 28);
-            this.firstNameTextBox.TabIndex = 3;
-            // 
-            // imageSquarePictureBox
-            // 
-            this.imageSquarePictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageSquare", true));
-            this.imageSquarePictureBox.Location = new System.Drawing.Point(302, 6);
-            this.imageSquarePictureBox.Name = "imageSquarePictureBox";
-            this.imageSquarePictureBox.Size = new System.Drawing.Size(89, 84);
-            this.imageSquarePictureBox.TabIndex = 5;
-            this.imageSquarePictureBox.TabStop = false;
-            // 
-            // lastNameTextBox
-            // 
-            this.lastNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "LastName", true));
-            this.lastNameTextBox.Location = new System.Drawing.Point(160, 6);
-            this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(136, 28);
-            this.lastNameTextBox.TabIndex = 7;
-            // 
-            // religionLabel
-            // 
-            religionLabel.AutoSize = true;
-            religionLabel.Location = new System.Drawing.Point(8, 81);
-            religionLabel.Name = "religionLabel";
-            religionLabel.Size = new System.Drawing.Size(84, 24);
-            religionLabel.TabIndex = 8;
-            religionLabel.Text = "Religion:";
-            // 
-            // religionTextBox
-            // 
-            this.religionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Religion", true));
-            this.religionTextBox.Location = new System.Drawing.Point(96, 78);
-            this.religionTextBox.Name = "religionTextBox";
-            this.religionTextBox.Size = new System.Drawing.Size(200, 28);
-            this.religionTextBox.TabIndex = 9;
             // 
             // FormMain
             // 
@@ -559,16 +559,16 @@
             this.tabControl.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
-            this.tableLayoutPanelAutoStatus.ResumeLayout(false);
-            this.tableLayoutPanelAutoStatus.PerformLayout();
-            this.tabFriends.ResumeLayout(false);
             this.panelUserDetails.ResumeLayout(false);
             this.panelUserDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageSquarePictureBox)).EndInit();
+            this.tableLayoutPanelAutoStatus.ResumeLayout(false);
+            this.tableLayoutPanelAutoStatus.PerformLayout();
+            this.tabFriends.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userBindingNavigator)).EndInit();
             this.userBindingNavigator.ResumeLayout(false);
             this.userBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageSquarePictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
