@@ -20,7 +20,7 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid<Page> m_PagesGrid;
 
         private Thread m_UpdateingThread;
-        private readonly object r_UpdateTabContext = new object();
+        private readonly object r_UpdateMainTabContext = new object();
 
         public FormMain()
         {
@@ -28,6 +28,7 @@ namespace BasicFacebookFeatures
             DoubleBuffered = true;
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
+            m_UpdateingThread = new Thread(updateMainTabEveryInterval);
         }
 
         protected override void OnShown(EventArgs e)
@@ -92,7 +93,7 @@ namespace BasicFacebookFeatures
                 tableLayoutPanelAutoStatus.Enabled = true;
                 enableMainTab();
                 initTabs();
-                new Thread(updateSelectedTabEveryInterval).Start();
+                m_UpdateingThread.Start();
             }
             else
             {
@@ -195,6 +196,16 @@ namespace BasicFacebookFeatures
 
         private void listBoxTimeline_SelectedIndexChanged(object sender, EventArgs e)
         {
+            getPostComments();
+        }
+
+        private void getPostComments()
+        {
+            if(listBoxComments.Items.Count != 0)
+            {
+                listBoxComments.Items.Clear();
+            }
+
             Post selected = SessionManager.User.Posts[listBoxTimeline.SelectedIndex];
 
             listBoxComments.DisplayMember = "Message";
@@ -216,32 +227,61 @@ namespace BasicFacebookFeatures
         {
             if(tabControl.SelectedTab == tabPageMain)
             {
-                listBoxTimeline.Invoke(new Action(()=>fetchTimeline()));
+                new Thread(updateMainTab).Start();
             }
             else if (tabControl.SelectedTab == tabAlbums)
             {
-                m_AlbumsGrid.Clear();
-                new Thread(m_AlbumsGrid.InvokePopulateGridWithPanels).Start();
+                new Thread(m_AlbumsGrid.PopulateGridWithPanels).Start();
                 
             }
             else if (tabControl.SelectedTab == tabFriends)
             {
-                new Thread(m_FriendsGrid.InvokePopulateGridWithPanels).Start();
+                new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
             else if (tabControl.SelectedTab == tabLikedPages)
             {
                 m_PagesGrid.Clear();
-                new Thread(m_PagesGrid.InvokePopulateGridWithPanels).Start();
+                new Thread(m_PagesGrid.PopulateGridWithPanels).Start();
             }
         }
 
-        private void updateSelectedTabEveryInterval()
+        private void updateMainTabEveryInterval()
         {
             int updateIntervalInMilliseconds = 5000;
             while (SessionManager.IsLoggedIn())
             {
-                tabControl.Invoke(new Action(()=>updateSelectedTab()));
+                updateMainTab();
                 Thread.Sleep(updateIntervalInMilliseconds);
+            }
+        }
+
+        private void updateMainTab()
+        {
+            tabPageMain.Invoke(new Action(() =>
+            {
+                if (tabControl.SelectedTab == tabPageMain)
+                {
+                    lock (r_UpdateMainTabContext)
+                    {
+                        int prevSelectedInTimelineIndex = listBoxTimeline.SelectedIndex;
+                        fetchTimeline();
+                        if (listBoxComments.SelectedItem != null)
+                        {
+                            getPostComments();
+                        }
+                        selectPreviouslySelectedInTimeline(prevSelectedInTimelineIndex);
+                    }
+                }
+            }
+            ));
+          
+        }
+
+        private void selectPreviouslySelectedInTimeline(int i_PrevSelected)
+        {
+            if(i_PrevSelected < listBoxTimeline.Items.Count)
+            {
+                listBoxTimeline.SelectedIndex = i_PrevSelected;
             }
         }
 
@@ -275,7 +315,7 @@ namespace BasicFacebookFeatures
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(filterMenu.FilteredFriendsCollection);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.InvokePopulateGridWithPanels();
+                new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
         }
 
@@ -286,7 +326,7 @@ namespace BasicFacebookFeatures
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid<User>(UserWrapper.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
-                m_FriendsGrid.InvokePopulateGridWithPanels();
+                new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
         }
 

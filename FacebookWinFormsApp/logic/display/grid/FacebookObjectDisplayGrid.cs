@@ -13,7 +13,6 @@ namespace BasicFacebookFeatures.logic.grid
 
         private readonly bool r_IsDisplayingStaticData;
         private FacebookObjectCollection<T> m_FacebookObjectCollectionToDisplay;
-        private FacebookObjectCollection<T> m_PreviousFacebookObjectCollectionToDisplay;
         public TableLayoutPanel Grid { get; }
 
         private readonly object r_AddObjectContext = new object();
@@ -61,27 +60,25 @@ namespace BasicFacebookFeatures.logic.grid
             Grid.Invoke(new Action(()=>Grid.Controls.Clear()));
         }
 
-        public void InvokePopulateGridWithPanels()
-        {
-            Grid.Invoke(new Action(() => PopulateGridWithPanels()));
-        }
-
         // Adjusts album grid according to the form's size, adds FacebookObjects to grid if needed.
-        private void PopulateGridWithPanels()
+        public void PopulateGridWithPanels()
         {
-            m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
+            Grid.Invoke(new Action(() =>
+            {
+                m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
 
-            int availableWidth = Grid.Width - Grid.Margin.Horizontal;
-            const int pictureBoxWidth = 200;
-            int maxColumns = availableWidth / pictureBoxWidth;
-            int rows = (int)Math.Ceiling((double)m_FacebookObjectCollectionToDisplay.Count / maxColumns);
-            int columns = Math.Min(maxColumns, m_FacebookObjectCollectionToDisplay.Count);
+                int availableWidth = Grid.Width - Grid.Margin.Horizontal;
+                const int pictureBoxWidth = 200;
+                int maxColumns = availableWidth / pictureBoxWidth;
+                int rows = (int)Math.Ceiling((double)m_FacebookObjectCollectionToDisplay.Count / maxColumns);
+                int columns = Math.Min(maxColumns, m_FacebookObjectCollectionToDisplay.Count);
 
 
-            Grid.RowCount = rows;
-            Grid.ColumnCount = columns;
-            addObjectsToGrid(columns);
-            Grid.Refresh();
+                Grid.RowCount = rows;
+                Grid.ColumnCount = columns;
+                addObjectsToGrid(columns);
+                Grid.Refresh();
+            }));
         }
 
         // Re-create the object grid if nany object were added or deleted.
@@ -136,35 +133,6 @@ namespace BasicFacebookFeatures.logic.grid
             objectDisplayPanel.Controls.Add(objectNameLabel, 0, 1);
 
             return objectDisplayPanel;
-        }
-
-        private bool facebookObjectCollectionsEqual()
-        {
-            bool ret = true;
-            if (m_FacebookObjectCollectionToDisplay.Count != m_PreviousFacebookObjectCollectionToDisplay.Count)
-            {
-                ret = false;
-            }
-            else
-            {
-                foreach (T obj in m_FacebookObjectCollectionToDisplay)
-                {
-                    if (obj is Album)
-                    {
-
-                    }
-                    else if (obj is User)
-                    {
-
-                    }
-                    else if (obj is Page)
-                    {
-
-                    }
-                }
-            }
-
-            return ret;
         }
     }
 }
