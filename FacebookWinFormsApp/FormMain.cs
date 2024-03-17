@@ -308,7 +308,7 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid(filterMenu.FilteredFriendsCollection.);
+                m_FriendsGrid = new FacebookObjectDisplayGrid(UserWrapper.ConvertFacebookObjectCollectionToGenericCollection(filterMenu.FilteredFriendsCollection));
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
