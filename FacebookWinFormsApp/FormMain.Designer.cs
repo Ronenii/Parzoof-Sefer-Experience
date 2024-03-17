@@ -60,6 +60,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.filterButton = new System.Windows.Forms.Button();
             this.tabLikedPages = new System.Windows.Forms.TabPage();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             birthdayLabel = new System.Windows.Forms.Label();
             religionLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
@@ -129,6 +131,8 @@
             // 
             // tabPageMain
             // 
+            this.tabPageMain.Controls.Add(this.buttonCancel);
+            this.tabPageMain.Controls.Add(this.buttonEdit);
             this.tabPageMain.Controls.Add(this.panelUserDetails);
             this.tabPageMain.Controls.Add(this.tableLayoutPanelAutoStatus);
             this.tabPageMain.Controls.Add(this.checkBoxRemember);
@@ -158,6 +162,7 @@
             this.panelUserDetails.Controls.Add(this.lastNameTextBox);
             this.panelUserDetails.Controls.Add(religionLabel);
             this.panelUserDetails.Controls.Add(this.religionTextBox);
+            this.panelUserDetails.Enabled = false;
             this.panelUserDetails.Location = new System.Drawing.Point(819, 17);
             this.panelUserDetails.Name = "panelUserDetails";
             this.panelUserDetails.Size = new System.Drawing.Size(395, 119);
@@ -401,6 +406,27 @@
             this.tabLikedPages.Text = "Pages";
             this.tabLikedPages.UseVisualStyleBackColor = true;
             // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(718, 21);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(84, 33);
+            this.buttonEdit.TabIndex = 71;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(718, 57);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(84, 32);
+            this.buttonCancel.TabIndex = 72;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Visible = false;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -458,6 +484,8 @@
         private System.Windows.Forms.PictureBox imageSquarePictureBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.TextBox religionTextBox;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonEdit;
     }
 }
 

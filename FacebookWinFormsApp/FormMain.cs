@@ -22,6 +22,12 @@ namespace BasicFacebookFeatures
         private Thread m_UpdateingThread;
         private readonly object r_UpdateMainTabContext = new object();
 
+        private string m_prevFirstName;
+        private string m_prevLastName;
+        private string m_prevReligion;
+        private DateTime m_prevBDay;
+        private bool m_IsEditing = false;
+
         public FormMain()
         {
             InitializeComponent();
@@ -147,6 +153,11 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
             listBoxComments.Items.Clear();
             listBoxTimeline.Items.Clear();
+            firstNameTextBox.Clear();
+            lastNameTextBox.Clear();
+            religionTextBox.Clear();
+            birthdayDateTimePicker.ResetText();
+            imageSquarePictureBox.Image = null;
         }
 
         // If the user has finished resizing the window, resize the selected tab accordingly.
@@ -422,6 +433,48 @@ namespace BasicFacebookFeatures
             Album album = user.Albums[albumIndex];
 
             postStatus($"Hey everyone! You should checkout my album {user.Albums[albumIndex].Name}! Here's the link {album.Link}.");
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (!m_IsEditing)
+            {
+                enterEditingMode();
+            }
+            else
+            {
+                exitEditingMode();
+            }
+
+            m_prevBDay = birthdayDateTimePicker.Value;
+            m_prevFirstName = firstNameTextBox.Text;
+            m_prevLastName = lastNameTextBox.Text;
+            m_prevReligion = religionTextBox.Text;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            birthdayDateTimePicker.Value = m_prevBDay;
+            firstNameTextBox.Text = m_prevFirstName;
+            lastNameTextBox.Text = m_prevLastName;
+            religionTextBox.Text = m_prevReligion;
+            exitEditingMode();
+        }
+
+        private void enterEditingMode()
+        {
+            m_IsEditing = true;
+            buttonCancel.Visible = true;
+            panelUserDetails.Enabled = true;
+            buttonEdit.Text = "Save";
+        }
+
+        private void exitEditingMode()
+        {
+            buttonCancel.Visible = false;
+            buttonEdit.Text = "Edit";
+            panelUserDetails.Enabled = false;
+            m_IsEditing = false;
         }
     }
 }
