@@ -220,7 +220,7 @@ namespace BasicFacebookFeatures
 
         private void updateSelectedTab()
         {
-            if(tabControl.SelectedTab == tabPageMain)
+            if(tabControl.SelectedTab == tabPageMain && SessionManager.IsLoggedIn())
             {
                 new Thread(updateMainTab).Start();
             }
