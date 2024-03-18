@@ -177,7 +177,6 @@ namespace BasicFacebookFeatures
             {
                 listBoxTimeline.Items.Clear();
             }
-
             foreach (Post timelinePost in SessionManager.User.NewsFeed)
             {
                 if (timelinePost.Message != null)

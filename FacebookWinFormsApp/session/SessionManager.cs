@@ -25,10 +25,7 @@ namespace BasicFacebookFeatures.session
                 "user_location",
                 "user_photos",
                 "user_posts",
-                "user_videos",
-                "pages_read_engagement",
-                "publish_to_groups",
-                "pages_manage_posts");
+                "user_videos");
             User = LoginResult.LoggedInUser;
             AccessToken = LoginResult.AccessToken;
         }
