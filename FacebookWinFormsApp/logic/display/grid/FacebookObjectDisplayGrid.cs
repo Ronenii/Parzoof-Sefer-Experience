@@ -24,30 +24,28 @@ namespace BasicFacebookFeatures.logic.grid
         {
             r_IsDisplayingStaticData = false;
             this.getObjectCollectionDelegate = i_UserDataGetterMethod;
-            //m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
-            {
-                AutoSize = true,
-                Dock = DockStyle.Fill,
-                Visible = true,
-                Enabled = true,
-                AutoScroll = true
-            };
+                       {
+                           AutoSize = true,
+                           Dock = DockStyle.Fill,
+                           Visible = true,
+                           Enabled = true,
+                           AutoScroll = true
+                       };
         }
 
         public FacebookObjectDisplayGrid(FacebookObjectCollection<FacebookObject> i_FacebookObjectCollection)
         {
             m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
             r_IsDisplayingStaticData = true;
-            //m_PreviousObjectCount = 0;
             Grid = new TableLayoutPanel
-            {
-                AutoSize = true,
-                Dock = DockStyle.Fill,
-                Visible = true,
-                Enabled = true,
-                AutoScroll = true
-            };
+                       {
+                           AutoSize = true,
+                           Dock = DockStyle.Fill,
+                           Visible = true,
+                           Enabled = true,
+                           AutoScroll = true
+                       };
         }
 
         public bool IsDisplayingStaticData()
@@ -57,7 +55,6 @@ namespace BasicFacebookFeatures.logic.grid
 
         public void Clear()
         {
-            //m_PreviousObjectCount = 0;
             Grid.Invoke(new Action(()=>Grid.Controls.Clear()));
         }
 

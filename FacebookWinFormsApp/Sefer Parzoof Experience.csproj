@@ -112,6 +112,8 @@
     <Compile Include="logic\friendsFilter\filters\HometownFilter.cs" />
     <Compile Include="logic\friendsFilter\FriendsFilter.cs" />
     <Compile Include="logic\friendsFilter\IFilterType.cs" />
+    <Compile Include="logic\user\adapter\IUserAdapter.cs" />
+    <Compile Include="logic\user\wrapper\UserWrapper.cs" />
     <Compile Include="serialization\AppSettings.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -124,7 +126,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="session\SessionManager.cs" />
-    <Compile Include="logic\user\UserWrapper.cs" />
+    <Compile Include="logic\user\adapter\UserAdapter.cs" />
     <EmbeddedResource Include="FormFilterMenu.resx">
       <DependentUpon>FormFilterMenu.cs</DependentUpon>
     </EmbeddedResource>

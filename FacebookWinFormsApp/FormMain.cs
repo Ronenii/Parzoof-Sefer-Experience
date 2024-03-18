@@ -9,6 +9,8 @@ using BasicFacebookFeatures.session;
 using BasicFacebookFeatures.logic.grid;
 using BasicFacebookFeatures.serialization;
 using System.Threading;
+using BasicFacebookFeatures.logic.user.adapter;
+using BasicFacebookFeatures.logic.user.wrapper;
 
 namespace BasicFacebookFeatures
 {
@@ -18,6 +20,7 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid m_AlbumsGrid;
         private FacebookObjectDisplayGrid m_FriendsGrid;
         private FacebookObjectDisplayGrid m_PagesGrid;
+        private IUserAdapter m_UserAdapter = new UserAdapter();
 
         private Thread m_UpdateingThread;
         private readonly object r_UpdateMainTabContext = new object();
@@ -54,13 +57,13 @@ namespace BasicFacebookFeatures
 
         private void initTabs()
         {
-            m_AlbumsGrid = new FacebookObjectDisplayGrid(UserWrapper.GetAlbums);
+            m_AlbumsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetAlbums);
             tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
 
-            m_FriendsGrid = new FacebookObjectDisplayGrid(UserWrapper.GetFriends);
+            m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetFriends);
             tabFriends.Controls.Add(m_FriendsGrid.Grid);
 
-            m_PagesGrid = new FacebookObjectDisplayGrid(UserWrapper.GetLikedPages);
+            m_PagesGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetLikedPages);
             tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
 
@@ -237,7 +240,6 @@ namespace BasicFacebookFeatures
             else if (tabControl.SelectedTab == tabAlbums)
             {
                 new Thread(m_AlbumsGrid.PopulateGridWithPanels).Start();
-                
             }
             else if (tabControl.SelectedTab == tabFriends)
             {
@@ -318,7 +320,7 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid(UserWrapper.ConvertFacebookObjectCollectionToGenericCollection(filterMenu.FilteredFriendsCollection));
+                m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.ConvertFilteredFriendsCollection(filterMenu.FilteredFriendsCollection));
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
@@ -329,7 +331,7 @@ namespace BasicFacebookFeatures
             if (m_FriendsGrid.IsDisplayingStaticData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid(UserWrapper.GetFriends);
+                m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
