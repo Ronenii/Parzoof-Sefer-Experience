@@ -350,10 +350,17 @@ namespace BasicFacebookFeatures
                                                "is smart like GuyRo"
                                            };
 
-            int friendIndex = rand.Next(user.Friends.Count);
-            int complimentIndex = rand.Next(compliments.Count);
-
-            postStatus($"{UserWrapper.GetFullName(user.Friends[friendIndex])} {compliments[complimentIndex]}");
+            if(user.Friends.Count == 0)
+            {
+                MessageBox.Show(
+                    "You don't have friends to compliment. Go visit \"Gan Sha'ashuim\" and make some friends.");
+            }
+            else
+            {
+                int friendIndex = rand.Next(user.Friends.Count);
+                int complimentIndex = rand.Next(compliments.Count);
+                postStatus($"{UserWrapper.GetFullName(user.Friends[friendIndex])} {compliments[complimentIndex]}");
+            }
         }
 
         private void postStatus(string i_Status)
