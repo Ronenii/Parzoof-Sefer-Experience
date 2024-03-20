@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace BasicFacebookFeatures.logic.grid
 {
-    public class FacebookObjectDisplayGrid
+    public class FacebookDisplayObjectGrid
     {
         public delegate FacebookObjectCollection<FacebookObject> GetObjectCollectionDelegate();
         private GetObjectCollectionDelegate getObjectCollectionDelegate;
@@ -19,7 +19,7 @@ namespace BasicFacebookFeatures.logic.grid
 
 
         // This class requires the appropriate getter for the Object
-        public FacebookObjectDisplayGrid(GetObjectCollectionDelegate i_UserDataGetterMethod)
+        public FacebookDisplayObjectGrid(GetObjectCollectionDelegate i_UserDataGetterMethod)
         {
             r_IsDisplayingFilteredData = false;
             this.getObjectCollectionDelegate = i_UserDataGetterMethod;
@@ -33,7 +33,7 @@ namespace BasicFacebookFeatures.logic.grid
                        };
         }
 
-        public FacebookObjectDisplayGrid(FacebookObjectCollection<FacebookObject> i_FacebookObjectCollection)
+        public FacebookDisplayObjectGrid(FacebookObjectCollection<FacebookObject> i_FacebookObjectCollection)
         {
             m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
             r_IsDisplayingFilteredData = true;
