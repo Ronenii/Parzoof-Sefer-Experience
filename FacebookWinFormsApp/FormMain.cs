@@ -20,15 +20,13 @@ namespace BasicFacebookFeatures
         private FacebookObjectDisplayGrid m_AlbumsGrid;
         private FacebookObjectDisplayGrid m_FriendsGrid;
         private FacebookObjectDisplayGrid m_PagesGrid;
-        private IUserAdapter m_UserAdapter = new UserAdapter();
-
+        private readonly IUserAdapter r_UserAdapter = new UserAdapter();
         private Thread m_UpdateingThread;
         private readonly object r_UpdateMainTabContext = new object();
-
-        private string m_prevFirstName;
-        private string m_prevLastName;
-        private string m_prevReligion;
-        private DateTime m_prevBDay;
+        private string m_PrevFirstName;
+        private string m_PrevLastName;
+        private string m_PrevReligion;
+        private DateTime m_PrevBDay;
         private bool m_IsEditing = false;
 
         public FormMain()
@@ -37,7 +35,6 @@ namespace BasicFacebookFeatures
             DoubleBuffered = true;
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
-            
         }
 
         protected override void OnShown(EventArgs e)
@@ -57,13 +54,13 @@ namespace BasicFacebookFeatures
 
         private void initTabs()
         {
-            m_AlbumsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetAlbums);
+            m_AlbumsGrid = new FacebookObjectDisplayGrid(r_UserAdapter.GetAlbums);
             tabAlbums.Controls.Add(m_AlbumsGrid.Grid);
 
-            m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetFriends);
+            m_FriendsGrid = new FacebookObjectDisplayGrid(r_UserAdapter.GetFriends);
             tabFriends.Controls.Add(m_FriendsGrid.Grid);
 
-            m_PagesGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetLikedPages);
+            m_PagesGrid = new FacebookObjectDisplayGrid(r_UserAdapter.GetLikedPages);
             tabLikedPages.Controls.Add(m_PagesGrid.Grid);
         }
 
@@ -174,7 +171,7 @@ namespace BasicFacebookFeatures
 
         private void linkTimeline_MouseClick(object sender, MouseEventArgs e)
         {
-            listBoxTimeline.Invoke(new Action(() =>fetchTimeline()));
+            listBoxTimeline.Invoke(new Action(() => fetchTimeline()));
         }
 
         private void fetchTimeline()
@@ -183,6 +180,7 @@ namespace BasicFacebookFeatures
             {
                 listBoxTimeline.Items.Clear();
             }
+
             foreach (Post timelinePost in SessionManager.User.NewsFeed)
             {
                 if (timelinePost.Message != null)
@@ -198,11 +196,11 @@ namespace BasicFacebookFeatures
                     listBoxTimeline.Items.Add(string.Format("[{0}]", timelinePost.Type.ToString().ToUpper()));
                 }
             }
+
             if (listBoxTimeline.Items.Count == 0)
             {
                 MessageBox.Show("The timeline is up to date.");
             }
-
         }
 
         private void listBoxTimeline_SelectedIndexChanged(object sender, EventArgs e)
@@ -212,7 +210,7 @@ namespace BasicFacebookFeatures
 
         private void getPostComments()
         {
-            if(listBoxComments.Items.Count != 0)
+            if (listBoxComments.Items.Count != 0)
             {
                 listBoxComments.Items.Clear();
             }
@@ -231,12 +229,13 @@ namespace BasicFacebookFeatures
             {
                 tabControl.SelectedTab = tabPageMain;
             }
+
             updateSelectedTab();
         }
 
         private void updateSelectedTab()
         {
-            if(tabControl.SelectedTab == tabPageMain && SessionManager.IsLoggedIn())
+            if (tabControl.SelectedTab == tabPageMain && SessionManager.IsLoggedIn())
             {
                 new Thread(updateMainTab).Start();
             }
@@ -258,6 +257,7 @@ namespace BasicFacebookFeatures
         private void updateMainTabEveryInterval()
         {
             int updateIntervalInMilliseconds = 5000;
+
             while (SessionManager.IsLoggedIn())
             {
                 updateMainTab();
@@ -279,17 +279,17 @@ namespace BasicFacebookFeatures
                         {
                             getPostComments();
                         }
+
                         selectPreviouslySelectedInTimeline(prevSelectedInTimelineIndex);
                     }
                 }
             }
             ));
-          
         }
 
         private void selectPreviouslySelectedInTimeline(int i_PrevSelected)
         {
-            if(i_PrevSelected < listBoxTimeline.Items.Count)
+            if (i_PrevSelected < listBoxTimeline.Items.Count)
             {
                 listBoxTimeline.SelectedIndex = i_PrevSelected;
             }
@@ -323,7 +323,7 @@ namespace BasicFacebookFeatures
             if (filterResult == DialogResult.OK)
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.ConvertFilteredFriendsCollection(filterMenu.FilteredFriendsCollection));
+                m_FriendsGrid = new FacebookObjectDisplayGrid(r_UserAdapter.ConvertFilteredFriendsCollection(filterMenu.FilteredFriendsCollection));
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
@@ -334,7 +334,7 @@ namespace BasicFacebookFeatures
             if (m_FriendsGrid.IsDisplayingFilteredData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
-                m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetFriends);
+                m_FriendsGrid = new FacebookObjectDisplayGrid(r_UserAdapter.GetFriends);
                 tabFriends.Controls.Add(m_FriendsGrid.Grid);
                 new Thread(m_FriendsGrid.PopulateGridWithPanels).Start();
             }
@@ -353,7 +353,7 @@ namespace BasicFacebookFeatures
                                                "is smart like GuyRo"
                                            };
 
-            if(user.Friends.Count == 0)
+            if (user.Friends.Count == 0)
             {
                 MessageBox.Show(
                     "You don't have friends to compliment. Go visit \"Gan Sha'ashuim\" and make some friends.");
@@ -370,7 +370,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-               SessionManager.User.PostStatus(i_Status);
+                SessionManager.User.PostStatus(i_Status);
                 MessageBox.Show("Status posted!");
             }
             catch (Exception ex)
@@ -457,18 +457,18 @@ namespace BasicFacebookFeatures
                 exitEditingMode();
             }
 
-            m_prevBDay = birthdayDateTimePicker.Value;
-            m_prevFirstName = firstNameTextBox.Text;
-            m_prevLastName = lastNameTextBox.Text;
-            m_prevReligion = religionTextBox.Text;
+            m_PrevBDay = birthdayDateTimePicker.Value;
+            m_PrevFirstName = firstNameTextBox.Text;
+            m_PrevLastName = lastNameTextBox.Text;
+            m_PrevReligion = religionTextBox.Text;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            birthdayDateTimePicker.Value = m_prevBDay;
-            firstNameTextBox.Text = m_prevFirstName;
-            lastNameTextBox.Text = m_prevLastName;
-            religionTextBox.Text = m_prevReligion;
+            birthdayDateTimePicker.Value = m_PrevBDay;
+            firstNameTextBox.Text = m_PrevFirstName;
+            lastNameTextBox.Text = m_PrevLastName;
+            religionTextBox.Text = m_PrevReligion;
             exitEditingMode();
         }
 
