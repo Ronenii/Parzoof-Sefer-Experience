@@ -34,6 +34,7 @@ namespace BasicFacebookFeatures.session
         private FacebookObjectCollection<FacebookObject> convertFacebookObjectCollectionToGenericCollection<T>(FacebookObjectCollection<T> i_Collection)
         {
             FacebookObjectCollection<FacebookObject> ret = new FacebookObjectCollection<FacebookObject>();
+
             foreach(T facebookObject in i_Collection)
             {
                 ret.Add(facebookObject as FacebookObject);
