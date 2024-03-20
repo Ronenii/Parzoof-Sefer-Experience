@@ -8,7 +8,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
         Female
     }
 
-    public class GenderFilter : IFilterStrategy  
+    public class GenderFilter : IFilterStrategy
     {
         private readonly e_Gender r_Gender;
         public GenderFilter(e_Gender i_Gender)
@@ -22,7 +22,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
 
             foreach (User user in i_FriendsList)
             {
-                if(user.Gender.ToString() != r_Gender.ToString().ToLower())
+                if (user.Gender.ToString() != r_Gender.ToString().ToLower())
                 {
                     friendsToRemove.Add(user);
                 }

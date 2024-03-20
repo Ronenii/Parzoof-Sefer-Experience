@@ -1,8 +1,5 @@
 ﻿using FacebookWrapper.ObjectModel;
-using System;
 using System.Drawing;
-using System.IO;
-using BasicFacebookFeatures.session;
 
 namespace BasicFacebookFeatures.logic.display.obj
 {
@@ -21,6 +18,7 @@ namespace BasicFacebookFeatures.logic.display.obj
         {
             return r_Image;
         }
+
         public string GetDisplayedText()
         {
             return r_DisplayedText;

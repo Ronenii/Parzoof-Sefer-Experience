@@ -331,7 +331,7 @@ namespace BasicFacebookFeatures
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            if (m_FriendsGrid.IsDisplayingStaticData())
+            if (m_FriendsGrid.IsDisplayingFilteredData())
             {
                 tabFriends.Controls.Remove(m_FriendsGrid.Grid);
                 m_FriendsGrid = new FacebookObjectDisplayGrid(m_UserAdapter.GetFriends);

@@ -1,12 +1,8 @@
-﻿using BasicFacebookFeatures.session;
-using FacebookWrapper.ObjectModel;
+﻿using FacebookWrapper.ObjectModel;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using BasicFacebookFeatures.logic.user.wrapper;
 
 namespace BasicFacebookFeatures.logic.display.obj

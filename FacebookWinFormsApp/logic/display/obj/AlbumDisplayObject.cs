@@ -1,13 +1,8 @@
 ﻿using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures.logic.display.obj
 {
-    public class AlbumDisplayObject: DisplayObject
+    public class AlbumDisplayObject : DisplayObject
     {
         public AlbumDisplayObject(FacebookObject i_ObjectToDisplay) : base(i_ObjectToDisplay)
         {

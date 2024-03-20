@@ -11,7 +11,6 @@ namespace BasicFacebookFeatures.logic.grid
     {
         public delegate FacebookObjectCollection<FacebookObject> GetObjectCollectionDelegate();
         private GetObjectCollectionDelegate getObjectCollectionDelegate;
-
         private readonly bool r_IsDisplayingFilteredData;
         private FacebookObjectCollection<FacebookObject> m_FacebookObjectCollectionToDisplay;
         public TableLayoutPanel Grid { get; }
@@ -48,7 +47,7 @@ namespace BasicFacebookFeatures.logic.grid
                        };
         }
 
-        public bool IsDisplayingStaticData()
+        public bool IsDisplayingFilteredData()
         {
             return r_IsDisplayingFilteredData;
         }
@@ -73,7 +72,6 @@ namespace BasicFacebookFeatures.logic.grid
                 int maxColumns = availableWidth / pictureBoxWidth;
                 int rows = (int)Math.Ceiling((double)m_FacebookObjectCollectionToDisplay.Count / maxColumns);
                 int columns = Math.Min(maxColumns, m_FacebookObjectCollectionToDisplay.Count);
-
 
                 Grid.RowCount = rows;
                 Grid.ColumnCount = columns;

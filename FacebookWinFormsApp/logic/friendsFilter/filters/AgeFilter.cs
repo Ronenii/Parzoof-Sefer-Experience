@@ -21,7 +21,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             foreach (User user in i_FriendsList)
             {
                 userAge = ageCalculator(user.Birthday);
-                if(userAge < r_From || userAge > r_To)
+                if (userAge < r_From || userAge > r_To)
                 {
                     friendsToRemove.Add(user);
                 }

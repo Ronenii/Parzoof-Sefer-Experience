@@ -18,7 +18,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
             {
                 foreach (User user in i_FriendsList)
                 {
-                    if (!isFriend(user)) 
+                    if (!isFriend(user))
                     {
                         friendsToRemove.Add(user);
                     }
@@ -34,9 +34,9 @@ namespace BasicFacebookFeatures.logic.friendsFilter.filters
         {
             bool res = false;
 
-            foreach(User user in r_Friend.Friends)
+            foreach (User user in r_Friend.Friends)
             {
-                if(user.Id == i_User.Id)
+                if (user.Id == i_User.Id)
                 {
                     res = true;
                     break;
