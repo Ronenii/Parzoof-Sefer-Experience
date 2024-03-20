@@ -37,7 +37,7 @@ namespace BasicFacebookFeatures
             DoubleBuffered = true;
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
-            m_UpdateingThread = new Thread(updateMainTabEveryInterval);
+            
         }
 
         protected override void OnShown(EventArgs e)
@@ -97,9 +97,11 @@ namespace BasicFacebookFeatures
                 userBindingSource.DataSource = SessionManager.User;
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
+                buttonEdit.Visible = true;
                 tableLayoutPanelAutoStatus.Enabled = true;
                 enableMainTab();
                 initTabs();
+                m_UpdateingThread = new Thread(updateMainTabEveryInterval);
                 m_UpdateingThread.Start();
             }
             else
@@ -111,13 +113,14 @@ namespace BasicFacebookFeatures
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
+            m_UpdateingThread.Abort();
             tableLayoutPanelAutoStatus.Enabled = false;
             FacebookService.Logout();
             clearMainTab();
             clearTabs();
             SessionManager.Logout();
             disableMainTab();
-            m_UpdateingThread.Abort();
+            buttonEdit.Visible = false;
         }
 
         private void disableMainTab()
@@ -154,7 +157,7 @@ namespace BasicFacebookFeatures
             buttonLogin.BackColor = buttonLogout.BackColor;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
-            listBoxComments.Items.Clear();
+            listBoxComments.DataSource = null;
             listBoxTimeline.Items.Clear();
             firstNameTextBox.Clear();
             lastNameTextBox.Clear();

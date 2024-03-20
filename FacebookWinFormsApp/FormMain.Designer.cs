@@ -35,6 +35,8 @@
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
             this.panelUserDetails = new System.Windows.Forms.Panel();
             this.birthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -60,8 +62,6 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.filterButton = new System.Windows.Forms.Button();
             this.tabLikedPages = new System.Windows.Forms.TabPage();
-            this.buttonEdit = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             birthdayLabel = new System.Windows.Forms.Label();
             religionLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
@@ -152,6 +152,28 @@
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Main Tab";
             this.tabPageMain.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(718, 57);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(84, 32);
+            this.buttonCancel.TabIndex = 72;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Visible = false;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Location = new System.Drawing.Point(718, 21);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(84, 33);
+            this.buttonEdit.TabIndex = 71;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Visible = false;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // panelUserDetails
             // 
@@ -405,27 +427,6 @@
             this.tabLikedPages.TabIndex = 3;
             this.tabLikedPages.Text = "Pages";
             this.tabLikedPages.UseVisualStyleBackColor = true;
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Location = new System.Drawing.Point(718, 21);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(84, 33);
-            this.buttonEdit.TabIndex = 71;
-            this.buttonEdit.Text = "Edit";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(718, 57);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(84, 32);
-            this.buttonCancel.TabIndex = 72;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Visible = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // FormMain
             // 
