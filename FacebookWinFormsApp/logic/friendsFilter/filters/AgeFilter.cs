@@ -3,7 +3,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures.logic.friendsFilter.filters
 {
-    public class AgeFilter : IFilterType
+    public class AgeFilter : IFilterStrategy
     {
         private readonly int r_From;
         private readonly int r_To;

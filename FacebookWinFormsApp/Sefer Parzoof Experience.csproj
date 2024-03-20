@@ -111,7 +111,7 @@
     <Compile Include="logic\friendsFilter\filters\GenderFilter.cs" />
     <Compile Include="logic\friendsFilter\filters\HometownFilter.cs" />
     <Compile Include="logic\friendsFilter\FriendsFilter.cs" />
-    <Compile Include="logic\friendsFilter\IFilterType.cs" />
+    <Compile Include="logic\friendsFilter\IFilterStrategy.cs" />
     <Compile Include="logic\user\adapter\IUserAdapter.cs" />
     <Compile Include="logic\user\wrapper\UserWrapper.cs" />
     <Compile Include="serialization\AppSettings.cs" />

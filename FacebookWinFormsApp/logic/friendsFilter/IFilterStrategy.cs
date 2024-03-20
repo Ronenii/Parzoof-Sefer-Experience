@@ -2,7 +2,7 @@
 
 namespace BasicFacebookFeatures.logic.friendsFilter
 {
-    public interface IFilterType
+    public interface IFilterStrategy
     {
         FacebookObjectCollection<User> Invoke(FacebookObjectCollection<User> i_FriendsList);
     }

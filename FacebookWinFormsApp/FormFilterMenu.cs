@@ -91,7 +91,7 @@ namespace BasicFacebookFeatures
 
         private void fetchFilters()
         {
-            List<IFilterType> addedFilters = new List<IFilterType>();
+            List<IFilterStrategy> addedFilters = new List<IFilterStrategy>();
 
             addAgeRange(addedFilters);
             addGenders(addedFilters);
@@ -100,7 +100,7 @@ namespace BasicFacebookFeatures
             r_FriendsFilter.AddFilters(addedFilters);
         }
 
-        private void addAgeRange(List<IFilterType> i_AddedFilters)
+        private void addAgeRange(List<IFilterStrategy> i_AddedFilters)
         {
             if (numericUDTo.Value != 0)
             {
@@ -109,7 +109,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void addGenders(List<IFilterType> i_AddedFilters)
+        private void addGenders(List<IFilterStrategy> i_AddedFilters)
         {
             if (rBtnMale.Checked)
             {
@@ -123,7 +123,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void addHometown(List<IFilterType> i_AddedFilters)
+        private void addHometown(List<IFilterStrategy> i_AddedFilters)
         {
             if (cBoxLocation.SelectedItem != null)
             {
@@ -132,7 +132,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void addFriendsOf(List<IFilterType> i_AddedFilters)
+        private void addFriendsOf(List<IFilterStrategy> i_AddedFilters)
         {
             if (cBoxFriendOf.SelectedItem != null)
             {

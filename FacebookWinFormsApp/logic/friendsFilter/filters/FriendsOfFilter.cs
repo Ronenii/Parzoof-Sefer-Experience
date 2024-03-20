@@ -2,7 +2,7 @@
 
 namespace BasicFacebookFeatures.logic.friendsFilter.filters
 {
-    public class FriendsOfFilter : IFilterType
+    public class FriendsOfFilter : IFilterStrategy
     {
         private readonly User r_Friend;
         public FriendsOfFilter(User i_Friend)

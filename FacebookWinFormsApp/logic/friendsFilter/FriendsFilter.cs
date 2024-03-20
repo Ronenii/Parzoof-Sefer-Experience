@@ -7,11 +7,11 @@ namespace BasicFacebookFeatures.logic.friendsFilter
     {
         private readonly User r_MainUser;
         private FacebookObjectCollection<User> m_UsersFriendsList;
-        private List<IFilterType> m_ChoosenFilters;
+        private List<IFilterStrategy> m_ChoosenFilters;
         public FriendsFilter(User i_MainUser)
         {
             r_MainUser = i_MainUser;
-            m_ChoosenFilters = new List<IFilterType>();
+            m_ChoosenFilters = new List<IFilterStrategy>();
         }
 
         public void PullUserFriendsList()
@@ -25,7 +25,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter
             }
         }
 
-        public void AddFilters(List<IFilterType> i_Filters)
+        public void AddFilters(List<IFilterStrategy> i_Filters)
         {
             m_ChoosenFilters = i_Filters;
         }
@@ -34,7 +34,7 @@ namespace BasicFacebookFeatures.logic.friendsFilter
         {
             FacebookObjectCollection<User> friendsToRemove;
 
-            foreach (IFilterType filter in m_ChoosenFilters)
+            foreach (IFilterStrategy filter in m_ChoosenFilters)
             {
                friendsToRemove = filter.Invoke(m_UsersFriendsList);
                removeFriends(friendsToRemove);
