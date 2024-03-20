@@ -12,7 +12,7 @@ namespace BasicFacebookFeatures.logic.grid
         public delegate FacebookObjectCollection<FacebookObject> GetObjectCollectionDelegate();
         private GetObjectCollectionDelegate getObjectCollectionDelegate;
 
-        private readonly bool r_IsDisplayingStaticData;
+        private readonly bool r_IsDisplayingFilteredData;
         private FacebookObjectCollection<FacebookObject> m_FacebookObjectCollectionToDisplay;
         public TableLayoutPanel Grid { get; }
 
@@ -22,7 +22,7 @@ namespace BasicFacebookFeatures.logic.grid
         // This class requires the appropriate getter for the Object
         public FacebookObjectDisplayGrid(GetObjectCollectionDelegate i_UserDataGetterMethod)
         {
-            r_IsDisplayingStaticData = false;
+            r_IsDisplayingFilteredData = false;
             this.getObjectCollectionDelegate = i_UserDataGetterMethod;
             Grid = new TableLayoutPanel
                        {
@@ -37,7 +37,7 @@ namespace BasicFacebookFeatures.logic.grid
         public FacebookObjectDisplayGrid(FacebookObjectCollection<FacebookObject> i_FacebookObjectCollection)
         {
             m_FacebookObjectCollectionToDisplay = i_FacebookObjectCollection;
-            r_IsDisplayingStaticData = true;
+            r_IsDisplayingFilteredData = true;
             Grid = new TableLayoutPanel
                        {
                            AutoSize = true,
@@ -50,7 +50,7 @@ namespace BasicFacebookFeatures.logic.grid
 
         public bool IsDisplayingStaticData()
         {
-            return r_IsDisplayingStaticData;
+            return r_IsDisplayingFilteredData;
         }
 
         public void Clear()
@@ -63,7 +63,10 @@ namespace BasicFacebookFeatures.logic.grid
         {
             Grid.Invoke(new Action(() =>
             {
-                m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
+                if(!r_IsDisplayingFilteredData)
+                {
+                    m_FacebookObjectCollectionToDisplay = getObjectCollectionDelegate();
+                }
 
                 int availableWidth = Grid.Width - Grid.Margin.Horizontal;
                 const int pictureBoxWidth = 200;
